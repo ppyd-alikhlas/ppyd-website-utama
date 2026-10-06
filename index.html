@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pondok Pesantren Yatim Dhuafa Al-Ikhlas</title>
+    <meta name="description"
+        content="Pondok Pesantren Yatim Dhuafa Al-Ikhlas - Mencetak Generasi Qurani, Berilmu, Beramal, dan Berakhlak Islami.">
+    <meta name="keywords" content="Pondok Pesantren, Yatim Dhuafa, Al-Ikhlas, Pendidikan, Islam">
+    <meta name="author" content="Pondok Pesantren Yatim Dhuafa Al-Ikhlas">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets-website-utama/assets/img/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets-website-utama/assets/img/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets-website-utama/assets/img/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="./assets-website-utama/assets/img/favicon_io/site.webmanifest">
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./assets-website-utama/js/tailwinds.js"></script>
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="./assets-website-utama/css/style.css">
+</head>
+
+<body class="bg-white">
+    <!-- Page Loader -->
+    <div id="loader" class="loader">
+        <div class="text-center">
+            <div class="logo-animation mb-4">
+                <img src="./assets-website-utama/assets/img/icon_logo_website.png" height="120" width="120"
+                    alt="Logo Pondok Pesantren Al-Ikhlas">
+            </div>
+            <div class="text-white text-xl font-semibold">Memuat...</div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bg-white/95 backdrop-blur-md border-b border-gray-100 fixed w-full top-0 z-50">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-center py-3">
+                <!-- Logo - Simplified -->
+                <div class="flex items-center cursor-pointer group" onclick="scrollToSection('hero')">
+                    <div
+                        class="w-10 h-10 rounded-lg flex items-center justify-center mr-3 transition-colors duration-300">
+                        <!-- <div class="w-10 h-10 rounded-lg flex items-center justify-center mr-3 group-hover:bg-light-green transition-colors duration-300"> -->
+                        <img src="./assets-website-utama/assets/img/icon_logo_utama.jpg" height="40" width="40"
+                            alt="Logo Pondok Pesantren Al-Ikhlas" style="border-radius: 5%;">
+                    </div>
+                    <div>
+                        <div class="text-islamic-green font-bold text-xl tracking-tight">PONPES YATIM DHUAFA AL-IKHLAS
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu - Minimalist -->
+                <div class="hidden md:flex items-center space-x-1">
+                    <a href="#tentang"
+                        class="text-gray-700 hover:text-islamic-green px-4 py-2 rounded-lg hover:bg-gray-50 font-medium transition-all duration-200">Tentang</a>
+                    <a href="#program-pendidikan"
+                        class="text-gray-700 hover:text-islamic-green px-4 py-2 rounded-lg hover:bg-gray-50 font-medium transition-all duration-200">Program
+                        Pendidikan</a>
+                    <div id="menu-layanan" class="relative">
+                        <button
+                            class="text-gray-700 hover:text-islamic-green px-4 py-2 rounded-lg hover:bg-gray-50 font-medium transition-all duration-200"
+                            onclick="openMenuLayanan()">
+                            Layanan
+                        </button>
+                        <div class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg hidden"
+                            id="submenu-layanan">
+                            <a href="#artikel" class="block px-4 py-2 text-gray-700 hover:bg-gray-50">Suara
+                                Al-Ikhlas</a>
+                            <a href="#testimoni" class="block px-4 py-2 text-gray-700 hover:bg-gray-50">Testimoni</a>
+                            <a href="#faq" class="block px-4 py-2 text-gray-700 hover:bg-gray-50">FAQ</a>
+                            <a href="#usaha-produktif" class="block px-4 py-2 text-gray-700 hover:bg-gray-50">Usaha
+                                Produktif</a>
+                        </div>
+                    </div>
+                    <a href="#kontak"
+                        class="text-gray-700 hover:text-islamic-green px-4 py-2 rounded-lg hover:bg-gray-50 font-medium transition-all duration-200">Kontak</a>
+                    <div class="w-px h-6 bg-gray-200 mx-2"></div>
+                    <a href="#psb"
+                        class="bg-islamic-green text-white px-6 py-2.5 rounded-lg hover:bg-light-green hover:shadow-lg transform hover:scale-105 font-semibold transition-all duration-200">PSB</a>
+                </div>
+
+                <!-- Mobile Menu Button - Modern -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn"
+                        class="text-gray-700 hover:text-islamic-green p-2 rounded-lg hover:bg-gray-50 transition-all duration-200">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Video Background -->
+    <section id="hero" class="hero-video h-screen relative">
+        <!-- Video Background -->
+        <video autoplay muted loop class="absolute inset-0 w-full h-full object-cover">
+            <source src="./assets-website-utama/assets/video/hero-background.mp4" type="video/mp4">
+            <!-- <source src="https://videos.pexels.com/video-files/2818546/2818546-uhd_2560_1440_24fps.mp4" type="video/mp4"> -->
+            <!-- Fallback for browsers that don't support video -->
+            <div class="absolute inset-0 bg-gradient-to-br from-green-800 via-green-600 to-green-400"></div>
+        </video>
+
+        <!-- Overlay -->
+        <div class="absolute inset-0 bg-gradient-to-r from-islamic-green/80 to-light-green/80 hero-overlay"></div>
+        <div class="absolute inset-0 bg-black/30"></div>
+
+        <div class="relative z-10 h-full flex items-center justify-center text-center text-white px-4">
+            <div class="max-w-4xl fade-in">
+                <h1 class="text-5xl md:text-7xl font-bold mb-6">
+                    Pondok Pesantren<br>
+                    <span class="text-islamic-yellow">Yatim Dhuafa Al-Ikhlas</span>
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 opacity-90">
+                    Melahirkan Pejuang Syariat, Mencetak Pemimpin Ummat.
+                </p>
+                <div class="space-x-4">
+                    <button onclick="scrollToSection('tentang')"
+                        class="bg-islamic-yellow text-islamic-green px-8 py-3 rounded-lg font-semibold hover:bg-dark-yellow transition-colors">
+                        Pelajari Lebih Lanjut
+                    </button>
+                    <button onclick="scrollToSection('psb')"
+                        class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-islamic-green transition-colors">
+                        Daftar Sekarang
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tentang Section -->
+    <section id="tentang" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <!-- Header - Minimalist -->
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold text-islamic-green mb-4">
+                        Tentang Kami
+                    </h2>
+                    <div class="w-24 h-1 bg-islamic-yellow mx-auto mb-6"></div>
+                    <p class="text-lg text-gray-600 max-w-4xl mx-auto">
+                        Pondok Pesantren Yatim Dhuafa Al-Ikhlas merupakan lembaga pendidikan dan sosial di bawah naungan
+                        Yayasan Pemberdayaan Ummat Al-Ikhlas, yang berdasarkan Aqidah Islam Ahlussunnah wal jama'ah,
+                        didirikan dengan maksud menjadi lembaga yang memberikan kesempatan, edukasi dan pembiayaan untuk
+                        anak-anak yatim dan dhuafa, dari pengelolaan donasi yang diterima secara jujur dan amanah,
+                        sesuai niat dan harapan para donatur.
+                    </p>
+                </div>
+
+                <!-- motto lembaga -->
+                <div class="text-center mb-16">
+                    <h3 class="text-2xl md:text-2xl font-bold text-islamic-green mb-4">
+                        "Berdiri Bersama dan Untuk Islam"
+                    </h3>
+                    <div class="w-24 h-1 bg-islamic-yellow mx-auto mb-6"></div>
+                </div>
+
+                <!-- Cards - Clean & Modern -->
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Visi Card -->
+                    <div
+                        class="group bg-gray-50 border border-gray-100 p-8 rounded-xl hover:border-islamic-green/20 hover:shadow-xl transition-all duration-300">
+                        <div class="mb-6">
+                            <div
+                                class="w-16 h-16 bg-islamic-green rounded-full flex items-center justify-center group-hover:bg-light-green transition-colors duration-300">
+                                <img src="./assets-website-utama/assets/img/visi-icon.png" class="h-12 w-12"
+                                    alt="visi icon">
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-islamic-green mb-4">Visi</h3>
+                        <p class="text-gray-600">
+                            Membina Generasi Yatim Dhuafa yang Berilmu, Beramal dan Berakhlak Islami.
+                        </p>
+                    </div>
+
+                    <!-- Misi Card -->
+                    <div
+                        class="group bg-gray-50 border border-gray-100 p-8 rounded-xl hover:border-islamic-green/20 hover:shadow-xl transition-all duration-300">
+                        <div class="mb-6">
+                            <div
+                                class="w-16 h-16 bg-islamic-green rounded-full flex items-center justify-center group-hover:bg-light-green transition-colors duration-300">
+                                <img src="./assets-website-utama/assets/img/misi-icon.png" class="h-12 w-12"
+                                    alt="misi icon">
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-islamic-green mb-4">Misi</h3>
+                        <p class="text-gray-600">
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>Menampung, menyantuni, membina dan mendidik serta memotivasi anak yatim dan dhuafa dalam
+                                pola pendidikan pesantren dan sekolah, sehingga menjadi anak-anak yang sholeh dan
+                                berwawasan ilmu yang shohih.</li>
+                            <li>Membekali anak-anak yatim dan dhuafa dengan akhlak dan keterampilan, agar fapat menjadi
+                                pribadi mandiri dan bermanfaat bagi islam.</li>
+                            <li>Menghimpun dan menyalurkan dana ummat berupa zakat, infaq, sedekah, hibah, dan wakaf
+                                untuk kemaslahatan anak-anak yatim dan dhuafa.</li>
+                        </ul>
+                        </p>
+                    </div>
+
+                    <!-- Nilai Card -->
+                    <div
+                        class="group bg-gray-50 border border-gray-100 p-8 rounded-xl hover:border-islamic-green/20 hover:shadow-xl transition-all duration-300">
+                        <div class="mb-6">
+                            <div
+                                class="w-16 h-16 bg-islamic-green rounded-full flex items-center justify-center group-hover:bg-light-green transition-colors duration-300">
+                                <img src="./assets-website-utama/assets/img/tujuan-icon.png" class="h-12 w-12"
+                                    alt="tujuan icon">
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-semibold text-islamic-green mb-4">Tujuan</h3>
+                        <p class="text-gray-600">
+                            Menjadi lembaga sosial dan pendidikan yang mampu memberikan solusi secara totalitas untuk
+                            menyantuni, membina dan memberdayakan para yatim dan dhuafa. Membuat dan menyelenggarakan
+                            sistem pendidikan dan pembinaan yang solutif, praktis dan aplikatif berbasiskan kompetensi
+                            dan life skill yang memadai untuk para yatim dan dhuafa serta masyarakat umum.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Stats Section - Minimalist -->
+                <div class="mt-16 pt-12 border-t border-gray-200">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                        <div class="text-center">
+                            <div class="text-4xl font-bold text-islamic-green mb-2">300+</div>
+                            <div class="text-gray-600">Santri Aktif</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-4xl font-bold text-islamic-green mb-2">16</div>
+                            <div class="text-gray-600">Tahun Berdiri</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-4xl font-bold text-islamic-green mb-2">50+</div>
+                            <div class="text-gray-600">Tenaga Pengajar</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-4xl font-bold text-islamic-green mb-2">500+</div>
+                            <div class="text-gray-600">Alumni</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kenapa Pilih Lembaga -->
+    <section class="py-20 bg-islamic-green text-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">Kenapa Pilih Al-Ikhlas?</h2>
+                <p class="text-lg opacity-90 max-w-3xl mx-auto">
+                    Kami berkomitmen memberikan pendidikan terbaik dengan fasilitas memadai dan tenaga pengajar
+                    berpengalaman
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-islamic-yellow rounded-full flex items-center justify-center mx-auto mb-4">
+                        <img src="./assets-website-utama/assets/img/education-islamic.png" class="h-14 w-14"
+                            alt="Pendidikan Islami">
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Pendidikan Islami</h3>
+                    <p class="opacity-90">Kurikulum berbasis Al-Qur'an dan Hadits dengan metode pembelajaran modern</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-islamic-yellow rounded-full flex items-center justify-center mx-auto mb-4">
+                        <img src="./assets-website-utama/assets/img/teacher-education.png" class="h-14 w-14"
+                            alt="guru/asatidz">
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Ustadz Berpengalaman</h3>
+                    <p class="opacity-90">Tenaga pengajar lulusan universitas ternama dan pondok pesantren</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-islamic-yellow rounded-full flex items-center justify-center mx-auto mb-4">
+                        <img src="./assets-website-utama/assets/img/fasilitas-education.png" class="h-14 w-14"
+                            alt="fasilitas pesantren">
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Fasilitas Memadai</h3>
+                    <p class="opacity-90">Asrama nyaman, masjid, perpustakaan, fasilitas olahraga dan lingkungan yang
+                        kondusif</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-islamic-yellow rounded-full flex items-center justify-center mx-auto mb-4">
+                        <img src="./assets-website-utama/assets/img/beasiswa-education.png" class="h-14 w-14"
+                            alt="beasiswa santri">
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Beasiswa Penuh</h3>
+                    <p class="opacity-90">Program beasiswa untuk anak yatim dan keluarga kurang mampu</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program Pendidikan -->
+    <section id="program-pendidikan" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-islamic-green mb-4">Program Pendidikan</h2>
+                    <div class="w-24 h-1 bg-islamic-yellow mx-auto mb-4"></div>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                        Pendidikan Islam terpadu dari usia dini hingga menengah atas dengan program tahfidz unggulan
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- TK/PAUD -->
+                    <div class="bg-gray-50 p-8 rounded-2xl shadow-lg text-center hover:shadow-xl transition-shadow">
+                        <div
+                            class="w-20 h-20 bg-islamic-green rounded-full flex items-center justify-center mx-auto mb-6">
+                            <img src="./assets-website-utama/assets/img/icon-education.png" class="h-14 w-14"
+                                alt="Icon Education PP. Yatim Dhuafa Al-Ikhlas">
+                        </div>
+                        <h3 class="text-2xl font-semibold text-islamic-green mb-4">TK/PAUD</h3>
+                        <div class="text-light-green font-semibold mb-4">Usia 3-6 Tahun</div>
+                        <ul class="text-gray-600 text-sm space-y-2 text-left">
+                            <li>• Pengenalan huruf hijaiyah</li>
+                            <li>• Hafalan surat-surat & hadits pendek</li>
+                            <li>• Pembelajaran bermain sambil belajar</li>
+                            <li>• Pembentukan akhlak dasar</li>
+                            <li>• Kegiatan motorik dan kreativitas</li>
+                        </ul>
+                        <div class="mt-6">
+                            <button
+                                class="bg-islamic-green text-white px-6 py-2 rounded-lg font-semibold hover:bg-light-green transition-colors">
+                                Info Lengkap
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- SD/MI -->
+                    <div class="bg-gray-50 p-8 rounded-2xl shadow-lg text-center hover:shadow-xl transition-shadow">
+                        <div
+                            class="w-20 h-20 bg-islamic-green rounded-full flex items-center justify-center mx-auto mb-6">
+                            <img src="./assets-website-utama/assets/img/icon-education.png" class="h-14 w-14"
+                                alt="Icon Education PP. Yatim Dhuafa Al-Ikhlas">
+                        </div>
+                        <h3 class="text-2xl font-semibold text-islamic-green mb-4">SD/MI</h3>
+                        <div class="text-light-green font-semibold mb-4">Kelas 1-6</div>
+                        <ul class="text-gray-600 text-sm space-y-2 text-left">
+                            <li>• Kurikulum nasional + pesantren</li>
+                            <li>• Pembelajaran Al-Qur'an & Hadits</li>
+                            <li>• Bahasa Arab & Inggris</li>
+                            <li>• Sains & Matematika</li>
+                            <li>• Ekstrakurikuler beragam</li>
+                        </ul>
+                        <div class="mt-6">
+                            <button
+                                class="bg-islamic-green text-white px-6 py-2 rounded-lg font-semibold hover:bg-light-green transition-colors">
+                                Info Lengkap
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Tahfidz Raudhatul Huffadz -->
+                    <div class="bg-gray-50 p-8 rounded-2xl shadow-lg text-center hover:shadow-xl transition-shadow">
+                        <div
+                            class="w-20 h-20 bg-islamic-green rounded-full flex items-center justify-center mx-auto mb-6">
+                            <img src="./assets-website-utama/assets/img/icon-education.png" class="h-14 w-14"
+                                alt="Icon Education PP. Yatim Dhuafa Al-Ikhlas">
+                        </div>
+                        <h3 class="text-2xl font-semibold text-islamic-green mb-4">Raudhatul Huffadz <br> An-Nuha</h3>
+                        <div class="text-light-green font-semibold mb-4">Program Khusus Tahfidz & Baca Kitab</div>
+                        <ul class="text-gray-600 text-sm space-y-2 text-left">
+                            <li>• Target hafalan 30 Juz Al-Qur'an</li>
+                            <li>• Metode tahfidz terpadu</li>
+                            <li>• Tahsin & Tajwid intensif</li>
+                            <li>• Kajian tafsir & ulumul Qur'an</li>
+                            <li>• Pembinaan akhlak Qur'ani</li>
+                        </ul>
+                        <div class="mt-6">
+                            <button
+                                class="bg-islamic-green text-white px-6 py-2 rounded-lg font-semibold hover:bg-light-green transition-colors">
+                                Info Lengkap
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Program Unggulan -->
+                <div class="mt-16 bg-islamic-green p-8 rounded-2xl shadow-xl">
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-semibold text-white mb-4">Program Unggulan</h3>
+                        <div class="w-16 h-1 bg-islamic-yellow mx-auto"></div>
+                    </div>
+
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="text-center">
+                            <div
+                                class="w-16 h-16 bg-islamic-yellow rounded-full flex items-center justify-center mx-auto mb-4">
+                                <img src="./assets-website-utama/assets/img/tahfidz-icon.png" alt="Tahfidz Al-Qur'an"
+                                    class="w-10 h-10">
+                            </div>
+                            <h4 class="text-lg font-semibold text-white mb-2">Tahfidz 30 Juz</h4>
+                            <p class="text-white/90 text-sm">Program intensif menghafal Al-Qur'an dengan metode terbukti
+                                efektif</p>
+                        </div>
+
+                        <div class="text-center">
+                            <div
+                                class="w-16 h-16 bg-islamic-yellow rounded-full flex items-center justify-center mx-auto mb-4">
+                                <img src="./assets-website-utama/assets/img/language-icon.png"
+                                    alt="Bahasa Internasional" class="w-10 h-10">
+                            </div>
+                            <h4 class="text-lg font-semibold text-white mb-2">Bahasa Internasional</h4>
+                            <p class="text-white/90 text-sm">Penguasaan Bahasa Arab, Inggris, dan Indonesia dengan baik
+                            </p>
+                        </div>
+
+                        <div class="text-center">
+                            <div
+                                class="w-16 h-16 bg-islamic-yellow rounded-full flex items-center justify-center mx-auto mb-4">
+                                <img src="./assets-website-utama/assets/img/teknologi-icon.png"
+                                    alt="Teknologi Pendidikan" class="w-10 h-10">
+                            </div>
+                            <h4 class="text-lg font-semibold text-white mb-2">Teknologi Pendidikan</h4>
+                            <p class="text-white/90 text-sm">Integrasi teknologi modern dalam pembelajaran Islam</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Artikel -->
+    <section id="artikel" class="py-20 bg-gradient-to-br from-white via-gray-50 to-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <div class="inline-block">
+                    <h2 class="text-4xl md:text-5xl font-bold text-islamic-green mb-4 relative">
+                        Suara Al-Ikhlas
+                        <div
+                            class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-islamic-yellow rounded-full">
+                        </div>
+                    </h2>
+                </div>
+                <p class="text-lg text-gray-600 mt-6 max-w-4xl mx-auto">
+                    Sumber berita dan edukasi seputar Pondok Pesantren Yatim Dhuafa Al-Ikhlas. Kami hadir untuk
+                    menyebarkan informasi, inspirasi, dan kabar terkini tentang kegiatan, pendidikan, serta program
+                    sosial pondok, guna mendukung dan memberdayakan anak yatim dhuafa.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                <!-- artikel 1 -->
+                <article
+                    class="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1">
+                    <div class="flex">
+                        <div class="relative w-40 h-60 overflow-hidden flex-shrink-0">
+                            <img id="article-thumbnail"
+                                src="https://images.pexels.com/photos/768125/pexels-photo-768125.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                                alt="Thumbnail"
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent group-hover:from-black/40 transition-all duration-500">
+                            </div>
+                        </div>
+
+                        <div class="p-6 flex-1">
+                            <div class="flex items-center justify-between mb-3">
+                                <span id="article-categories"
+                                    class="inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold bg-islamic-yellow/10 text-islamic-green border border-islamic-yellow/20">
+                                    Kategori
+                                </span>
+                                <span id="article-date" class="text-xs text-gray-500">Waktu Buat</span>
+                            </div>
+
+                            <h3 id="article-title"
+                                class="text-lg font-bold text-islamic-green mb-3 group-hover:text-light-green transition-colors duration-300 line-clamp-2">
+                                Judul
+                            </h3>
+
+                            <p id="article-excerpt" class="text-gray-600 text-sm mb-4 leading-relaxed line-clamp-2">
+                                Deskripsi singkat
+                            </p>
+
+                            <div class="flex items-center justify-between">
+                                <a id="article-link"
+                                    class="inline-flex items-center text-islamic-green font-semibold text-sm hover:text-light-green transition-colors duration-300 group/link">
+                                    Baca Selengkapnya
+                                    <svg class="w-3 h-3 ml-1 transform group-hover/link:translate-x-1 transition-transform duration-300"
+                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                    </svg>
+                                </a>
+                                <div id="date-create" class="flex items-center text-xs text-gray-500">
+                                    Tanggal
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- artikel 2 -->
+                <article
+                    class="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1">
+                    <div class="flex">
+                        <div class="relative w-40 h-60 overflow-hidden flex-shrink-0">
+                            <img id="article-thumbnail1"
+                                src="https://images.pexels.com/photos/768125/pexels-photo-768125.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                                alt="Thumbnail"
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent group-hover:from-black/40 transition-all duration-500">
+                            </div>
+                        </div>
+
+                        <div class="p-6 flex-1">
+                            <div class="flex items-center justify-between mb-3">
+                                <span id="article-categories1"
+                                    class="inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold bg-islamic-yellow/10 text-islamic-green border border-islamic-yellow/20">
+                                    Kategori
+                                </span>
+                                <span id="article-date1" class="text-xs text-gray-500">Waktu Buat</span>
+                            </div>
+
+                            <h3 id="article-title1"
+                                class="text-lg font-bold text-islamic-green mb-3 group-hover:text-light-green transition-colors duration-300 line-clamp-2">
+                                Judul
+                            </h3>
+
+                            <p id="article-excerpt1" class="text-gray-600 text-sm mb-4 leading-relaxed line-clamp-2">
+                                Deskripsi singkat
+                            </p>
+
+                            <div class="flex items-center justify-between">
+                                <a id="article-link1"
+                                    class="inline-flex items-center text-islamic-green font-semibold text-sm hover:text-light-green transition-colors duration-300 group/link">
+                                    Baca Selengkapnya
+                                    <svg class="w-3 h-3 ml-1 transform group-hover/link:translate-x-1 transition-transform duration-300"
+                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                    </svg>
+                                </a>
+                                <div id="date-create1" class="flex items-center text-xs text-gray-500">
+                                    Tanggal
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- artikel 3 -->
+                <article
+                    class="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1">
+                    <div class="flex">
+                        <div class="relative w-40 h-60 overflow-hidden flex-shrink-0">
+                            <img id="article-thumbnail2"
+                                src="https://images.pexels.com/photos/768125/pexels-photo-768125.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                                alt="Thumbnail"
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent group-hover:from-black/40 transition-all duration-500">
+                            </div>
+                        </div>
+
+                        <div class="p-6 flex-1">
+                            <div class="flex items-center justify-between mb-3">
+                                <span id="article-categories2"
+                                    class="inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold bg-islamic-yellow/10 text-islamic-green border border-islamic-yellow/20">
+                                    Kategori
+                                </span>
+                                <span id="article-date2" class="text-xs text-gray-500">Waktu Buat</span>
+                            </div>
+
+                            <h3 id="article-title2"
+                                class="text-lg font-bold text-islamic-green mb-3 group-hover:text-light-green transition-colors duration-300 line-clamp-2">
+                                Judul
+                            </h3>
+
+                            <p id="article-excerpt2" class="text-gray-600 text-sm mb-4 leading-relaxed line-clamp-2">
+                                Deskripsi singkat
+                            </p>
+
+                            <div class="flex items-center justify-between">
+                                <a id="article-link2"
+                                    class="inline-flex items-center text-islamic-green font-semibold text-sm hover:text-light-green transition-colors duration-300 group/link">
+                                    Baca Selengkapnya
+                                    <svg class="w-3 h-3 ml-1 transform group-hover/link:translate-x-1 transition-transform duration-300"
+                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                    </svg>
+                                </a>
+                                <div id="date-create2" class="flex items-center text-xs text-gray-500">
+                                    Tanggal
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- artikel 4 -->
+                <article
+                    class="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1">
+                    <div class="flex">
+                        <div class="relative w-40 h-60 overflow-hidden flex-shrink-0">
+                            <img id="article-thumbnail3"
+                                src="https://images.pexels.com/photos/768125/pexels-photo-768125.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                                alt="Thumbnail"
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent group-hover:from-black/40 transition-all duration-500">
+                            </div>
+                        </div>
+
+                        <div class="p-6 flex-1">
+                            <div class="flex items-center justify-between mb-3">
+                                <span id="article-categories3"
+                                    class="inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold bg-islamic-yellow/10 text-islamic-green border border-islamic-yellow/20">
+                                    Kategori
+                                </span>
+                                <span id="article-date3" class="text-xs text-gray-500">Waktu Buat</span>
+                            </div>
+
+                            <h3 id="article-title3"
+                                class="text-lg font-bold text-islamic-green mb-3 group-hover:text-light-green transition-colors duration-300 line-clamp-2">
+                                Judul
+                            </h3>
+
+                            <p id="article-excerpt3" class="text-gray-600 text-sm mb-4 leading-relaxed line-clamp-2">
+                                Deskripsi singkat
+                            </p>
+
+                            <div class="flex items-center justify-between">
+                                <a id="article-link3"
+                                    class="inline-flex items-center text-islamic-green font-semibold text-sm hover:text-light-green transition-colors duration-300 group/link">
+                                    Baca Selengkapnya
+                                    <svg class="w-3 h-3 ml-1 transform group-hover/link:translate-x-1 transition-transform duration-300"
+                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                    </svg>
+                                </a>
+                                <div id="date-create3" class="flex items-center text-xs text-gray-500">
+                                    Tanggal
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+
+            <!-- View All Articles Button -->
+            <div class="text-center mt-12">
+                <a href="http://ppydalikhlas.org/suara-alikhlas/"
+                    class="inline-flex items-center px-8 py-4 bg-islamic-green text-white font-semibold rounded-xl hover:bg-light-green transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                    Lihat Semua
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Daftar Sekarang -->
+    <section id="psb" class="py-20 bg-islamic-green from-islamic-green to-slate-800">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <!-- Header Section -->
+                <div class="text-center mb-16">
+                    <div class="inline-block mb-4">
+                        <span class="bg-islamic-yellow text-islamic-green px-4 py-2 rounded-full text-sm font-semibold">
+                            Pendaftaran Santri Baru
+                        </span>
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">
+                        Bergabung dengan Al-Ikhlas
+                    </h2>
+                    <p class="text-lg text-white/80 max-w-2xl mx-auto">
+                        Bersama mewujudkan generasi sholeh, berprestasi dan mandiri
+                    </p>
+                </div>
+
+                <!-- Countdown Timer -->
+                <div class="max-w-2xl mx-auto mb-12">
+                    <div
+                        class="bg-white/15 backdrop-blur-sm border-2 border-islamic-yellow/50 p-8 rounded-xl hover:bg-white/20 transition-all duration-300 relative">
+                        <div class="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                            <span class="bg-red-500 text-white px-4 py-2 rounded-full text-sm font-bold animate-pulse">
+                                TERBATAS
+                            </span>
+                        </div>
+                        <div class="text-center mb-6">
+                            <div class="w-16 h-16 bg-red-500 rounded-lg flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-3">Sisa Waktu Pendaftaran</h3>
+                            <p class="text-white/70 mb-6 text-lg">
+                                Buruan daftar sebelum kuota penuh!
+                            </p>
+                        </div>
+
+                        <!-- Countdown Display -->
+                        <div class="grid grid-cols-4 gap-4 mb-8">
+                            <div class="text-center bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                                <div id="days" class="text-3xl font-bold text-islamic-yellow">00</div>
+                                <div class="text-sm text-white/80">Hari</div>
+                            </div>
+                            <div class="text-center bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                                <div id="hours" class="text-3xl font-bold text-islamic-yellow">00</div>
+                                <div class="text-sm text-white/80">Jam</div>
+                            </div>
+                            <div class="text-center bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                                <div id="minutes" class="text-3xl font-bold text-islamic-yellow">00</div>
+                                <div class="text-sm text-white/80">Menit</div>
+                            </div>
+                            <div class="text-center bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                                <div id="seconds" class="text-3xl font-bold text-islamic-yellow">00</div>
+                                <div class="text-sm text-white/80">Detik</div>
+                            </div>
+                        </div>
+
+                        <button
+                            class="w-full bg-red-500 text-white font-bold py-3 rounded-lg hover:bg-red-600 transition-colors text-lg" href="https://ppydalikhlas.org/psb">
+                            Daftar Sekarang!
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Timeline -->
+                <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 mb-8">
+                    <h3 class="text-xl font-bold text-white text-center mb-6">Timeline Pendaftaran</h3>
+                    <div class="grid md:grid-cols-4 gap-4">
+                        <div class="text-center">
+                            <div
+                                class="w-10 h-10 bg-islamic-yellow rounded-full flex items-center justify-center mx-auto mb-2">
+                                <span class="text-islamic-green font-bold text-sm">1</span>
+                            </div>
+                            <h4 class="text-white font-medium text-sm mb-1">Pendaftaran</h4>
+                            <p class="text-white/60 text-xs"> Bulan Juli - Juni</p>
+                        </div>
+                        <div class="text-center">
+                            <div
+                                class="w-10 h-10 bg-islamic-yellow rounded-full flex items-center justify-center mx-auto mb-2">
+                                <span class="text-islamic-green font-bold text-sm">2</span>
+                            </div>
+                            <h4 class="text-white font-medium text-sm mb-1">Seleksi</h4>
+                            <p class="text-white/60 text-xs">Bulan Juni</p>
+                        </div>
+                        <div class="text-center">
+                            <div
+                                class="w-10 h-10 bg-islamic-yellow rounded-full flex items-center justify-center mx-auto mb-2">
+                                <span class="text-islamic-green font-bold text-sm">3</span>
+                            </div>
+                            <h4 class="text-white font-medium text-sm mb-1">Pengumuman</h4>
+                            <p class="text-white/60 text-xs">Bulan Juni</p>
+                        </div>
+                        <div class="text-center">
+                            <div
+                                class="w-10 h-10 bg-islamic-yellow rounded-full flex items-center justify-center mx-auto mb-2">
+                                <span class="text-islamic-green font-bold text-sm">4</span>
+                            </div>
+                            <h4 class="text-white font-medium text-sm mb-1">Masuk Pesantren</h4>
+                            <p class="text-white/60 text-xs">Bulan Juli</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Call to Action -->
+                <div class="text-center">
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
+                        <button
+                            class="px-8 py-3 border border-white/30 text-white font-semibold rounded-lg hover:bg-white/10 transition-colors">
+                            Download Brosur
+                        </button>
+                    </div>
+
+                    <!-- <div class="flex items-center justify-center space-x-6 text-white/60 text-sm">
+                        <span>✓ Pendaftaran Gratis</span>
+                        <span>✓ Konsultasi Gratis</span>
+                        <span>✓ Beasiswa Tersedia</span>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimony -->
+    <section id="testimoni" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <!-- Header - Minimal -->
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold text-islamic-green mb-4">
+                        Testimoni
+                    </h2>
+                    <div class="w-24 h-1 bg-islamic-yellow mx-auto mb-6"></div>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                        Apa kata mereka tentang Pondok Pesantren Yatim Dhuafa Al-Ikhlas
+                    </p>
+                </div>
+
+                <!-- Testimonial Slider - Clean & Modern -->
+                <div class="relative mb-16">
+                    <!-- Slider Container -->
+                    <div class="overflow-hidden rounded-2xl">
+                        <div id="testimonial-slider" class="flex transition-transform duration-500 ease-in-out">
+
+                            <!-- Slide 1 -->
+                            <div class="w-full flex-shrink-0">
+                                <div class="bg-white border-2 border-gray-100 p-8 md:p-12 rounded-2xl">
+                                    <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                                        <!-- Testimonial 1 -->
+                                        <div class="bg-gray-50 p-6 rounded-xl border border-gray-100">
+                                            <div class="flex items-start space-x-4 mb-6">
+                                                <div
+                                                    class="w-14 h-14 bg-islamic-green rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
+                                                    A
+                                                </div>
+                                                <div>
+                                                    <h4 class="text-lg font-semibold text-islamic-green mb-1">LETKOL
+                                                        KAV. (Purn) RIZKI INDRA WIJAYA</h4>
+                                                    <p class="text-sm text-gray-500 mb-2">Komisaris PT. Viratama Satya
+                                                    </p>
+                                                    <div class="flex text-islamic-yellow text-sm">
+                                                        ★★★★★
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <blockquote class="text-gray-700 leading-relaxed">
+                                                “Lembaga ini memiliki kepedulian yang sangat tinggi terhadap keadilan,
+                                                kesejahteraan dan pendidikan anak-anak yatim dan dhuafa”.
+                                            </blockquote>
+                                        </div>
+
+                                        <!-- Testimonial 2 -->
+                                        <div class="bg-gray-50 p-6 rounded-xl border border-gray-100">
+                                            <div class="flex items-start space-x-4 mb-6">
+                                                <div
+                                                    class="w-14 h-14 bg-light-green rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
+                                                    S
+                                                </div>
+                                                <div>
+                                                    <h4 class="text-lg font-semibold text-islamic-green mb-1">MARSMA
+                                                        FAIRLYANTO, ST., M.A.P</h4>
+                                                    <p class="text-sm text-gray-500 mb-2">Komandan Lanud Abd. Saleh</p>
+                                                    <div class="flex text-islamic-yellow text-sm">
+                                                        ★★★★★
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <blockquote class="text-gray-700 leading-relaxed">
+                                                “Kewajiban saya untuk memberikan tali asih, pembinaan, pendidikan,
+                                                pelatihan dan sebagainya pada anak-anak. ini adalah untuk menjadikan
+                                                anak-anak yang dapat diandalkan untuk Nusa dan Bangsa. Tentunya saya
+                                                sebagai anggota TNI mengharapkan mereka menjadi seorang Patriot”.
+                                            </blockquote>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Slide 2 -->
+                            <div class="w-full flex-shrink-0">
+                                <div class="bg-white border-2 border-gray-100 p-8 md:p-12 rounded-2xl">
+                                    <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                                        <!-- Testimonial 1 -->
+                                        <div class="bg-gray-50 p-6 rounded-xl border border-gray-100">
+                                            <div class="flex items-start space-x-4 mb-6">
+                                                <div
+                                                    class="w-14 h-14 bg-islamic-green rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
+                                                    A
+                                                </div>
+                                                <div>
+                                                    <h4 class="text-lg font-semibold text-islamic-green mb-1">KH. ABDUL
+                                                        WACHID GHAZALI (Alm)</h4>
+                                                    <p class="text-sm text-gray-500 mb-2">Pimpinan PP. Assalam Singosari
+                                                    </p>
+                                                    <div class="flex text-islamic-yellow text-sm">
+                                                        ★★★★★
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <blockquote class="text-gray-700 leading-relaxed">
+                                                “Selalu mengajak untuk menjadi donatur, ikut terlibat, ikut membantu,
+                                                mudah-mudahan kita masuk surga bersama Rasulullah sholallahu alaihi
+                                                wassalam”.
+                                            </blockquote>
+                                        </div>
+
+                                        <!-- Testimonial 2 -->
+                                        <div class="bg-gray-50 p-6 rounded-xl border border-gray-100">
+                                            <div class="flex items-start space-x-4 mb-6">
+                                                <div
+                                                    class="w-14 h-14 bg-light-green rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
+                                                    S
+                                                </div>
+                                                <div>
+                                                    <h4 class="text-lg font-semibold text-islamic-green mb-1">IBU SITI
+                                                        MULYANI</h4>
+                                                    <p class="text-sm text-gray-500 mb-2">Pengajian Perindu Surga
+                                                        Griyasanta</p>
+                                                    <div class="flex text-islamic-yellow text-sm">
+                                                        ★★★★★
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <blockquote class="text-gray-700 leading-relaxed">
+                                                “Alhamdulillah dengan kepengurusan yang luar biasa. Subhanallah dengan
+                                                Para Pengurus yang amanah kami sudah pas sekali menyumbang disini”.
+                                            </blockquote>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Slide 3 -->
+                            <div class="w-full flex-shrink-0">
+                                <div class="bg-white border-2 border-gray-100 p-8 md:p-12 rounded-2xl">
+                                    <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                                        <!-- Testimonial 3 -->
+                                        <div class="bg-gray-50 p-6 rounded-xl border border-gray-100">
+                                            <div class="flex items-start space-x-4 mb-6">
+                                                <div
+                                                    class="w-14 h-14 bg-islamic-yellow rounded-full flex items-center justify-center text-islamic-green font-bold text-lg flex-shrink-0">
+                                                    F
+                                                </div>
+                                                <div>
+                                                    <h4 class="text-lg font-semibold text-islamic-green mb-1">IBU MAHILA
+                                                        SURYA DEWI, S.Sos., M.SI.</h4>
+                                                    <p class="text-sm text-gray-500 mb-2">Kepala Dinas Ketahanan Pangan
+                                                        Kab. Malang</p>
+                                                    <div class="flex text-islamic-yellow text-sm">
+                                                        ★★★★★
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <blockquote class="text-gray-700 leading-relaxed">
+                                                “Bersyukur dipertemukan Alloh dengan PPYD Al-Ikhlas yg mendidik
+                                                anak-anak penghafal Al-Qur'an yg berwawasan luas & dengan pengelolaan
+                                                pengurus yg profesional. Sehingga diharapkan mampu menghasilkan generasi
+                                                Qurani yg profesional”.
+                                            </blockquote>
+                                        </div>
+
+                                        <!-- Testimonial 4 -->
+                                        <!-- <div class="bg-gray-50 p-6 rounded-xl border border-gray-100">
+                                            <div class="flex items-start space-x-4 mb-6">
+                                                <div class="w-14 h-14 bg-islamic-green rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
+                                                    M
+                                                </div>
+                                                <div>
+                                                    <h4 class="text-lg font-semibold text-islamic-green mb-1">Muhammad Ridho</h4>
+                                                    <p class="text-sm text-gray-500 mb-2">Santri Aktif • Kelas 6 SD</p>
+                                                    <div class="flex text-islamic-yellow text-sm">
+                                                        ★★★★★
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <blockquote class="text-gray-700 leading-relaxed">
+                                                "Saya senang belajar di Al-Ikhlas karena teman-teman dan ustadz sangat baik. 
+                                                Fasilitas lengkap dan makanan di pesantren juga enak. Saya betah tinggal di sini."
+                                            </blockquote>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Arrows -->
+                    <button onclick="previousSlide()"
+                        class="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 z-10">
+                        <svg class="w-5 h-5 text-islamic-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </button>
+                    <button onclick="nextSlide()"
+                        class="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 z-10">
+                        <svg class="w-5 h-5 text-islamic-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </button>
+
+                    <!-- Slide Indicators -->
+                    <div class="flex justify-center mt-6 space-x-3">
+                        <button id="indicator-0" onclick="goToSlide(0)"
+                            class="w-3 h-3 rounded-full bg-islamic-green transition-all duration-300"></button>
+                        <button id="indicator-1" onclick="goToSlide(1)"
+                            class="w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-400 transition-all duration-300"></button>
+                        <button id="indicator-2" onclick="goToSlide(2)"
+                            class="w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-400 transition-all duration-300"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-islamic-green mb-4">Pertanyaan yang Sering Diajukan</h2>
+                <p class="text-lg text-gray-600">Temukan jawaban atas pertanyaan Anda</p>
+            </div>
+
+            <div class="max-w-4xl mx-auto space-y-4">
+                <div class="bg-gray-50 rounded-lg">
+                    <button class="w-full text-left p-6 focus:outline-none" onclick="toggleFAQ(this)">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-lg font-semibold text-islamic-green">Berapa biaya pendidikan di Al-Ikhlas?
+                            </h3>
+                            <span class="text-islamic-green text-xl">+</span>
+                        </div>
+                    </button>
+                    <div class="hidden px-6 pb-6">
+                        <p class="text-gray-600">Biaya pendidikan disesuaikan dengan jenjang pendidikan. Kami juga
+                            menyediakan
+                            program beasiswa untuk anak yatim dan keluarga kurang mampu.</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 rounded-lg">
+                    <button class="w-full text-left p-6 focus:outline-none" onclick="toggleFAQ(this)">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-lg font-semibold text-islamic-green">Apa saja fasilitas yang tersedia?</h3>
+                            <span class="text-islamic-green text-xl">+</span>
+                        </div>
+                    </button>
+                    <div class="hidden px-6 pb-6">
+                        <p class="text-gray-600">Fasilitas meliputi asrama, masjid, perpustakaan, lab komputer, lapangan
+                            olahraga, dan klinik kesehatan.</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 rounded-lg">
+                    <button class="w-full text-left p-6 focus:outline-none" onclick="toggleFAQ(this)">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-lg font-semibold text-islamic-green">Bagaimana sistem pembelajaran di
+                                Al-Ikhlas?</h3>
+                            <span class="text-islamic-green text-xl">+</span>
+                        </div>
+                    </button>
+                    <div class="hidden px-6 pb-6">
+                        <!-- <p class="text-gray-600">Kami menerapkan sistem pembelajaran terpadu yang menggabungkan
+                            kurikulum pesantren tradisional dengan kurikulum nasional.</p> -->
+                        <ul class="list-disc list-inside">
+                            <li>Seluruh kegiatan pendidikan di Pondok Pesantren Yatim Dhuafa Al-Ikhlas dilakukan di
+                                lingkungan pesantren, dengan pendekatan yang disesuaikan dengan kebutuhan, kemampuan,
+                                serta potensi setiap santri.</li>
+                            <br>
+                            <li>Sistem pembelajaran terbagi menjadi empat kelas utama:
+                                <ul class="list-disc list-inside">
+                                    <li type="1">Kelas Membaca</li>
+                                    <li type="1">Kelas Menghitung</li>
+                                    <li type="1">Kelas Mengaji</li>
+                                    <li type="1">Kelas Kader/Ilmuan</li>
+                                </ul>
+                            </li>
+                            <br>
+                            <li>Setiap santri diarahkan sesuai minat dan bakatnya untuk berkembang secara optimal. Fokus
+                                utama pembelajaran mencakup tiga pilar utama pesantren: Al-Qur'an, Hadits, dan Fiqih.
+                            </li>
+                            <br>
+                            <li>Untuk kegiatan mengaji, kami menggunakan metode Qur’ana, yaitu metode pembelajaran
+                                Al-Qur'an yang menekankan pada pemahaman dan pembacaan yang benar serta menyenangkan.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 rounded-lg">
+                    <button class="w-full text-left p-6 focus:outline-none" onclick="toggleFAQ(this)">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-lg font-semibold text-islamic-green">Kapan waktu pendaftaran santri baru?
+                            </h3>
+                            <span class="text-islamic-green text-xl">+</span>
+                        </div>
+                    </button>
+                    <div class="hidden px-6 pb-6">
+                        <p class="text-gray-600">Pendaftaran santri baru dibuka setiap bulan Januari hingga Juni untuk
+                            tahun ajaran baru yang dimulai bulan Juli.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hubungi Kami -->
+    <section id="kontak" class="py-20 bg-islamic-green text-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">Hubungi Kami</h2>
+                <p class="text-lg opacity-90">Kami siap membantu Anda dengan informasi lebih lanjut</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6">Informasi Kontak</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-islamic-yellow rounded-full flex items-center justify-center mr-4">
+                                <img src="./assets-website-utama/assets/img/location-icon.png" height="40" width="40"
+                                    alt="location icon">
+                            </div>
+                            <div>
+                                <div class="font-semibold">Alamat</div>
+                                <div class="opacity-90">Dsn. Biru RT.04/RW.03 Ds. Gunungrejo</div>
+                                <div class="opacity-90"> Kec. Singosari Kab. Malang - Jawa Timur</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-islamic-yellow rounded-full flex items-center justify-center mr-4">
+                                <img src="./assets-website-utama/assets/img/phone-icon.png" height="40" width="40"
+                                    alt="phone icon">
+                            </div>
+                            <div>
+                                <div class="font-semibold">Telepon</div>
+                                <div class="opacity-90">(0341) 454 124</div>
+                                <div class="opacity-90">+62 813 3535 3533</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-islamic-yellow rounded-full flex items-center justify-center mr-4">
+                                <img src="./assets-website-utama/assets/img/mail-icon.png" height="40" width="40"
+                                    alt="mail icon">
+                            </div>
+                            <div>
+                                <div class="font-semibold">Email</div>
+                                <div class="opacity-90">ppyd.alikhlassingosari@gmail.com</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-islamic-yellow rounded-full flex items-center justify-center mr-4">
+                                <img src="./assets-website-utama/assets/img/clock-icon.png" height="40" width="40"
+                                    alt="clock icon">
+                            </div>
+                            <div>
+                                <div class="font-semibold">Jam Operasional</div>
+                                <div class="opacity-90">Senin - Sabtu: 08.00 - 21.00 WIB</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6">Kirim Pesan</h3>
+                    <form id="contact-form" class="space-y-4">
+                        <div>
+                            <input type="text" id="nama" placeholder="Nama Lengkap"
+                                class="w-full p-4 rounded-lg text-islamic-green" required>
+                        </div>
+                        <div>
+                            <input type="email" id="email" placeholder="Email"
+                                class="w-full p-4 rounded-lg text-islamic-green" required>
+                        </div>
+                        <div>
+                            <input type="tel" id="telepon" placeholder="Nomor Telepon"
+                                class="w-full p-4 rounded-lg text-islamic-green" required>
+                        </div>
+                        <div>
+                            <textarea id="pesan" placeholder="Pesan Anda" rows="4"
+                                class="w-full p-4 rounded-lg text-islamic-green" required></textarea>
+                        </div>
+                        <button type="submit"
+                            class="w-full bg-islamic-yellow text-islamic-green py-4 rounded-lg font-semibold hover:bg-dark-yellow transition-colors">
+                            Kirim ke WhatsApp
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Unit Usaha -->
+    <section id="usaha-produktif" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <!-- Header - Minimal -->
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold text-islamic-green mb-4">
+                        Kemandirian Ekonomi
+                    </h2>
+                    <div class="w-24 h-1 bg-islamic-yellow mx-auto mb-6"></div>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                        Berbagai unit usaha yang mendukung kemandirian dan keberlanjutan pesantren
+                    </p>
+                </div>
+
+                <!-- Business Units Grid - Modern Cards -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Koperasi -->
+                    <div
+                        class="group bg-gray-50 border border-gray-100 p-6 rounded-xl hover:border-islamic-green/20 hover:shadow-lg transition-all duration-300">
+                        <div class="flex items-start space-x-4">
+                            <div
+                                class="w-12 h-12 rounded-lg flex items-center justify-center group-hover:scale-110 transition-all duration-300">
+                                <img src="./assets-website-utama/assets/img/logo-koperasi.jpg"
+                                    alt="Koperasi Produsen Peduli Ummat Al-Ikhlas">
+                            </div>
+                            <div class="flex-1">
+                                <h3
+                                    class="text-lg font-semibold text-islamic-green mb-2 group-hover:text-light-green transition-colors duration-300">
+                                    Koperasi Produsen Peduli Ummat Al-Ikhlas
+                                </h3>
+                                <p class="text-gray-600 text-sm leading-relaxed">
+                                    Mengelola dan mengembangkan unit usaha untuk mendukung kemandirian ekonomi lembaga
+                                    serta keberlangsungan pendidikan santri yatim dan dhuafa.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Usaha Bolu Pisang -->
+                    <div
+                        class="group bg-gray-50 border border-gray-100 p-6 rounded-xl hover:border-islamic-green/20 hover:shadow-lg transition-all duration-300">
+                        <div class="flex items-start space-x-4">
+                            <div
+                                class="w-12 h-12 rounded-lg flex items-center justify-center group-hover:scale-110 transition-all duration-300">
+                                <img src="./assets-website-utama/assets/img/logo-bolobolu.jpg" alt="Bolo Bolu Malang">
+                            </div>
+                            <div class="flex-1">
+                                <h3
+                                    class="text-lg font-semibold text-islamic-green mb-2 group-hover:text-light-green transition-colors duration-300">
+                                    Bolo Bolu Malang
+                                </h3>
+                                <p class="text-gray-600 text-sm leading-relaxed">
+                                    Produk bolu pisang berkualitas, tersedia dalam 4 rasa: original, keju, coklat, dan
+                                    kismis. Oleh-oleh khas Malang yang praktis dan cocok dinikmati bersama keluarga.
+                                    <i>"Bolo ngemil ya Bolu Malang!"</i>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Industri Air -->
+                    <div
+                        class="group bg-gray-50 border border-gray-100 p-6 rounded-xl hover:border-islamic-green/20 hover:shadow-lg transition-all duration-300">
+                        <div class="flex items-start space-x-4">
+                            <div
+                                class="w-12 h-12 rounded-lg flex items-center justify-center group-hover:scale-110 transition-all duration-300">
+                                <img src="./assets-website-utama/assets/img/logo-ikhlas-water.jpg" alt="Ikhlas Water">
+                            </div>
+                            <div class="flex-1">
+                                <h3
+                                    class="text-lg font-semibold text-islamic-green mb-2 group-hover:text-light-green transition-colors duration-300">
+                                    Ikhlas Water
+                                </h3>
+                                <p class="text-gray-600 text-sm leading-relaxed">
+                                    Air murni dari mata air pesantren yang disterilkan secara higienis. Dikelola sebagai
+                                    usaha produktif, air ini dipasarkan ke masyarakat dan disodaqohkan ke masjid,
+                                    mushola, dan pondok sekitar.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats Section - Minimal -->
+                <div class="mt-16 pt-12 border-t border-gray-200">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                        <div>
+                            <div class="text-3xl font-bold text-islamic-green mb-2">3</div>
+                            <div class="text-gray-600 text-sm">Unit Usaha</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold text-islamic-green mb-2">20+</div>
+                            <div class="text-gray-600 text-sm">Karyawan</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold text-islamic-green mb-2">3+</div>
+                            <div class="text-gray-600 text-sm">Tahun Beroperasi</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold text-islamic-green mb-2">100%</div>
+                            <div class="text-gray-600 text-sm">Halal & Berkah</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <!-- Main Footer Content -->
+                <div class="grid md:grid-cols-12 gap-8 mb-8">
+                    <!-- Brand Section -->
+                    <div class="md:col-span-5">
+                        <div class="flex items-center mb-4">
+                            <div class="w-10 h-10 bg-islamic-green rounded-lg flex items-center justify-center mr-3">
+                                <img src="./assets-website-utama/assets/img/icon_logo_utama.jpg" height="40" width="40"
+                                    alt="Logo Pondok Pesantren Al-Ikhlas" style="border-radius: 5%;">
+                            </div>
+                            <div>
+                                <div class="text-gray-400 text-sm">Pondok Pesantren Yatim Dhuafa</div>
+                                <div class="text-white font-bold text-xl">Al-Ikhlas</div>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 text-sm leading-relaxed mb-6 max-w-sm">
+                            Membina Generasi Yatim dan Dhuafa yang Berilmu, Beramal, dan Berakhlaq Islami.
+                        </p>
+                        <!-- Social Media -->
+                        <div class="flex space-x-3">
+                            <a href="https://web.facebook.com/ponpesalikhlas.yatimdhuafa/"
+                                class="w-9 h-9 bg-gray-800 hover:bg-islamic-green rounded-lg flex items-center justify-center transition-colors duration-300 group">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    class="w-4 h-4 text-gray-400 group-hover:text-white" fill="currentColor"
+                                    viewBox="0 0 24 24" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12,2C6.477,2,2,6.477,2,12c0,5.013,3.693,9.153,8.505,9.876V14.65H8.031v-2.629h2.474v-1.749 c0-2.896,1.411-4.167,3.818-4.167c1.153,0,1.762,0.085,2.051,0.124v2.294h-1.642c-1.022,0-1.379,0.969-1.379,2.061v1.437h2.995 l-0.406,2.629h-2.588v7.247C18.235,21.236,22,17.062,22,12C22,6.477,17.523,2,12,2z">
+                                    </path>
+                                </svg>
+                            </a>
+                            <a href="https://www.instagram.com/yatim.dhuafa.al_ikhlas/"
+                                class="w-9 h-9 bg-gray-800 hover:bg-islamic-green rounded-lg flex items-center justify-center transition-colors duration-300 group">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    class="w-4 h-4 text-gray-400 group-hover:text-white" fill="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path
+                                        d="M 8 3 C 5.239 3 3 5.239 3 8 L 3 16 C 3 18.761 5.239 21 8 21 L 16 21 C 18.761 21 21 18.761 21 16 L 21 8 C 21 5.239 18.761 3 16 3 L 8 3 z M 18 5 C 18.552 5 19 5.448 19 6 C 19 6.552 18.552 7 18 7 C 17.448 7 17 6.552 17 6 C 17 5.448 17.448 5 18 5 z M 12 7 C 14.761 7 17 9.239 17 12 C 17 14.761 14.761 17 12 17 C 9.239 17 7 14.761 7 12 C 7 9.239 9.239 7 12 7 z M 12 9 A 3 3 0 0 0 9 12 A 3 3 0 0 0 12 15 A 3 3 0 0 0 15 12 A 3 3 0 0 0 12 9 z">
+                                    </path>
+                                </svg>
+                            </a>
+                            <a href="https://www.youtube.com/@pondokpesantrenyatimdhuafa"
+                                class="w-9 h-9 bg-gray-800 hover:bg-islamic-green rounded-lg flex items-center justify-center transition-colors duration-300 group">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    class="w-4 h-4 text-gray-400 group-hover:text-white" fill="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path
+                                        d="M21.582,6.186c-0.23-0.86-0.908-1.538-1.768-1.768C18.254,4,12,4,12,4S5.746,4,4.186,4.418 c-0.86,0.23-1.538,0.908-1.768,1.768C2,7.746,2,12,2,12s0,4.254,0.418,5.814c0.23,0.86,0.908,1.538,1.768,1.768 C5.746,20,12,20,12,20s6.254,0,7.814-0.418c0.861-0.23,1.538-0.908,1.768-1.768C22,16.254,22,12,22,12S22,7.746,21.582,6.186z M10,15.464V8.536L16,12L10,15.464z">
+                                    </path>
+                                </svg>
+                            </a>
+                            <a href="https://www.tiktok.com/@ppyd.alikhlas"
+                                class="w-9 h-9 bg-gray-800 hover:bg-islamic-green rounded-lg flex items-center justify-center transition-colors duration-300 group">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    class="w-4 h-4 text-gray-400 group-hover:text-white" fill="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path
+                                        d="M 6 3 C 4.3550302 3 3 4.3550302 3 6 L 3 18 C 3 19.64497 4.3550302 21 6 21 L 18 21 C 19.64497 21 21 19.64497 21 18 L 21 6 C 21 4.3550302 19.64497 3 18 3 L 6 3 z M 12 7 L 14 7 C 14 8.005 15.471 9 16 9 L 16 11 C 15.395 11 14.668 10.734156 14 10.285156 L 14 14 C 14 15.654 12.654 17 11 17 C 9.346 17 8 15.654 8 14 C 8 12.346 9.346 11 11 11 L 11 13 C 10.448 13 10 13.449 10 14 C 10 14.551 10.448 15 11 15 C 11.552 15 12 14.551 12 14 L 12 7 z">
+                                    </path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Quick Links -->
+                    <div class="md:col-span-2">
+                        <h3 class="text-white font-semibold text-sm mb-4 uppercase tracking-wider">Menu</h3>
+                        <ul class="space-y-3">
+                            <li><a href="#tentang"
+                                    class="text-gray-400 hover:text-white text-sm transition-colors duration-300">Tentang</a>
+                            </li>
+                            <li><a href="#program-pendidikan"
+                                    class="text-gray-400 hover:text-white text-sm transition-colors duration-300">Program
+                                    Pendidikan</a></li>
+                            <li><a href="#artikel"
+                                    class="text-gray-400 hover:text-white text-sm transition-colors duration-300">Suara
+                                    Al-Ikhlas</a></li>
+                            <li><a href="#kontak"
+                                    class="text-gray-400 hover:text-white text-sm transition-colors duration-300">Kontak</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Programs -->
+                    <div class="md:col-span-2">
+                        <h3 class="text-white font-semibold text-sm mb-4 uppercase tracking-wider">Program</h3>
+                        <ul class="space-y-3">
+                            <li class="text-gray-400 text-sm">TK/PAUD</li>
+                            <li class="text-gray-400 text-sm">SD/MI</li>
+                            <li class="text-gray-400 text-sm">Tahfidz</li>
+                        </ul>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div class="md:col-span-3">
+                        <h3 class="text-white font-semibold text-sm mb-4 uppercase tracking-wider">Kontak</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-start">
+                                <svg class="w-4 h-4 text-islamic-green mt-0.5 mr-3 flex-shrink-0" fill="currentColor"
+                                    viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <div class="text-gray-400 text-sm">
+                                    <div>Dsn. Biru RT.03/RW.01 </div>
+                                    <div>Ds. Gunungrejo Kec. Singosari</div>
+                                    <div>Kab. Malang, Jawa Timur</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <svg class="w-4 h-4 text-islamic-green mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path
+                                        d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                                </svg>
+                                <!-- <span class="text-gray-400 text-sm">+62 813 3535 3533</span> -->
+                                <div class="text-gray-400 text-sm">
+                                    <div>(0341) 454 124</div>
+                                    <div>+62 813 3535 3533</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <svg class="w-4 h-4 text-islamic-green mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                                </svg>
+                                <span class="text-gray-400 text-sm">ppyd.alikhlassingosari@gmail.com</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Footer -->
+                <div class="border-t border-gray-800 pt-6">
+                    <div class="flex flex-col md:flex-row justify-between items-center">
+                        <div class="text-gray-400 text-sm mb-4 md:mb-0">
+                            © 2025 Pondok Pesantren Al-Ikhlas. All rights reserved. <br>
+                            <!-- <span class="text-islamic-green font-semibold">Designed by 🩷 Muhammad Ridho Ramadhan</span> -->
+                        </div>
+                        <div class="flex space-x-6">
+                            <a href="#"
+                                class="text-gray-400 hover:text-white text-sm transition-colors duration-300">Privacy
+                                Policy</a>
+                            <a href="#"
+                                class="text-gray-400 hover:text-white text-sm transition-colors duration-300">Terms of
+                                Service</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="./assets-website-utama/js/custom-website.js"></script>
+</body>
+
+</html>
