@@ -9,6 +9,8 @@
         content="Pondok Pesantren Yatim Dhuafa Al-Ikhlas - Mencetak Generasi Qurani, Berilmu, Beramal, dan Berakhlak Islami.">
     <meta name="keywords" content="Pondok Pesantren, Yatim Dhuafa, Al-Ikhlas, Pendidikan, Islam">
     <meta name="author" content="Pondok Pesantren Yatim Dhuafa Al-Ikhlas">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link rel="apple-touch-icon" sizes="180x180"
         href="./assets-website-utama/assets/img/favicon_io/apple-touch-icon.png">
@@ -1028,14 +1030,14 @@
 
             <div class="max-w-4xl mx-auto space-y-4">
                 <div class="bg-gray-50 rounded-lg">
-                    <button class="w-full text-left p-6 focus:outline-none" onclick="toggleFAQ(this)">
+                    <button id="faq-button-1" type="button" aria-expanded="false" aria-controls="faq-content-1" class="w-full text-left p-6 focus:outline-none focus-visible:ring-2 focus-visible:ring-islamic-green focus-visible:ring-offset-2" onclick="toggleFAQ(this)">
                         <div class="flex justify-between items-center">
                             <h3 class="text-lg font-semibold text-islamic-green">Berapa biaya pendidikan di Al-Ikhlas?
                             </h3>
                             <span class="text-islamic-green text-xl">+</span>
                         </div>
                     </button>
-                    <div class="hidden px-6 pb-6">
+                    <div id="faq-content-1" class="hidden px-6 pb-6">
                         <p class="text-gray-600">Biaya pendidikan disesuaikan dengan jenjang pendidikan. Kami juga
                             menyediakan
                             program beasiswa untuk anak yatim dan keluarga kurang mampu.</p>
@@ -1043,27 +1045,27 @@
                 </div>
 
                 <div class="bg-gray-50 rounded-lg">
-                    <button class="w-full text-left p-6 focus:outline-none" onclick="toggleFAQ(this)">
+                    <button id="faq-button-2" type="button" aria-expanded="false" aria-controls="faq-content-2" class="w-full text-left p-6 focus:outline-none focus-visible:ring-2 focus-visible:ring-islamic-green focus-visible:ring-offset-2" onclick="toggleFAQ(this)">
                         <div class="flex justify-between items-center">
                             <h3 class="text-lg font-semibold text-islamic-green">Apa saja fasilitas yang tersedia?</h3>
                             <span class="text-islamic-green text-xl">+</span>
                         </div>
                     </button>
-                    <div class="hidden px-6 pb-6">
+                    <div id="faq-content-2" class="hidden px-6 pb-6">
                         <p class="text-gray-600">Fasilitas meliputi asrama, masjid, perpustakaan, lab komputer, lapangan
                             olahraga, dan klinik kesehatan.</p>
                     </div>
                 </div>
 
                 <div class="bg-gray-50 rounded-lg">
-                    <button class="w-full text-left p-6 focus:outline-none" onclick="toggleFAQ(this)">
+                    <button id="faq-button-3" type="button" aria-expanded="false" aria-controls="faq-content-3" class="w-full text-left p-6 focus:outline-none focus-visible:ring-2 focus-visible:ring-islamic-green focus-visible:ring-offset-2" onclick="toggleFAQ(this)">
                         <div class="flex justify-between items-center">
                             <h3 class="text-lg font-semibold text-islamic-green">Bagaimana sistem pembelajaran di
                                 Al-Ikhlas?</h3>
                             <span class="text-islamic-green text-xl">+</span>
                         </div>
                     </button>
-                    <div class="hidden px-6 pb-6">
+                    <div id="faq-content-3" class="hidden px-6 pb-6">
                         <!-- <p class="text-gray-600">Kami menerapkan sistem pembelajaran terpadu yang menggabungkan
                             kurikulum pesantren tradisional dengan kurikulum nasional.</p> -->
                         <ul class="list-disc list-inside">
@@ -1092,14 +1094,14 @@
                 </div>
 
                 <div class="bg-gray-50 rounded-lg">
-                    <button class="w-full text-left p-6 focus:outline-none" onclick="toggleFAQ(this)">
+                    <button id="faq-button-4" type="button" aria-expanded="false" aria-controls="faq-content-4" class="w-full text-left p-6 focus:outline-none focus-visible:ring-2 focus-visible:ring-islamic-green focus-visible:ring-offset-2" onclick="toggleFAQ(this)">
                         <div class="flex justify-between items-center">
                             <h3 class="text-lg font-semibold text-islamic-green">Kapan waktu pendaftaran santri baru?
                             </h3>
                             <span class="text-islamic-green text-xl">+</span>
                         </div>
                     </button>
-                    <div class="hidden px-6 pb-6">
+                    <div id="faq-content-4" class="hidden px-6 pb-6">
                         <p class="text-gray-600">Pendaftaran santri baru dibuka setiap bulan Januari hingga Juni untuk
                             tahun ajaran baru yang dimulai bulan Juli.</p>
                     </div>
@@ -1332,7 +1334,7 @@
                         </p>
                         <!-- Social Media -->
                         <div class="flex space-x-3">
-                            <a href="https://web.facebook.com/ponpesalikhlas.yatimdhuafa/"
+                            <a aria-label="Facebook Pondok Pesantren Al-Ikhlas" href="https://web.facebook.com/ponpesalikhlas.yatimdhuafa/"
                                 class="w-9 h-9 bg-gray-800 hover:bg-islamic-green rounded-lg flex items-center justify-center transition-colors duration-300 group">
                                 <svg xmlns="http://www.w3.org/2000/svg"
                                     class="w-4 h-4 text-gray-400 group-hover:text-white" fill="currentColor"
@@ -1342,7 +1344,7 @@
                                     </path>
                                 </svg>
                             </a>
-                            <a href="https://www.instagram.com/yatim.dhuafa.al_ikhlas/"
+                            <a aria-label="Instagram Pondok Pesantren Al-Ikhlas" href="https://www.instagram.com/yatim.dhuafa.al_ikhlas/"
                                 class="w-9 h-9 bg-gray-800 hover:bg-islamic-green rounded-lg flex items-center justify-center transition-colors duration-300 group">
                                 <svg xmlns="http://www.w3.org/2000/svg"
                                     class="w-4 h-4 text-gray-400 group-hover:text-white" fill="currentColor"
@@ -1352,7 +1354,7 @@
                                     </path>
                                 </svg>
                             </a>
-                            <a href="https://www.youtube.com/@pondokpesantrenyatimdhuafa"
+                            <a aria-label="YouTube Pondok Pesantren Al-Ikhlas" href="https://www.youtube.com/@pondokpesantrenyatimdhuafa"
                                 class="w-9 h-9 bg-gray-800 hover:bg-islamic-green rounded-lg flex items-center justify-center transition-colors duration-300 group">
                                 <svg xmlns="http://www.w3.org/2000/svg"
                                     class="w-4 h-4 text-gray-400 group-hover:text-white" fill="currentColor"
@@ -1362,7 +1364,7 @@
                                     </path>
                                 </svg>
                             </a>
-                            <a href="https://www.tiktok.com/@ppyd.alikhlas"
+                            <a aria-label="TikTok Pondok Pesantren Al-Ikhlas" href="https://www.tiktok.com/@ppyd.alikhlas"
                                 class="w-9 h-9 bg-gray-800 hover:bg-islamic-green rounded-lg flex items-center justify-center transition-colors duration-300 group">
                                 <svg xmlns="http://www.w3.org/2000/svg"
                                     class="w-4 h-4 text-gray-400 group-hover:text-white" fill="currentColor"
