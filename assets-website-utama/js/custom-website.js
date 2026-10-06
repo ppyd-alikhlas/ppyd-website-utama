@@ -83,14 +83,12 @@ function scrollToSection(sectionId) {
 function toggleFAQ(button) {
   const content = button.nextElementSibling;
   const icon = button.querySelector("span");
+  if (!content) return;
 
-  if (content.classList.contains("hidden")) {
-    content.classList.remove("hidden");
-    icon.textContent = "-";
-  } else {
-    content.classList.add("hidden");
-    icon.textContent = "+";
-  }
+  const isOpen = !content.classList.contains("hidden");
+  content.classList.toggle("hidden", isOpen);
+  button.setAttribute("aria-expanded", String(!isOpen));
+  if (icon) icon.textContent = isOpen ? "+" : "-";
 }
 
 // Mobile Menu
