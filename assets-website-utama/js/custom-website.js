@@ -1,16 +1,51 @@
 // Page Loader
-window.addEventListener("load", function () {
-  setTimeout(function () {
-    document.getElementById("loader").classList.add("hidden");
-  }, 2000);
+document.addEventListener("DOMContentLoaded", function () {
+  const loader = document.getElementById("loader");
+  if (loader) {
+    requestAnimationFrame(() => loader.classList.add("hidden"));
+  }
 });
+
+
+// Lazy-load hero video only on desktop after the initial page is ready.
+// This prevents the 11+ MB MP4 from competing with the first render on mobile.
+(function initHeroVideo() {
+  const video = document.getElementById("hero-background-video");
+  if (!video) return;
+
+  const loadVideo = () => {
+    if (video.dataset.loaded || window.matchMedia("(max-width: 767px)").matches) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    video.src = video.dataset.src;
+    video.dataset.loaded = "true";
+    video.load();
+    video.play().catch(() => {});
+  };
+
+  if (window.matchMedia("(min-width: 768px)").matches) {
+    const start = () => setTimeout(loadVideo, 1200);
+    if ("requestIdleCallback" in window) {
+      window.requestIdleCallback(start, { timeout: 2500 });
+    } else {
+      window.addEventListener("load", start, { once: true });
+    }
+  }
+
+  window.addEventListener("resize", () => {
+    if (window.matchMedia("(min-width: 768px)").matches) loadVideo();
+  }, { passive: true });
+})();
 
 //add function for open menu layanan
 function openMenuLayanan() {
   const submenu = document.getElementById("submenu-layanan");
   if (!submenu) return;
 
-  submenu.classList.toggle("hidden");
+  const isOpen = !submenu.classList.contains("hidden");
+  submenu.classList.toggle("hidden", isOpen);
+  const trigger = document.querySelector('#menu-layanan > button');
+  if (trigger) trigger.setAttribute("aria-expanded", String(!isOpen));
 }
 
 // Tutup submenu Layanan saat menu lain atau item submenu dipilih
@@ -363,15 +398,6 @@ const testimonialSection = document.querySelector("#testimonial-slider")
 testimonialSection.addEventListener("mouseenter", stopAutoSlide);
 testimonialSection.addEventListener("mouseleave", startAutoSlide);
 
-// Form submission
-document.querySelector("form").addEventListener("submit", function (e) {
-  e.preventDefault();
-  alert(
-    "Terima kasih! Pesan Anda telah dikirim. Kami akan segera menghubungi Anda."
-  );
-  this.reset();
-});
-
 // Button interactions
 document.querySelectorAll("button").forEach((button) => {
   if (!button.onclick && button.textContent.includes("Daftar")) {
@@ -392,211 +418,94 @@ document.querySelectorAll("button").forEach((button) => {
 });
 
 
-// get data from restapi "api/wordpress"
-// artikel 1
-fetch("https://ppydalikhlas.org/suara-alikhlas/wp-json/wp/v2/posts?_embed") // Tambahkan _embed agar media bisa diambil langsung
-  .then((response) => response.json())
-  .then((data) => {
-    const article = data[0];
-    const title = article.title.rendered;
-    const categoryNames = article._embedded['wp:term'][0].map(term => term.name);
-    const excerpt = article.excerpt.rendered;
-    const link = article.link;
-    //get resource_url
-    const featuredMedia = article._embedded['wp:featuredmedia'][0];
-    const resourceUrl = featuredMedia ? featuredMedia.source_url : '';
+// Load the latest four articles with one request, only when the article section is near the viewport.
+(function initArticles() {
+  const section = document.getElementById("artikel");
+  if (!section) return;
 
-    const date = article.date;
-    const articleDate = new Date(date);
-    const now = new Date();
-    const timeDiff = now - articleDate;
-    const daysDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+  let loaded = false;
 
-    // Set the article content
-    document.getElementById("article-title").innerText = title;
+  function loadArticles() {
+    if (loaded) return;
+    loaded = true;
 
-    //get category name
-    // document.getElementById("article-categories1").innerText = categories[0] === 2 ? "Artikel" : "Berita";
+    fetch("https://ppydalikhlas.org/suara-alikhlas/wp-json/wp/v2/posts?per_page=4&_embed")
+      .then((response) => {
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        return response.json();
+      })
+      .then((posts) => {
+        posts.slice(0, 4).forEach((article, index) => {
+          const suffix = index === 0 ? "" : String(index);
+          const titleElement = document.getElementById(`article-title${suffix}`);
+          const categoryElement = document.getElementById(`article-categories${suffix}`);
+          const excerptElement = document.getElementById(`article-excerpt${suffix}`);
+          const linkElement = document.getElementById(`article-link${suffix}`);
+          const dateElement = document.getElementById(`article-date${suffix}`);
+          const createDateElement = document.getElementById(`date-create${suffix}`);
+          const imageElement = document.getElementById(`article-thumbnail${suffix}`);
 
-    document.getElementById("article-categories").innerText = categoryNames.join(", ");
+          if (!titleElement || !linkElement) return;
 
-    const excerptText = excerpt.replace(/<\/?[^>]+(>|$)/g, "");
-    document.getElementById("article-excerpt").innerText = excerptText;
+          const title = article.title?.rendered || "Artikel Al-Ikhlas";
+          const link = article.link || "#";
+          const excerpt = article.excerpt?.rendered || "";
+          const terms = article._embedded?.["wp:term"]?.[0] || [];
+          const featuredMedia = article._embedded?.["wp:featuredmedia"]?.[0];
+          const resourceUrl = featuredMedia?.source_url || "";
 
-    document.getElementById("article-link").setAttribute("href", link);
-    document.getElementById("article-title").setAttribute("href", link);
-    document.getElementById("article-date").innerText =
-      daysDiff === 0 ? "Hari ini" : `${daysDiff} hari yang lalu`;
+          const articleDate = new Date(article.date);
+          const now = new Date();
+          const daysDiff = Math.max(
+            0,
+            Math.floor((now - articleDate) / (1000 * 60 * 60 * 24))
+          );
 
-    const formattedDate = articleDate.toLocaleDateString("id-ID", {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
-    });
-    document.getElementById("date-create").innerText = formattedDate;
+          titleElement.textContent = title;
+          titleElement.href = link;
+          linkElement.href = link;
 
-    // Menampilkan gambar thumbnail from resource_url
-    const imageElement = document.getElementById("article-thumbnail");
-    imageElement.src = resourceUrl;
-    imageElement.alt = title;
+          if (categoryElement) {
+            categoryElement.textContent = terms.map((term) => term.name).join(", ");
+          }
 
-  })
-  .catch((error) => {
-    console.error('Error fetching the post data:', error);
-  });
+          if (excerptElement) {
+            excerptElement.textContent = excerpt.replace(/<\/?[^>]+(>|$)/g, "");
+          }
 
+          if (dateElement) {
+            dateElement.textContent = daysDiff === 0 ? "Hari ini" : `${daysDiff} hari yang lalu`;
+          }
 
-// artikel 2
-fetch("https://ppydalikhlas.org/suara-alikhlas/wp-json/wp/v2/posts?_embed") // Tambahkan _embed agar media bisa diambil langsung
-  .then((response) => response.json())
-  .then((data) => {
-    const article = data[1];
-    const title = article.title.rendered;
-    // const categories = article.categories;
-    const categoryNames = article._embedded['wp:term'][0].map(term => term.name);
-    const excerpt = article.excerpt.rendered;
-    const link = article.link;
-    //get resource_url
-    const featuredMedia = article._embedded['wp:featuredmedia'][0];
-    const resourceUrl = featuredMedia ? featuredMedia.source_url : '';
+          if (createDateElement) {
+            createDateElement.textContent = articleDate.toLocaleDateString("id-ID", {
+              day: "2-digit",
+              month: "2-digit",
+              year: "numeric",
+            });
+          }
 
-    const date = article.date;
-    const articleDate = new Date(date);
-    const now = new Date();
-    const timeDiff = now - articleDate;
-    const daysDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+          if (imageElement && resourceUrl) {
+            imageElement.src = resourceUrl;
+            imageElement.alt = title;
+          }
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching article data:", error);
+      });
+  }
 
-    // Set the article content
-    document.getElementById("article-title1").innerText = title;
-    
-    // document.getElementById("article-categories1").innerText = categories[0] === 2 ? "Artikel" : "Berita";
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver((entries, obs) => {
+      if (entries.some((entry) => entry.isIntersecting)) {
+        loadArticles();
+        obs.disconnect();
+      }
+    }, { rootMargin: "400px 0px" });
 
-    document.getElementById("article-categories1").innerText = categoryNames.join(", ");
-
-    const excerptText = excerpt.replace(/<\/?[^>]+(>|$)/g, "");
-    document.getElementById("article-excerpt1").innerText = excerptText;
-
-    document.getElementById("article-link1").setAttribute("href", link);
-    document.getElementById("article-title1").setAttribute("href", link);
-    document.getElementById("article-date1").innerText =
-      daysDiff === 0 ? "Hari ini" : `${daysDiff} hari yang lalu`;
-
-    const formattedDate = articleDate.toLocaleDateString("id-ID", {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
-    });
-    document.getElementById("date-create1").innerText = formattedDate;
-
-    // Menampilkan gambar thumbnail from resource_url
-    const imageElement = document.getElementById("article-thumbnail1");
-    imageElement.src = resourceUrl;
-    imageElement.alt = title;
-
-  })
-  .catch((error) => {
-    console.error('Error fetching the post data:', error);
-  });
-
-
-// artikel 3
-fetch("https://ppydalikhlas.org/suara-alikhlas/wp-json/wp/v2/posts?_embed") // Tambahkan _embed agar media bisa diambil langsung
-  .then((response) => response.json())
-  .then((data) => {
-    const article = data[2];
-    const title = article.title.rendered;
-    // const categories = article.categories;
-    const categoryNames = article._embedded['wp:term'][0].map(term => term.name);
-    const excerpt = article.excerpt.rendered;
-    const link = article.link;
-    //get resource_url
-    const featuredMedia = article._embedded['wp:featuredmedia'][0];
-    const resourceUrl = featuredMedia ? featuredMedia.source_url : '';
-
-    const date = article.date;
-    const articleDate = new Date(date);
-    const now = new Date();
-    const timeDiff = now - articleDate;
-    const daysDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-
-    // Set the article content
-    document.getElementById("article-title2").innerText = title;
-    // document.getElementById("article-categories2").innerText = categories[0] === 2 ? "Artikel" : "Berita";
-
-    document.getElementById("article-categories2").innerText = categoryNames.join(", ");
-
-    const excerptText = excerpt.replace(/<\/?[^>]+(>|$)/g, "");
-    document.getElementById("article-excerpt2").innerText = excerptText;
-
-    document.getElementById("article-link2").setAttribute("href", link);
-    document.getElementById("article-title2").setAttribute("href", link);
-    document.getElementById("article-date2").innerText =
-      daysDiff === 0 ? "Hari ini" : `${daysDiff} hari yang lalu`;
-
-    const formattedDate = articleDate.toLocaleDateString("id-ID", {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
-    });
-    document.getElementById("date-create2").innerText = formattedDate;
-
-    // Menampilkan gambar thumbnail from resource_url
-    const imageElement = document.getElementById("article-thumbnail2");
-    imageElement.src = resourceUrl;
-    imageElement.alt = title;
-
-  })
-  .catch((error) => {
-    console.error('Error fetching the post data:', error);
-  });
-
-// artikel 4
-fetch("https://ppydalikhlas.org/suara-alikhlas/wp-json/wp/v2/posts?_embed") // Tambahkan _embed agar media bisa diambil langsung
-  .then((response) => response.json())
-  .then((data) => {
-    const article = data[3];
-    const title = article.title.rendered;
-    // const categories = article.categories;
-    const categoryNames = article._embedded['wp:term'][0].map(term => term.name);
-    const excerpt = article.excerpt.rendered;
-    const link = article.link;
-    //get resource_url
-    const featuredMedia = article._embedded['wp:featuredmedia'][0];
-    const resourceUrl = featuredMedia ? featuredMedia.source_url : '';
-
-    const date = article.date;
-    const articleDate = new Date(date);
-    const now = new Date();
-    const timeDiff = now - articleDate;
-    const daysDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-
-    // Set the article content
-    document.getElementById("article-title3").innerText = title;
-    // document.getElementById("article-categories3").innerText = categories[0] === 2 ? "Artikel" : "Berita";
-
-    document.getElementById("article-categories3").innerText = categoryNames.join(", ");
-
-    const excerptText = excerpt.replace(/<\/?[^>]+(>|$)/g, "");
-    document.getElementById("article-excerpt3").innerText = excerptText;
-
-    document.getElementById("article-link3").setAttribute("href", link);
-    document.getElementById("article-title3").setAttribute("href", link);
-    document.getElementById("article-date3").innerText =
-      daysDiff === 0 ? "Hari ini" : `${daysDiff} hari yang lalu`;
-
-    const formattedDate = articleDate.toLocaleDateString("id-ID", {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
-    });
-    document.getElementById("date-create3").innerText = formattedDate;
-
-    // Menampilkan gambar thumbnail from resource_url
-    const imageElement = document.getElementById("article-thumbnail3");
-    imageElement.src = resourceUrl;
-    imageElement.alt = title;
-
-  })
-  .catch((error) => {
-    console.error('Error fetching the post data:', error);
-  });
+    observer.observe(section);
+  } else {
+    loadArticles();
+  }
+})();
