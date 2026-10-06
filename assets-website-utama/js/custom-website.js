@@ -43,12 +43,81 @@ function toggleFAQ(button) {
 }
 
 // Mobile Menu
-document
-  .getElementById("mobile-menu-btn")
-  .addEventListener("click", function () {
-    // Mobile menu functionality can be added here
-    alert("Menu mobile akan ditampilkan di sini");
+(function initMobileMenu() {
+  const menuButton = document.getElementById("mobile-menu-btn");
+  if (!menuButton) return;
+
+  const nav = menuButton.closest("nav");
+  const mobileMenu = document.createElement("div");
+  mobileMenu.id = "mobile-menu";
+  mobileMenu.className =
+    "mobile-menu md:hidden fixed left-0 right-0 bg-white border-t border-gray-100 shadow-lg opacity-0 invisible -translate-y-2 transition-all duration-200";
+  mobileMenu.innerHTML = `
+    <div class="container mx-auto px-6 py-3 space-y-1 max-h-[calc(100vh-4rem)] overflow-y-auto">
+      <a href="#tentang" class="mobile-menu-link block px-4 py-3 rounded-lg text-gray-700 font-medium hover:bg-gray-50 hover:text-islamic-green">Tentang</a>
+      <a href="#program-pendidikan" class="mobile-menu-link block px-4 py-3 rounded-lg text-gray-700 font-medium hover:bg-gray-50 hover:text-islamic-green">Program Pendidikan</a>
+      <a href="#artikel" class="mobile-menu-link block px-4 py-3 rounded-lg text-gray-700 font-medium hover:bg-gray-50 hover:text-islamic-green">Suara Al-Ikhlas</a>
+      <a href="#testimoni" class="mobile-menu-link block px-4 py-3 rounded-lg text-gray-700 font-medium hover:bg-gray-50 hover:text-islamic-green">Testimoni</a>
+      <a href="#faq" class="mobile-menu-link block px-4 py-3 rounded-lg text-gray-700 font-medium hover:bg-gray-50 hover:text-islamic-green">FAQ</a>
+      <a href="#usaha-produktif" class="mobile-menu-link block px-4 py-3 rounded-lg text-gray-700 font-medium hover:bg-gray-50 hover:text-islamic-green">Usaha Produktif</a>
+      <a href="#kontak" class="mobile-menu-link block px-4 py-3 rounded-lg text-gray-700 font-medium hover:bg-gray-50 hover:text-islamic-green">Kontak</a>
+      <a href="#psb" class="mobile-menu-link block mt-2 px-4 py-3 rounded-lg bg-islamic-green text-white font-semibold text-center hover:bg-light-green">PSB</a>
+    </div>
+  `;
+
+  if (nav) {
+    nav.appendChild(mobileMenu);
+    const updateMenuPosition = () => {
+      mobileMenu.style.top = `${nav.offsetHeight}px`;
+    };
+    updateMenuPosition();
+    window.addEventListener("resize", updateMenuPosition);
+  }
+
+  const icon = menuButton.querySelector("svg");
+  const openIcon = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>`;
+  const closeIcon = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>`;
+
+  function closeMobileMenu() {
+    mobileMenu.classList.remove("opacity-100", "visible", "translate-y-0");
+    mobileMenu.classList.add("opacity-0", "invisible", "-translate-y-2");
+    menuButton.setAttribute("aria-expanded", "false");
+    menuButton.setAttribute("aria-label", "Buka menu navigasi");
+    if (icon) icon.innerHTML = closeIcon;
+  }
+
+  function toggleMobileMenu() {
+    const isOpen = mobileMenu.classList.contains("visible");
+    if (isOpen) {
+      closeMobileMenu();
+    } else {
+      mobileMenu.classList.remove("opacity-0", "invisible", "-translate-y-2");
+      mobileMenu.classList.add("opacity-100", "visible", "translate-y-0");
+      menuButton.setAttribute("aria-expanded", "true");
+      menuButton.setAttribute("aria-label", "Tutup menu navigasi");
+      if (icon) icon.innerHTML = openIcon;
+    }
+  }
+
+  menuButton.setAttribute("aria-label", "Buka menu navigasi");
+  menuButton.setAttribute("aria-expanded", "false");
+  menuButton.setAttribute("type", "button");
+  menuButton.addEventListener("click", toggleMobileMenu);
+
+  mobileMenu.querySelectorAll(".mobile-menu-link").forEach((link) => {
+    link.addEventListener("click", closeMobileMenu);
   });
+
+  document.addEventListener("click", function (event) {
+    if (!mobileMenu.contains(event.target) && !menuButton.contains(event.target)) {
+      closeMobileMenu();
+    }
+  });
+
+  window.addEventListener("resize", function () {
+    if (window.innerWidth >= 768) closeMobileMenu();
+  });
+})();
 
 // Smooth scroll for navigation links
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
