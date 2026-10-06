@@ -62,3 +62,122 @@ body {
 .hero-overlay {
   background: linear-gradient(rgba(45, 80, 22, 0.7), rgba(74, 124, 89, 0.7));
 }
+
+
+/* =========================================================
+   Artikel / Suara Al-Ikhlas - Responsive Layout
+   ========================================================= */
+
+#artikel {
+  scroll-margin-top: 80px;
+}
+
+#artikel > .container > .grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+  max-width: 72rem;
+  margin-inline: auto;
+}
+
+#artikel article {
+  min-width: 0;
+  height: 100%;
+}
+
+#artikel article > div {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#artikel article > div > div:first-child {
+  width: 100%;
+  height: 15rem;
+  flex-shrink: 0;
+}
+
+#artikel article > div > div:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+#artikel article > div > div:nth-child(2) > div:first-child {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+#artikel article > div > div:nth-child(2) > div:first-child > * {
+  min-width: 0;
+}
+
+#artikel article > div > div:nth-child(2) > div:first-child > span:first-child {
+  max-width: 65%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#artikel article > div > div:nth-child(2) > div:last-child {
+  margin-top: auto;
+  gap: 1rem;
+}
+
+#artikel article img {
+  display: block;
+}
+
+@media (max-width: 767px) {
+  #artikel {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  #artikel > .container > .grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  #artikel article {
+    border-radius: 1rem;
+  }
+
+  #artikel article > div > div:first-child {
+    height: 12rem;
+  }
+
+  #artikel article > div > div:nth-child(2) {
+    padding: 1rem;
+  }
+
+  #artikel article > div > div:nth-child(2) > div:first-child {
+    align-items: flex-start;
+  }
+
+  #artikel article > div > div:nth-child(2) > div:first-child > span:first-child {
+    max-width: 58%;
+  }
+
+  #artikel article > div > div:nth-child(2) > div:last-child {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  #artikel article > div > div:nth-child(2) > div:last-child a {
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  #artikel > .container > .grid {
+    grid-template-columns: 1fr;
+    max-width: 44rem;
+  }
+
+  #artikel article > div > div:first-child {
+    height: 14rem;
+  }
+}
