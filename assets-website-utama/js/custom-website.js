@@ -8,15 +8,31 @@ window.addEventListener("load", function () {
 //add function for open menu layanan
 function openMenuLayanan() {
   const submenu = document.getElementById("submenu-layanan");
-
-  // document.addEventListener('click', function(event) {
-  //     if (!submenu.contains(event.target)) {
-  //         submenu.classList.add('hidden');
-  //     }
-  // });
+  if (!submenu) return;
 
   submenu.classList.toggle("hidden");
 }
+
+// Tutup submenu Layanan saat menu lain atau item submenu dipilih
+document.addEventListener("click", function (event) {
+  const menuLayanan = document.getElementById("menu-layanan");
+  const submenu = document.getElementById("submenu-layanan");
+
+  if (!menuLayanan || !submenu) return;
+
+  // Jika klik terjadi di luar menu Layanan, tutup submenu
+  if (!menuLayanan.contains(event.target)) {
+    submenu.classList.add("hidden");
+  }
+});
+
+// Tutup submenu setelah salah satu item Layanan diklik
+document.querySelectorAll("#submenu-layanan a").forEach((link) => {
+  link.addEventListener("click", function () {
+    const submenu = document.getElementById("submenu-layanan");
+    if (submenu) submenu.classList.add("hidden");
+  });
+});
 
 // Smooth Scrolling
 function scrollToSection(sectionId) {
