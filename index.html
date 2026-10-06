@@ -73,7 +73,7 @@
                         class="text-gray-700 hover:text-islamic-green px-4 py-2 rounded-lg hover:bg-gray-50 font-medium transition-all duration-200">Program
                         Pendidikan</a>
                     <div id="menu-layanan" class="relative">
-                        <button
+                        <button type="button" aria-haspopup="true" aria-expanded="false" aria-controls="submenu-layanan"
                             class="text-gray-700 hover:text-islamic-green px-4 py-2 rounded-lg hover:bg-gray-50 font-medium transition-all duration-200"
                             onclick="openMenuLayanan()">
                             Layanan
@@ -97,7 +97,7 @@
 
                 <!-- Mobile Menu Button - Modern -->
                 <div class="md:hidden">
-                    <button id="mobile-menu-btn"
+                    <button id="mobile-menu-btn" type="button" aria-label="Buka menu navigasi" aria-expanded="false"
                         class="text-gray-700 hover:text-islamic-green p-2 rounded-lg hover:bg-gray-50 transition-all duration-200">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -112,12 +112,13 @@
     <!-- Hero Section with Video Background -->
     <section id="hero" class="hero-video h-screen relative">
         <!-- Video Background -->
-        <video autoplay muted loop class="absolute inset-0 w-full h-full object-cover">
-            <source src="./assets-website-utama/assets/video/hero-background.mp4" type="video/mp4">
-            <!-- <source src="https://videos.pexels.com/video-files/2818546/2818546-uhd_2560_1440_24fps.mp4" type="video/mp4"> -->
-            <!-- Fallback for browsers that don't support video -->
-            <div class="absolute inset-0 bg-gradient-to-br from-green-800 via-green-600 to-green-400"></div>
-        </video>
+        <!-- Video hero dimuat secara lazy hanya di desktop setelah halaman siap.
+             Mobile menggunakan background gradient agar tidak mengunduh video 11+ MB. -->
+        <div class="absolute inset-0 bg-gradient-to-br from-green-800 via-green-600 to-green-400" aria-hidden="true"></div>
+        <video id="hero-background-video"
+            muted loop playsinline preload="none" aria-hidden="true"
+            class="absolute inset-0 w-full h-full object-cover"
+            data-src="./assets-website-utama/assets/video/hero-background.mp4"></video>
 
         <!-- Overlay -->
         <div class="absolute inset-0 bg-gradient-to-r from-islamic-green/80 to-light-green/80 hero-overlay"></div>
@@ -181,7 +182,7 @@
                         <div class="mb-6">
                             <div
                                 class="w-16 h-16 bg-islamic-green rounded-full flex items-center justify-center group-hover:bg-light-green transition-colors duration-300">
-                                <img src="./assets-website-utama/assets/img/visi-icon.png" class="h-12 w-12"
+                                <img loading="lazy" decoding="async" src="./assets-website-utama/assets/img/visi-icon.png" class="h-12 w-12"
                                     alt="visi icon">
                             </div>
                         </div>
@@ -197,7 +198,7 @@
                         <div class="mb-6">
                             <div
                                 class="w-16 h-16 bg-islamic-green rounded-full flex items-center justify-center group-hover:bg-light-green transition-colors duration-300">
-                                <img src="./assets-website-utama/assets/img/misi-icon.png" class="h-12 w-12"
+                                <img loading="lazy" decoding="async" src="./assets-website-utama/assets/img/misi-icon.png" class="h-12 w-12"
                                     alt="misi icon">
                             </div>
                         </div>
@@ -221,7 +222,7 @@
                         <div class="mb-6">
                             <div
                                 class="w-16 h-16 bg-islamic-green rounded-full flex items-center justify-center group-hover:bg-light-green transition-colors duration-300">
-                                <img src="./assets-website-utama/assets/img/tujuan-icon.png" class="h-12 w-12"
+                                <img loading="lazy" decoding="async" src="./assets-website-utama/assets/img/tujuan-icon.png" class="h-12 w-12"
                                     alt="tujuan icon">
                             </div>
                         </div>
@@ -274,7 +275,7 @@
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
                 <div class="text-center">
                     <div class="w-20 h-20 bg-islamic-yellow rounded-full flex items-center justify-center mx-auto mb-4">
-                        <img src="./assets-website-utama/assets/img/education-islamic.png" class="h-14 w-14"
+                        <img loading="lazy" decoding="async" src="./assets-website-utama/assets/img/education-islamic.png" class="h-14 w-14"
                             alt="Pendidikan Islami">
                     </div>
                     <h3 class="text-xl font-semibold mb-3">Pendidikan Islami</h3>
@@ -283,7 +284,7 @@
 
                 <div class="text-center">
                     <div class="w-20 h-20 bg-islamic-yellow rounded-full flex items-center justify-center mx-auto mb-4">
-                        <img src="./assets-website-utama/assets/img/teacher-education.png" class="h-14 w-14"
+                        <img loading="lazy" decoding="async" src="./assets-website-utama/assets/img/teacher-education.png" class="h-14 w-14"
                             alt="guru/asatidz">
                     </div>
                     <h3 class="text-xl font-semibold mb-3">Ustadz Berpengalaman</h3>
@@ -292,7 +293,7 @@
 
                 <div class="text-center">
                     <div class="w-20 h-20 bg-islamic-yellow rounded-full flex items-center justify-center mx-auto mb-4">
-                        <img src="./assets-website-utama/assets/img/fasilitas-education.png" class="h-14 w-14"
+                        <img loading="lazy" decoding="async" src="./assets-website-utama/assets/img/fasilitas-education.png" class="h-14 w-14"
                             alt="fasilitas pesantren">
                     </div>
                     <h3 class="text-xl font-semibold mb-3">Fasilitas Memadai</h3>
@@ -302,7 +303,7 @@
 
                 <div class="text-center">
                     <div class="w-20 h-20 bg-islamic-yellow rounded-full flex items-center justify-center mx-auto mb-4">
-                        <img src="./assets-website-utama/assets/img/beasiswa-education.png" class="h-14 w-14"
+                        <img loading="lazy" decoding="async" src="./assets-website-utama/assets/img/beasiswa-education.png" class="h-14 w-14"
                             alt="beasiswa santri">
                     </div>
                     <h3 class="text-xl font-semibold mb-3">Beasiswa Penuh</h3>
@@ -329,7 +330,7 @@
                     <div class="bg-gray-50 p-8 rounded-2xl shadow-lg text-center hover:shadow-xl transition-shadow">
                         <div
                             class="w-20 h-20 bg-islamic-green rounded-full flex items-center justify-center mx-auto mb-6">
-                            <img src="./assets-website-utama/assets/img/icon-education.png" class="h-14 w-14"
+                            <img loading="lazy" decoding="async" src="./assets-website-utama/assets/img/icon-education.png" class="h-14 w-14"
                                 alt="Icon Education PP. Yatim Dhuafa Al-Ikhlas">
                         </div>
                         <h3 class="text-2xl font-semibold text-islamic-green mb-4">TK/PAUD</h3>
@@ -353,7 +354,7 @@
                     <div class="bg-gray-50 p-8 rounded-2xl shadow-lg text-center hover:shadow-xl transition-shadow">
                         <div
                             class="w-20 h-20 bg-islamic-green rounded-full flex items-center justify-center mx-auto mb-6">
-                            <img src="./assets-website-utama/assets/img/icon-education.png" class="h-14 w-14"
+                            <img loading="lazy" decoding="async" src="./assets-website-utama/assets/img/icon-education.png" class="h-14 w-14"
                                 alt="Icon Education PP. Yatim Dhuafa Al-Ikhlas">
                         </div>
                         <h3 class="text-2xl font-semibold text-islamic-green mb-4">SD/MI</h3>
@@ -377,7 +378,7 @@
                     <div class="bg-gray-50 p-8 rounded-2xl shadow-lg text-center hover:shadow-xl transition-shadow">
                         <div
                             class="w-20 h-20 bg-islamic-green rounded-full flex items-center justify-center mx-auto mb-6">
-                            <img src="./assets-website-utama/assets/img/icon-education.png" class="h-14 w-14"
+                            <img loading="lazy" decoding="async" src="./assets-website-utama/assets/img/icon-education.png" class="h-14 w-14"
                                 alt="Icon Education PP. Yatim Dhuafa Al-Ikhlas">
                         </div>
                         <h3 class="text-2xl font-semibold text-islamic-green mb-4">Raudhatul Huffadz <br> An-Nuha</h3>
@@ -409,7 +410,7 @@
                         <div class="text-center">
                             <div
                                 class="w-16 h-16 bg-islamic-yellow rounded-full flex items-center justify-center mx-auto mb-4">
-                                <img src="./assets-website-utama/assets/img/tahfidz-icon.png" alt="Tahfidz Al-Qur'an"
+                                <img loading="lazy" decoding="async" src="./assets-website-utama/assets/img/tahfidz-icon.png" alt="Tahfidz Al-Qur'an"
                                     class="w-10 h-10">
                             </div>
                             <h4 class="text-lg font-semibold text-white mb-2">Tahfidz 30 Juz</h4>
@@ -420,7 +421,7 @@
                         <div class="text-center">
                             <div
                                 class="w-16 h-16 bg-islamic-yellow rounded-full flex items-center justify-center mx-auto mb-4">
-                                <img src="./assets-website-utama/assets/img/language-icon.png"
+                                <img loading="lazy" decoding="async" src="./assets-website-utama/assets/img/language-icon.png"
                                     alt="Bahasa Internasional" class="w-10 h-10">
                             </div>
                             <h4 class="text-lg font-semibold text-white mb-2">Bahasa Internasional</h4>
@@ -431,7 +432,7 @@
                         <div class="text-center">
                             <div
                                 class="w-16 h-16 bg-islamic-yellow rounded-full flex items-center justify-center mx-auto mb-4">
-                                <img src="./assets-website-utama/assets/img/teknologi-icon.png"
+                                <img loading="lazy" decoding="async" src="./assets-website-utama/assets/img/teknologi-icon.png"
                                     alt="Teknologi Pendidikan" class="w-10 h-10">
                             </div>
                             <h4 class="text-lg font-semibold text-white mb-2">Teknologi Pendidikan</h4>
@@ -468,7 +469,7 @@
                     class="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1">
                     <div class="flex">
                         <div class="relative w-40 h-60 overflow-hidden flex-shrink-0">
-                            <img id="article-thumbnail"
+                            <img loading="lazy" decoding="async" id="article-thumbnail"
                                 src="./assets-website-utama/assets/img/PPYD Al Ikhlas Malang_Suara Al Ikhlas_Cover Artikel.png"
                                 alt="Thumbnail"
                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
@@ -518,7 +519,7 @@
                     class="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1">
                     <div class="flex">
                         <div class="relative w-40 h-60 overflow-hidden flex-shrink-0">
-                            <img id="article-thumbnail1"
+                            <img loading="lazy" decoding="async" id="article-thumbnail1"
                                 src="./assets-website-utama/assets/img/PPYD Al Ikhlas Malang_Suara Al Ikhlas_Cover Artikel.png"
                                 alt="Thumbnail"
                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
@@ -568,7 +569,7 @@
                     class="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1">
                     <div class="flex">
                         <div class="relative w-40 h-60 overflow-hidden flex-shrink-0">
-                            <img id="article-thumbnail2"
+                            <img loading="lazy" decoding="async" id="article-thumbnail2"
                                 src="./assets-website-utama/assets/img/PPYD Al Ikhlas Malang_Suara Al Ikhlas_Cover Artikel.png"
                                 alt="Thumbnail"
                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
@@ -618,7 +619,7 @@
                     class="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1">
                     <div class="flex">
                         <div class="relative w-40 h-60 overflow-hidden flex-shrink-0">
-                            <img id="article-thumbnail3"
+                            <img loading="lazy" decoding="async" id="article-thumbnail3"
                                 src="./assets-website-utama/assets/img/PPYD Al Ikhlas Malang_Suara Al Ikhlas_Cover Artikel.png"
                                 alt="Thumbnail"
                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
@@ -741,11 +742,10 @@
                             </div>
                         </div>
 
-                        <button
-                            class="w-full bg-red-500 text-white font-bold py-3 rounded-lg hover:bg-red-600 transition-colors text-lg"
-                            href="https://ppydalikhlas.org/psb">
+                        <a href="https://ppydalikhlas.org/psb"
+                            class="w-full bg-red-500 text-white font-bold py-3 rounded-lg hover:bg-red-600 transition-colors text-lg text-center inline-block">
                             Daftar Sekarang!
-                        </button>
+                        </a>
                     </div>
                 </div>
 
@@ -991,13 +991,13 @@
                     </div>
 
                     <!-- Navigation Arrows -->
-                    <button onclick="previousSlide()"
+                    <button aria-label="Testimoni sebelumnya" onclick="previousSlide()"
                         class="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 z-10">
                         <svg class="w-5 h-5 text-islamic-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                         </svg>
                     </button>
-                    <button onclick="nextSlide()"
+                    <button aria-label="Testimoni berikutnya" onclick="nextSlide()"
                         class="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 z-10">
                         <svg class="w-5 h-5 text-islamic-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
@@ -1006,11 +1006,11 @@
 
                     <!-- Slide Indicators -->
                     <div class="flex justify-center mt-6 space-x-3">
-                        <button id="indicator-0" onclick="goToSlide(0)"
+                        <button id="indicator-0" aria-label="Tampilkan testimoni 1" onclick="goToSlide(0)"
                             class="w-3 h-3 rounded-full bg-islamic-green transition-all duration-300"></button>
-                        <button id="indicator-1" onclick="goToSlide(1)"
+                        <button id="indicator-1" aria-label="Tampilkan testimoni 2" onclick="goToSlide(1)"
                             class="w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-400 transition-all duration-300"></button>
-                        <button id="indicator-2" onclick="goToSlide(2)"
+                        <button id="indicator-2" aria-label="Tampilkan testimoni 3" onclick="goToSlide(2)"
                             class="w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-400 transition-all duration-300"></button>
                     </div>
                 </div>
@@ -1122,7 +1122,7 @@
                     <div class="space-y-4">
                         <div class="flex items-center">
                             <div class="w-12 h-12 bg-islamic-yellow rounded-full flex items-center justify-center mr-4">
-                                <img src="./assets-website-utama/assets/img/location-icon.png" height="40" width="40"
+                                <img loading="lazy" decoding="async" src="./assets-website-utama/assets/img/location-icon.png" height="40" width="40"
                                     alt="location icon">
                             </div>
                             <div>
@@ -1134,7 +1134,7 @@
 
                         <div class="flex items-center">
                             <div class="w-12 h-12 bg-islamic-yellow rounded-full flex items-center justify-center mr-4">
-                                <img src="./assets-website-utama/assets/img/phone-icon.png" height="40" width="40"
+                                <img loading="lazy" decoding="async" src="./assets-website-utama/assets/img/phone-icon.png" height="40" width="40"
                                     alt="phone icon">
                             </div>
                             <div>
@@ -1146,7 +1146,7 @@
 
                         <div class="flex items-center">
                             <div class="w-12 h-12 bg-islamic-yellow rounded-full flex items-center justify-center mr-4">
-                                <img src="./assets-website-utama/assets/img/mail-icon.png" height="40" width="40"
+                                <img loading="lazy" decoding="async" src="./assets-website-utama/assets/img/mail-icon.png" height="40" width="40"
                                     alt="mail icon">
                             </div>
                             <div>
@@ -1157,7 +1157,7 @@
 
                         <div class="flex items-center">
                             <div class="w-12 h-12 bg-islamic-yellow rounded-full flex items-center justify-center mr-4">
-                                <img src="./assets-website-utama/assets/img/clock-icon.png" height="40" width="40"
+                                <img loading="lazy" decoding="async" src="./assets-website-utama/assets/img/clock-icon.png" height="40" width="40"
                                     alt="clock icon">
                             </div>
                             <div>
@@ -1172,18 +1172,22 @@
                     <h3 class="text-2xl font-semibold mb-6">Kirim Pesan</h3>
                     <form id="contact-form" class="space-y-4">
                         <div>
+                            <label for="nama" class="sr-only">Nama Lengkap</label>
                             <input type="text" id="nama" placeholder="Nama Lengkap"
                                 class="w-full p-4 rounded-lg text-islamic-green" required>
                         </div>
                         <div>
+                            <label for="email" class="sr-only">Email</label>
                             <input type="email" id="email" placeholder="Email"
                                 class="w-full p-4 rounded-lg text-islamic-green" required>
                         </div>
                         <div>
+                            <label for="telepon" class="sr-only">Nomor Telepon</label>
                             <input type="tel" id="telepon" placeholder="Nomor Telepon"
                                 class="w-full p-4 rounded-lg text-islamic-green" required>
                         </div>
                         <div>
+                            <label for="pesan" class="sr-only">Pesan Anda</label>
                             <textarea id="pesan" placeholder="Pesan Anda" rows="4"
                                 class="w-full p-4 rounded-lg text-islamic-green" required></textarea>
                         </div>
@@ -1220,7 +1224,7 @@
                         <div class="flex items-start space-x-4">
                             <div
                                 class="w-12 h-12 rounded-lg flex items-center justify-center group-hover:scale-110 transition-all duration-300">
-                                <img src="./assets-website-utama/assets/img/logo-koperasi.jpg"
+                                <img loading="lazy" decoding="async" src="./assets-website-utama/assets/img/logo-koperasi.jpg"
                                     alt="Koperasi Produsen Peduli Ummat Al-Ikhlas">
                             </div>
                             <div class="flex-1">
@@ -1242,7 +1246,7 @@
                         <div class="flex items-start space-x-4">
                             <div
                                 class="w-12 h-12 rounded-lg flex items-center justify-center group-hover:scale-110 transition-all duration-300">
-                                <img src="./assets-website-utama/assets/img/logo-bolobolu.jpg" alt="Bolo Bolu Malang">
+                                <img loading="lazy" decoding="async" src="./assets-website-utama/assets/img/logo-bolobolu.jpg" alt="Bolo Bolu Malang">
                             </div>
                             <div class="flex-1">
                                 <h3
@@ -1264,7 +1268,7 @@
                         <div class="flex items-start space-x-4">
                             <div
                                 class="w-12 h-12 rounded-lg flex items-center justify-center group-hover:scale-110 transition-all duration-300">
-                                <img src="./assets-website-utama/assets/img/logo-ikhlas-water.jpg" alt="Ikhlas Water">
+                                <img loading="lazy" decoding="async" src="./assets-website-utama/assets/img/logo-ikhlas-water.jpg" alt="Ikhlas Water">
                             </div>
                             <div class="flex-1">
                                 <h3
@@ -1315,7 +1319,7 @@
                     <div class="md:col-span-5">
                         <div class="flex items-center mb-4">
                             <div class="w-10 h-10 bg-islamic-green rounded-lg flex items-center justify-center mr-3">
-                                <img src="./assets-website-utama/assets/img/icon_logo_utama.jpg" height="40" width="40"
+                                <img loading="lazy" decoding="async" src="./assets-website-utama/assets/img/icon_logo_utama.jpg" height="40" width="40"
                                     alt="Logo Pondok Pesantren Al-Ikhlas" style="border-radius: 5%;">
                             </div>
                             <div>
