@@ -13,7 +13,16 @@
     <link rel="apple-touch-icon" sizes="180x180" href="./assets-website-utama/assets/img/favicon_io/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./assets-website-utama/assets/img/favicon_io/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./assets-website-utama/assets/img/favicon_io/favicon-16x16.png">
-    <link rel="manifest" href="./assets-website-utama/assets/img/favicon_io/site.webmanifest">
+    <!-- Manifest hanya dimuat saat website berjalan melalui HTTP/HTTPS.
+         Ini mencegah error CORS saat index.html dibuka langsung via file:// di XAMPP. -->
+    <script>
+        if (window.location.protocol === "http:" || window.location.protocol === "https:") {
+            const manifestLink = document.createElement("link");
+            manifestLink.rel = "manifest";
+            manifestLink.href = "./assets-website-utama/assets/img/favicon_io/site.webmanifest";
+            document.head.appendChild(manifestLink);
+        }
+    </script>
 
     <!-- SCRIPTS -->
     <script src="https://cdn.tailwindcss.com"></script>
