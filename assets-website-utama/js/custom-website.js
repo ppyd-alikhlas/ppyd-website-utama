@@ -72,12 +72,27 @@ function toggleFAQ(button) {
     <div class="container mx-auto px-6 py-3 space-y-1 max-h-[calc(100vh-4rem)] overflow-y-auto">
       <a href="#tentang" class="mobile-menu-link block px-4 py-3 rounded-lg text-gray-700 font-medium hover:bg-gray-50 hover:text-islamic-green">Tentang</a>
       <a href="#program-pendidikan" class="mobile-menu-link block px-4 py-3 rounded-lg text-gray-700 font-medium hover:bg-gray-50 hover:text-islamic-green">Program Pendidikan</a>
-      <a href="#artikel" class="mobile-menu-link block px-4 py-3 rounded-lg text-gray-700 font-medium hover:bg-gray-50 hover:text-islamic-green">Suara Al-Ikhlas</a>
-      <a href="#testimoni" class="mobile-menu-link block px-4 py-3 rounded-lg text-gray-700 font-medium hover:bg-gray-50 hover:text-islamic-green">Testimoni</a>
-      <a href="#faq" class="mobile-menu-link block px-4 py-3 rounded-lg text-gray-700 font-medium hover:bg-gray-50 hover:text-islamic-green">FAQ</a>
-      <a href="#usaha-produktif" class="mobile-menu-link block px-4 py-3 rounded-lg text-gray-700 font-medium hover:bg-gray-50 hover:text-islamic-green">Usaha Produktif</a>
+
+      <div class="mobile-service-menu">
+        <button type="button" id="mobile-service-btn"
+          class="w-full flex items-center justify-between px-4 py-3 rounded-lg text-gray-700 font-medium hover:bg-gray-50 hover:text-islamic-green transition-colors">
+          <span>Layanan</span>
+          <svg id="mobile-service-icon" class="w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+
+        <div id="mobile-service-submenu" class="hidden pl-4 pr-2 pb-1 space-y-1">
+          <a href="#artikel" class="mobile-menu-link block px-4 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-gray-50 hover:text-islamic-green">Suara Al-Ikhlas</a>
+          <a href="#testimoni" class="mobile-menu-link block px-4 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-gray-50 hover:text-islamic-green">Testimoni</a>
+          <a href="#faq" class="mobile-menu-link block px-4 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-gray-50 hover:text-islamic-green">FAQ</a>
+          <a href="#usaha-produktif" class="mobile-menu-link block px-4 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-gray-50 hover:text-islamic-green">Usaha Produktif</a>
+        </div>
+      </div>
+
       <a href="#kontak" class="mobile-menu-link block px-4 py-3 rounded-lg text-gray-700 font-medium hover:bg-gray-50 hover:text-islamic-green">Kontak</a>
-      <a href="#psb" class="mobile-menu-link block mt-2 px-4 py-3 rounded-lg bg-islamic-green text-white font-semibold text-center hover:bg-light-green">PSB</a>
+      <div class="h-px bg-gray-100 my-2"></div>
+      <a href="#psb" class="mobile-menu-link block px-4 py-3 rounded-lg bg-islamic-green text-white font-semibold text-center hover:bg-light-green">PSB</a>
     </div>
   `;
 
@@ -94,12 +109,42 @@ function toggleFAQ(button) {
   const openIcon = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>`;
   const closeIcon = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>`;
 
+  const serviceButton = mobileMenu.querySelector("#mobile-service-btn");
+  const serviceSubmenu = mobileMenu.querySelector("#mobile-service-submenu");
+  const serviceIcon = mobileMenu.querySelector("#mobile-service-icon");
+
+  function closeServiceSubmenu() {
+    if (!serviceSubmenu) return;
+    serviceSubmenu.classList.add("hidden");
+    if (serviceIcon) serviceIcon.classList.remove("rotate-180");
+    if (serviceButton) serviceButton.setAttribute("aria-expanded", "false");
+  }
+
+  function toggleServiceSubmenu() {
+    if (!serviceSubmenu) return;
+    const isOpen = !serviceSubmenu.classList.contains("hidden");
+    if (isOpen) {
+      closeServiceSubmenu();
+    } else {
+      serviceSubmenu.classList.remove("hidden");
+      if (serviceIcon) serviceIcon.classList.add("rotate-180");
+      if (serviceButton) serviceButton.setAttribute("aria-expanded", "true");
+    }
+  }
+
+  if (serviceButton) {
+    serviceButton.setAttribute("aria-expanded", "false");
+    serviceButton.setAttribute("aria-controls", "mobile-service-submenu");
+    serviceButton.addEventListener("click", toggleServiceSubmenu);
+  }
+
   function closeMobileMenu() {
     mobileMenu.classList.remove("opacity-100", "visible", "translate-y-0");
     mobileMenu.classList.add("opacity-0", "invisible", "-translate-y-2");
     menuButton.setAttribute("aria-expanded", "false");
     menuButton.setAttribute("aria-label", "Buka menu navigasi");
     if (icon) icon.innerHTML = closeIcon;
+    closeServiceSubmenu();
   }
 
   function toggleMobileMenu() {
@@ -379,6 +424,7 @@ fetch("https://ppydalikhlas.org/suara-alikhlas/wp-json/wp/v2/posts?_embed") // T
     document.getElementById("article-excerpt").innerText = excerptText;
 
     document.getElementById("article-link").setAttribute("href", link);
+    document.getElementById("article-title").setAttribute("href", link);
     document.getElementById("article-date").innerText =
       daysDiff === 0 ? "Hari ini" : `${daysDiff} hari yang lalu`;
 
@@ -431,6 +477,7 @@ fetch("https://ppydalikhlas.org/suara-alikhlas/wp-json/wp/v2/posts?_embed") // T
     document.getElementById("article-excerpt1").innerText = excerptText;
 
     document.getElementById("article-link1").setAttribute("href", link);
+    document.getElementById("article-title1").setAttribute("href", link);
     document.getElementById("article-date1").innerText =
       daysDiff === 0 ? "Hari ini" : `${daysDiff} hari yang lalu`;
 
@@ -482,6 +529,7 @@ fetch("https://ppydalikhlas.org/suara-alikhlas/wp-json/wp/v2/posts?_embed") // T
     document.getElementById("article-excerpt2").innerText = excerptText;
 
     document.getElementById("article-link2").setAttribute("href", link);
+    document.getElementById("article-title2").setAttribute("href", link);
     document.getElementById("article-date2").innerText =
       daysDiff === 0 ? "Hari ini" : `${daysDiff} hari yang lalu`;
 
@@ -532,6 +580,7 @@ fetch("https://ppydalikhlas.org/suara-alikhlas/wp-json/wp/v2/posts?_embed") // T
     document.getElementById("article-excerpt3").innerText = excerptText;
 
     document.getElementById("article-link3").setAttribute("href", link);
+    document.getElementById("article-title3").setAttribute("href", link);
     document.getElementById("article-date3").innerText =
       daysDiff === 0 ? "Hari ini" : `${daysDiff} hari yang lalu`;
 
