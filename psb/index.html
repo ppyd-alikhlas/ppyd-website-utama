@@ -8,7 +8,7 @@
   <script>
     // Jika periode PSB sudah berakhir, semua akses langsung ke /psb dikembalikan ke beranda.
     (function redirectIfPsbClosed() {
-      const psbDeadline = new Date("2026-12-31T23:59:59+07:00").getTime();
+      const psbDeadline = new Date("2026-06-30T23:59:59+07:00").getTime();
       if (Date.now() >= psbDeadline) {
         window.location.replace("https://ppydalikhlas.org/");
       }
