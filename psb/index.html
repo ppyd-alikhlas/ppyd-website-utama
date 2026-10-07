@@ -5,6 +5,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PSB PPYD AL IKHLAS</title>
+  <script>
+    // Jika periode PSB sudah berakhir, semua akses langsung ke /psb dikembalikan ke beranda.
+    (function redirectIfPsbClosed() {
+      const psbDeadline = new Date("2026-12-31T23:59:59+07:00").getTime();
+      if (Date.now() >= psbDeadline) {
+        window.location.replace("https://ppydalikhlas.org/");
+      }
+    })();
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="/_sdk/element_sdk.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
