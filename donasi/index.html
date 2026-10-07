@@ -76,7 +76,7 @@
       <button class="modal-close" type="button" aria-label="Tutup form donasi" data-close-modal>×</button>
       <span class="section-label">FORM DONASI</span>
       <h2 id="donationModalTitle">Mulai dukung program</h2>
-      <p class="modal-intro">Form ini sementara untuk persiapan alur donasi. Data belum dikirim ke sistem atau rekening pembayaran.</p>
+      <p class="modal-intro">Isi data donasi, lalu lanjutkan untuk mengirim detail donasi langsung melalui WhatsApp pengurus.</p>
       <form id="donationForm">
         <label for="donationProgram">Program donasi</label>
         <select id="donationProgram" name="program" required><option value="">Pilih program</option><option value="Beasiswa Pendidikan Santri">Beasiswa Pendidikan Santri</option><option value="Pendidikan & Pembinaan Islami">Pendidikan & Pembinaan Islami</option><option value="Perawatan & Pengembangan Fasilitas">Perawatan & Pengembangan Fasilitas</option><option value="Kebutuhan Harian Santri">Kebutuhan Harian Santri</option></select>
@@ -85,7 +85,15 @@
         <label for="donorContact">No. WhatsApp / kontak</label>
         <input id="donorContact" name="contact" type="tel" placeholder="Contoh: 08xxxxxxxxxx" autocomplete="tel" required>
         <label for="donationAmount">Nominal donasi</label>
-        <input id="donationAmount" name="amount" type="text" inputmode="numeric" placeholder="Contoh: Rp100.000">
+        <select id="donationAmount" name="amount" required>
+          <option value="">Pilih nominal</option>
+          <option value="Rp25.000">Rp25.000</option>
+          <option value="Rp50.000">Rp50.000</option>
+          <option value="Rp75.000">Rp75.000</option>
+          <option value="Rp100.000">Rp100.000</option>
+          <option value="Lainnya">Lainnya</option>
+        </select>
+        <input id="customAmount" name="customAmount" type="text" inputmode="numeric" placeholder="Masukkan nominal donasi, contoh: Rp150.000" hidden>
         <label for="donorMessage">Pesan (opsional)</label>
         <textarea id="donorMessage" name="message" rows="3" placeholder="Tulis pesan atau doa untuk santri"></textarea>
         <button class="btn btn-primary modal-submit" type="submit">Lanjutkan Donasi <span>→</span></button>
