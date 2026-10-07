@@ -202,3 +202,32 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+
+
+/* =========================================================
+   Testimoni - satu card per slide pada layar mobile
+   ========================================================= */
+@media (max-width: 767px) {
+  #testimonial-slider > .w-full {
+    display: contents;
+  }
+
+  #testimonial-slider > .w-full > div {
+    display: contents;
+  }
+
+  #testimonial-slider > .w-full > div > .grid {
+    display: contents;
+  }
+
+  #testimonial-slider > .w-full > div > .grid > div {
+    width: 100%;
+    flex: 0 0 100%;
+    min-width: 100%;
+    box-sizing: border-box;
+  }
+
+  #testimonial-slider {
+    will-change: transform;
+  }
+}
