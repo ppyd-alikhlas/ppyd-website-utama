@@ -113,38 +113,3 @@ a#download-brochure-two {
 }
 
 @view-transition { navigation: auto; }
-/* Responsive layout untuk layar kecil */
-@media (max-width: 639px) {
-  .carousel-container {
-    border-radius: 1.25rem;
-  }
-
-  .carousel-slide > div {
-    min-height: 250px;
-  }
-
-  .carousel-container > button {
-    width: 2.5rem;
-    height: 2.5rem;
-  }
-
-  .carousel-container > button:first-of-type {
-    left: 0.75rem;
-  }
-
-  .carousel-container > button:nth-of-type(2) {
-    right: 0.75rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .carousel-track,
-  .dot,
-  .btn-primary,
-  .btn-secondary,
-  .floating,
-  .fade-in {
-    animation: none !important;
-    transition: none !important;
-  }
-}
