@@ -274,14 +274,33 @@ document
 
 // Countdown Timer
 function startCountdown() {
-  // Set target date to June 30, 2026
-  const targetDate = new Date("2026-06-30T23:59:59");
+  // Target pendaftaran. Ubah tanggal ini jika periode PSB berikutnya sudah ditetapkan.
+  const targetDate = new Date("2026-06-30T23:59:59+07:00");
+  const registerButton = document.getElementById("psb-register-button");
+
+  if (!registerButton) return;
+
+  function setRegistrationState(isOpen) {
+    registerButton.disabled = !isOpen;
+    registerButton.setAttribute("aria-disabled", String(!isOpen));
+
+    if (isOpen) {
+      registerButton.textContent = "Daftar Sekarang!";
+      registerButton.classList.remove("opacity-50", "cursor-not-allowed", "bg-gray-500");
+      registerButton.classList.add("bg-red-500", "hover:bg-red-600");
+    } else {
+      registerButton.textContent = "Pendaftaran Ditutup";
+      registerButton.classList.add("opacity-50", "cursor-not-allowed", "bg-gray-500");
+      registerButton.classList.remove("bg-red-500", "hover:bg-red-600");
+    }
+  }
 
   function updateCountdown() {
-    const now = new Date().getTime();
+    const now = Date.now();
     const distance = targetDate.getTime() - now;
+    const isOpen = distance > 0;
 
-    if (distance > 0) {
+    if (isOpen) {
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor(
         (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
@@ -289,132 +308,119 @@ function startCountdown() {
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      document.getElementById("days").textContent = days
-        .toString()
-        .padStart(2, "0");
-      document.getElementById("hours").textContent = hours
-        .toString()
-        .padStart(2, "0");
-      document.getElementById("minutes").textContent = minutes
-        .toString()
-        .padStart(2, "0");
-      document.getElementById("seconds").textContent = seconds
-        .toString()
-        .padStart(2, "0");
+      document.getElementById("days").textContent = days.toString().padStart(2, "0");
+      document.getElementById("hours").textContent = hours.toString().padStart(2, "0");
+      document.getElementById("minutes").textContent = minutes.toString().padStart(2, "0");
+      document.getElementById("seconds").textContent = seconds.toString().padStart(2, "0");
     } else {
-      // Countdown finished
       document.getElementById("days").textContent = "00";
       document.getElementById("hours").textContent = "00";
       document.getElementById("minutes").textContent = "00";
       document.getElementById("seconds").textContent = "00";
-
-      // Disable registration buttons and add alert
-      const registrationButtons = document.querySelectorAll("#psb button");
-      registrationButtons.forEach((button) => {
-        if (button.textContent.includes("Daftar")) {
-          button.textContent = "Pendaftaran Ditutup";
-          button.disabled = true;
-          button.classList.add("opacity-50", "cursor-not-allowed");
-          button.classList.remove("hover:bg-red-600", "hover:bg-yellow-300");
-
-          // Add click event for disabled state
-          button.addEventListener("click", function (e) {
-            e.preventDefault();
-            alert(
-              "Pendaftaran telah ditutup, silahkan menghubungi nomor admin untuk mendapatkan informasi terkait pendaftaran santri baru"
-            );
-          });
-        }
-      });
     }
+
+    // Sinkronkan tombol setiap update: aktif selama countdown masih berjalan,
+    // dan benar-benar disabled setelah waktunya habis.
+    setRegistrationState(isOpen);
   }
 
-  // Update immediately and then every second
   updateCountdown();
-  setInterval(updateCountdown, 1000);
+  window.setInterval(updateCountdown, 1000);
 }
 
-// Start countdown when page loads
-window.addEventListener("load", function () {
-  setTimeout(startCountdown, 2500); // Start after loader finishes
-});
+// Start countdown as early as possible so tombol tidak sempat aktif
+// ketika periode pendaftaran sebenarnya sudah berakhir.
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", startCountdown, { once: true });
+} else {
+  startCountdown();
+}
 
 // Testimonial Slider
 let currentSlide = 0;
-const totalSlides = 3;
 let slideInterval;
+
+function isMobileTestimonialView() {
+  return window.matchMedia("(max-width: 767px)").matches;
+}
+
+function getTotalSlides() {
+  // Desktop: 3 slide berisi masing-masing 2 card.
+  // Mobile: 6 slide, masing-masing hanya 1 card.
+  return isMobileTestimonialView() ? 6 : 3;
+}
 
 function updateSlider() {
   const slider = document.getElementById("testimonial-slider");
+  if (!slider) return;
+
+  const totalSlides = getTotalSlides();
+  if (currentSlide >= totalSlides) currentSlide = 0;
+
   const translateX = -currentSlide * 100;
   slider.style.transform = `translateX(${translateX}%)`;
 
-  // Update indicators
-  for (let i = 0; i < totalSlides; i++) {
-    const indicator = document.getElementById(`indicator-${i}`);
-    if (i === currentSlide) {
-      indicator.classList.remove("bg-gray-300");
-      indicator.classList.add("bg-islamic-green");
-    } else {
-      indicator.classList.remove("bg-islamic-green");
-      indicator.classList.add("bg-gray-300");
-    }
-  }
+  // Indikator desktop tetap 3. Pada mobile indikator menunjukkan 6 card.
+  document.querySelectorAll('[id^="indicator-"]').forEach((indicator, index) => {
+    const active = index === currentSlide;
+    indicator.classList.toggle("bg-islamic-green", active);
+    indicator.classList.toggle("bg-gray-300", !active);
+    indicator.setAttribute("aria-current", active ? "true" : "false");
+  });
 }
 
 function nextSlide() {
+  const totalSlides = getTotalSlides();
   currentSlide = (currentSlide + 1) % totalSlides;
   updateSlider();
 }
 
 function previousSlide() {
+  const totalSlides = getTotalSlides();
   currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
   updateSlider();
 }
 
 function goToSlide(slideIndex) {
-  currentSlide = slideIndex;
+  const totalSlides = getTotalSlides();
+  currentSlide = Math.min(Math.max(slideIndex, 0), totalSlides - 1);
   updateSlider();
 }
 
 function startAutoSlide() {
-  slideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+  stopAutoSlide();
+  slideInterval = setInterval(nextSlide, 5000);
 }
 
 function stopAutoSlide() {
   clearInterval(slideInterval);
 }
 
-// Start auto-slide when page loads
 window.addEventListener("load", function () {
-  setTimeout(startAutoSlide, 3000); // Start after 3 seconds
+  updateSlider();
+  setTimeout(startAutoSlide, 3000);
+});
+
+window.addEventListener("resize", function () {
+  const totalSlides = getTotalSlides();
+  if (currentSlide >= totalSlides) currentSlide = 0;
+  updateSlider();
 });
 
 // Pause auto-slide when user hovers over testimonial section
-const testimonialSection = document.querySelector("#testimonial-slider")
-  .parentElement.parentElement;
-testimonialSection.addEventListener("mouseenter", stopAutoSlide);
-testimonialSection.addEventListener("mouseleave", startAutoSlide);
+const testimonialSlider = document.getElementById("testimonial-slider");
+const testimonialSection = testimonialSlider?.parentElement?.parentElement;
+if (testimonialSection) {
+  testimonialSection.addEventListener("mouseenter", stopAutoSlide);
+  testimonialSection.addEventListener("mouseleave", startAutoSlide);
+}
 
 // Button interactions
 document.querySelectorAll("button").forEach((button) => {
-  if (!button.onclick && button.textContent.includes("Daftar")) {
-    button.addEventListener("click", function () {
-      // alert(
-      //   "Halaman pendaftaran akan segera tersedia. Silakan hubungi kami melalui kontak yang tersedia."
-      // );
-       window.location.href = "https://ppydalikhlas.org/psb";
-      // window.location.href = "/assets-website-utama/pages/PSB/index.html";
-    });
-  }
-
-  // if (button.textContent.includes("Download")) {
-  //   button.addEventListener("click", function () {
-  //     alert("Brosur akan segera diunduh. Fitur ini dalam tahap pengembangan.");
-  //   });
-  // }
+  // Tombol PSB ditangani langsung oleh countdown/onclick pada elemen PSB.
+  // Tidak ada redirect generik berdasarkan teks agar tombol yang sudah disabled
+  // tetap benar-benar tidak dapat diklik.
 });
-
 
 // Load the latest four articles with one request, only when the article section is near the viewport.
 (function initArticles() {
@@ -448,6 +454,15 @@ document.querySelectorAll("button").forEach((button) => {
           const title = article.title?.rendered || "Artikel Al-Ikhlas";
           const link = article.link || "#";
           const excerpt = article.excerpt?.rendered || "";
+
+          // WordPress dapat mengirim entity HTML seperti &hellip;.
+          // Decode entity terlebih dahulu agar yang tampil menjadi karakter normal (…),
+          // bukan teks mentah "&hellip;".
+          const decodeHtmlEntities = (value) => {
+            const textarea = document.createElement("textarea");
+            textarea.innerHTML = value;
+            return textarea.value;
+          };
           const terms = article._embedded?.["wp:term"]?.[0] || [];
           const featuredMedia = article._embedded?.["wp:featuredmedia"]?.[0];
           const resourceUrl = featuredMedia?.source_url || "";
@@ -459,16 +474,23 @@ document.querySelectorAll("button").forEach((button) => {
             Math.floor((now - articleDate) / (1000 * 60 * 60 * 24))
           );
 
-          titleElement.textContent = title;
+          const cleanTitle = decodeHtmlEntities(title);
+          titleElement.textContent = cleanTitle;
           titleElement.href = link;
           linkElement.href = link;
 
           if (categoryElement) {
-            categoryElement.textContent = terms.map((term) => term.name).join(", ");
+            categoryElement.textContent = terms
+              .map((term) => decodeHtmlEntities(term.name))
+              .join(", ");
           }
 
           if (excerptElement) {
-            excerptElement.textContent = excerpt.replace(/<\/?[^>]+(>|$)/g, "");
+            const cleanExcerpt = excerpt
+              .replace(/<\/?[^>]+(>|$)/g, "")
+              .replace(/\s+/g, " ")
+              .trim();
+            excerptElement.textContent = decodeHtmlEntities(cleanExcerpt);
           }
 
           if (dateElement) {
@@ -485,7 +507,7 @@ document.querySelectorAll("button").forEach((button) => {
 
           if (imageElement && resourceUrl) {
             imageElement.src = resourceUrl;
-            imageElement.alt = title;
+            imageElement.alt = cleanTitle;
           }
         });
       })
