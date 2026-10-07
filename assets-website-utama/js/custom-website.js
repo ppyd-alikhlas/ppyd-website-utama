@@ -275,7 +275,7 @@ document
 // Countdown Timer
 function startCountdown() {
   // Target pendaftaran. Ubah tanggal ini jika periode PSB berikutnya sudah ditetapkan.
-  const targetDate = new Date("2026-06-30T23:59:59+07:00");
+  const targetDate = new Date("2026-12-31T23:59:59+07:00");
   const registerButton = document.getElementById("psb-register-button");
 
   if (!registerButton) return;

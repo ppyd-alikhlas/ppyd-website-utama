@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PSB PPYD AL IKHLAS</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="./css/register.css" type="text/css" />
+
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+</head>
+
+<body class="h-full">
+  <div id="app-wrapper" class="h-full w-full overflow-auto bg-gradient-to-br from-slate-50 via-white to-emerald-50">
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 backdrop-blur-lg bg-white/80 border-b border-slate-100">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16 sm:h-20">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg flex items-center justify-center mr-3 transition-colors duration-300">
+              <img src="/assets-website-utama/assets/img/icon_logo_utama.jpg" height="40" width="40"
+                alt="Logo Pondok Pesantren Al-Ikhlas" style="border-radius: 5%;">
+            </div>
+            <span id="site-title" class="text-xl sm:text-2xl font-bold text-slate-800">Penerimaan Santri Baru</span>
+          </div>
+          <!-- <div class="hidden md:flex items-center gap-8">
+            <a href="#" class="text-slklate-600 hover:text-emerald-600 transition-colors font-medium">Beranda</a>
+            <a href="#" class="text-slate-600 hover:text-emerald-600 transition-colors font-medium">Tentang</a>
+            <a href="#" class="text-slate-600 hover:text-emerald-600 transition-colors font-medium">Program</a>
+            <a href="#" class="text-slate-600 hover:text-emerald-600 transition-colors font-medium">Kontak</a>
+          </div> -->
+          <!-- <button class="md:hidden p-2 rounded-lg hover:bg-slate-100 transition-colors">
+            <svg class="w-6 h-6 text-slate-700" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button> -->
+        </div>
+      </div>
+    </nav>
+    <!-- Hero Section -->
+    <section class="relative py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          <!-- Left Content -->
+          <div class="fade-in order-2 lg:order-1">
+            <div
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-100 text-emerald-700 text-sm font-medium mb-6">
+              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+              Selamat Datang
+            </div>
+            <h1 id="hero-title"
+              class="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-slate-900 leading-tight mb-6">
+              Melahirkan Pejuang Syariat,
+              <span class="gradient-text">Mencetak Pemimpin Ummat.</span>
+            </h1>
+            <p id="hero-subtitle" class="text-base sm:text-lg text-slate-600 leading-relaxed mb-8 max-w-xl">
+              Bersama-sama kita wujudkan pendidikan berkualitas dan
+              pemberdayaan masyarakat untuk masa depan yang lebih baik.
+            </p>
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4">
+              <button id="btn-one"
+                class="btn-primary group flex items-center justify-center gap-3 px-6 sm:px-8 py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-semibold rounded-2xl shadow-xl shadow-emerald-200 hover:shadow-2xl hover:shadow-emerald-300 hover:-translate-y-1 transform transition-all duration-300">
+                <span>Register PPYD Al Ikhlas</span>
+                <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor"
+                  viewbox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </button>
+              <button id="btn-two"
+                class="btn-primary group flex items-center justify-center gap-3 px-6 sm:px-8 py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-semibold rounded-2xl shadow-xl shadow-emerald-200 hover:shadow-2xl hover:shadow-emerald-300 hover:-translate-y-1 transform transition-all duration-300">
+                <span>Register RH An-Nuha</span>
+                <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor"
+                  viewbox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </button>
+            </div>
+
+            <!-- Brosur PSB -->
+            <div class="flex flex-wrap gap-2 sm:gap-10 mt-10 pt-8 border-t border-slate-200">
+              <div class="text-sm text-slate-500 mb-1">Download Brosur: </div>
+              <div>
+                <a href="#" id="download-brochure-one"
+                  class="text-sm">
+                  PSB PPYD Al-Ikhlas
+                </a>
+              </div>
+              <p class="text-sm text-slate-500 mb-1">|</p>
+              <div>
+                <a href="#" id="download-brochure-two"
+                  class="text-sm">
+                  PSB RH An-Nuha
+                </a>
+              </div>
+            </div>
+
+            <!-- Stats -->
+            <!-- <div class="flex flex-wrap gap-6 sm:gap-10 mt-10 pt-8 border-t border-slate-200">
+              <div>
+                <div class="text-2xl sm:text-3xl font-bold text-slate-900">
+                  300+
+                </div>
+                <div class="text-sm text-slate-500">Santri Aktif</div>
+              </div>
+              <div>
+                <div class="text-2xl sm:text-3xl font-bold text-slate-900">
+                  50+
+                </div>
+                <div class="text-sm text-slate-500">Tenaga Pengajar</div>
+              </div>
+              <div>
+                <div class="text-2xl sm:text-3xl font-bold text-slate-900">
+                  500+
+                </div>
+                <div class="text-sm text-slate-500">Alumni</div>
+              </div>
+            </div> -->
+          </div>
+
+          <!-- Right Content - Carousel -->
+          <div class="order-1 lg:order-2 fade-in" style="animation-delay: 0.2s">
+            <div class="relative">
+              <!-- Decorative Elements -->
+              <div
+                class="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full opacity-20 blur-2xl floating">
+              </div>
+              <div
+                class="absolute -bottom-4 -left-4 w-32 h-32 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-full opacity-20 blur-2xl floating"
+                style="animation-delay: 1s"></div>
+              <!-- Carousel -->
+              <div class="carousel-container shadow-2xl shadow-slate-200/50">
+                <div class="carousel-track" id="carousel-track">
+                  <!-- Slide 1 -->
+                  <div class="carousel-slide">
+                    <div
+                      class="aspect-[4/3] bg-gradient-to-br from-emerald-400 via-teal-500 to-cyan-600 flex items-center justify-center p-8">
+                      <svg class="w-full h-full" viewbox="0 0 400 300">
+                        <defs>
+                          <lineargradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color: #ffffff; stop-opacity: 0.2" />
+                            <stop offset="100%" style="stop-color: #ffffff; stop-opacity: 0.05" />
+                          </lineargradient>
+                        </defs>
+                        <rect x="50" y="50" width="300" height="200" rx="20" fill="url(#grad1)" />
+                        <circle cx="130" cy="110" r="30" fill="rgba(255,255,255,0.3)" />
+                        <rect x="80" y="160" width="160" height="12" rx="6" fill="rgba(255,255,255,0.4)" />
+                        <rect x="80" y="185" width="120" height="8" rx="4" fill="rgba(255,255,255,0.25)" />
+                        <rect x="80" y="205" width="180" height="8" rx="4" fill="rgba(255,255,255,0.25)" />
+                        <circle cx="310" cy="90" r="40" fill="rgba(255,255,255,0.15)" />
+                        <path d="M290 90 L310 75 L310 105 Z" fill="rgba(255,255,255,0.5)" />
+                        <text x="200" y="270" text-anchor="middle" fill="white" font-size="16" font-weight="600">
+                          Pendidikan Islami
+                        </text>
+                      </svg>
+                    </div>
+                  </div>
+                  <!-- Slide 2 -->
+                  <div class="carousel-slide">
+                    <div
+                      class="aspect-[4/3] bg-gradient-to-br from-violet-500 via-purple-600 to-indigo-700 flex items-center justify-center p-8">
+                      <svg class="w-full h-full" viewbox="0 0 400 300">
+                        <defs>
+                          <lineargradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color: #ffffff; stop-opacity: 0.2" />
+                            <stop offset="100%" style="stop-color: #ffffff; stop-opacity: 0.05" />
+                          </lineargradient>
+                        </defs>
+                        <rect x="60" y="60" width="120" height="160" rx="15" fill="url(#grad2)" />
+                        <rect x="220" y="60" width="120" height="160" rx="15" fill="url(#grad2)" />
+                        <circle cx="120" cy="110" r="25" fill="rgba(255,255,255,0.3)" />
+                        <circle cx="280" cy="110" r="25" fill="rgba(255,255,255,0.3)" />
+                        <rect x="80" y="150" width="80" height="8" rx="4" fill="rgba(255,255,255,0.4)" />
+                        <rect x="80" y="170" width="60" height="6" rx="3" fill="rgba(255,255,255,0.25)" />
+                        <rect x="240" y="150" width="80" height="8" rx="4" fill="rgba(255,255,255,0.4)" />
+                        <rect x="240" y="170" width="60" height="6" rx="3" fill="rgba(255,255,255,0.25)" />
+                        <path d="M170 140 Q200 100 230 140" stroke="rgba(255,255,255,0.4)" stroke-width="3"
+                          fill="none" />
+                        <text x="200" y="270" text-anchor="middle" fill="white" font-size="16" font-weight="600">
+                          Tenaga Pengajar Profesional
+                        </text>
+                      </svg>
+                    </div>
+                  </div>
+                  <!-- Slide 3 -->
+                  <div class="carousel-slide">
+                    <div
+                      class="aspect-[4/3] bg-gradient-to-br from-amber-400 via-orange-500 to-rose-600 flex items-center justify-center p-8">
+                      <svg class="w-full h-full" viewbox="0 0 400 300">
+                        <defs>
+                          <lineargradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color: #ffffff; stop-opacity: 0.2" />
+                            <stop offset="100%" style="stop-color: #ffffff; stop-opacity: 0.05" />
+                          </lineargradient>
+                        </defs>
+                        <rect x="100" y="40" width="200" height="140" rx="15" fill="url(#grad3)" />
+                        <circle cx="200" cy="90" r="35" fill="rgba(255,255,255,0.3)" />
+                        <path d="M185 90 L195 100 L220 75" stroke="white" stroke-width="4" fill="none"
+                          stroke-linecap="round" stroke-linejoin="round" />
+                        <rect x="130" y="140" width="140" height="10" rx="5" fill="rgba(255,255,255,0.4)" />
+                        <rect x="150" y="160" width="100" height="6" rx="3" fill="rgba(255,255,255,0.25)" />
+                        <rect x="80" y="200" width="60" height="50" rx="10" fill="rgba(255,255,255,0.15)" />
+                        <rect x="170" y="200" width="60" height="50" rx="10" fill="rgba(255,255,255,0.15)" />
+                        <rect x="260" y="200" width="60" height="50" rx="10" fill="rgba(255,255,255,0.15)" />
+                        <text x="200" y="270" text-anchor="middle" fill="white" font-size="16" font-weight="600">
+                          Beasiswa Penuh
+                        </text>
+                      </svg>
+                    </div>
+                  </div>
+                  <!-- Slide 4 -->
+                  <div class="carousel-slide">
+                    <div
+                      class="aspect-[4/3] bg-gradient-to-br from-cyan-500 via-blue-600 to-indigo-700 flex items-center justify-center p-8">
+                      <svg class="w-full h-full" viewbox="0 0 400 300">
+                        <defs>
+                          <lineargradient id="grad4" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color: #ffffff; stop-opacity: 0.2" />
+                            <stop offset="100%" style="stop-color: #ffffff; stop-opacity: 0.05" />
+                          </lineargradient>
+                        </defs>
+                        <ellipse cx="200" cy="150" rx="150" ry="100" fill="url(#grad4)" />
+                        <circle cx="200" cy="120" r="40" fill="rgba(255,255,255,0.3)" />
+                        <path d="M200 80 L200 95 M200 145 L200 160 M160 120 L175 120 M225 120 L240 120" stroke="white"
+                          stroke-width="3" stroke-linecap="round" />
+                        <circle cx="120" cy="180" r="20" fill="rgba(255,255,255,0.2)" />
+                        <circle cx="280" cy="180" r="20" fill="rgba(255,255,255,0.2)" />
+                        <circle cx="160" cy="200" r="15" fill="rgba(255,255,255,0.15)" />
+                        <circle cx="240" cy="200" r="15" fill="rgba(255,255,255,0.15)" />
+                        <text x="200" y="270" text-anchor="middle" fill="white" font-size="16" font-weight="600">
+                          Fasilitas Memadai
+                        </text>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <!-- Carousel Controls -->
+                <button id="prev-btn"
+                  class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-white/90 backdrop-blur rounded-full shadow-lg flex items-center justify-center hover:bg-white hover:scale-110 transition-all duration-300">
+                  <svg class="w-5 h-5 sm:w-6 sm:h-6 text-slate-700" fill="none" stroke="currentColor"
+                    viewbox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+                <button id="next-btn"
+                  class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-white/90 backdrop-blur rounded-full shadow-lg flex items-center justify-center hover:bg-white hover:scale-110 transition-all duration-300">
+                  <svg class="w-5 h-5 sm:w-6 sm:h-6 text-slate-700" fill="none" stroke="currentColor"
+                    viewbox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+                <!-- Dots -->
+                <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                  <button class="dot w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-all"
+                    data-slide="0"></button>
+                  <button class="dot w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-all"
+                    data-slide="1"></button>
+                  <button class="dot w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-all"
+                    data-slide="2"></button>
+                  <button class="dot w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-all"
+                    data-slide="3"></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer class="py-8 px-4 sm:px-6 lg:px-8 bg-slate-900 text-white">
+      <div class="max-w-7xl mx-auto text-center">
+        <p class="text-slate-400 text-sm">
+          © 2026
+          <a href="https://ppydalikhlas.org/">Pondok Pesantren Yatim Dhuafa Al-Ikhlas</a>. All rights reserved.
+        </p>
+      </div>
+    </footer>
+  </div>
+
+  <script src="./js/register.js" type="text/javascript"></script>
+</body>
+
+</html>
