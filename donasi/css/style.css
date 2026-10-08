@@ -1075,17 +1075,22 @@ blockquote {
         grid-template-columns: repeat(2, 1fr)
     }
 
-    .footer-wrap {
-        grid-template-columns: 1fr;
-        text-align: center
+    .footer-main {
+        grid-template-columns: 1fr 1fr;
+        gap: 35px
     }
 
-    .footer-links {
-        justify-content: center
+    .footer-info {
+        grid-column: 1 / -1;
+        max-width: 560px
     }
 
-    .copyright {
-        text-align: center
+    .footer-bottom {
+        flex-wrap: wrap
+    }
+
+    .footer-bottom>span {
+        text-align: left
     }
 }
 
@@ -1186,8 +1191,27 @@ blockquote {
         font-size: 21px
     }
 
+    .footer-main {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding-bottom: 32px
+    }
+
+    .footer-info {
+        max-width: 100%
+    }
+
+    .footer-bottom {
+        display: grid;
+        gap: 7px
+    }
+
+    .footer-bottom>span {
+        text-align: left
+    }
+
     .footer-links {
-        flex-wrap: wrap
+        gap: 9px
     }
 
     .hero-actions .btn {
