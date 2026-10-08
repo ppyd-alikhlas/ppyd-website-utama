@@ -120,6 +120,7 @@ function toggleFAQ(button) {
           <a href="#testimoni" class="mobile-menu-link block px-4 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-gray-50 hover:text-islamic-green">Testimoni</a>
           <a href="#faq" class="mobile-menu-link block px-4 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-gray-50 hover:text-islamic-green">FAQ</a>
           <a href="#usaha-produktif" class="mobile-menu-link block px-4 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-gray-50 hover:text-islamic-green">Usaha Produktif</a>
+          <a href="./donasi/" class="mobile-menu-link block px-4 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-gray-50 hover:text-islamic-green">Donasi</a>
         </div>
       </div>
 
