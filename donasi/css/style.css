@@ -1182,7 +1182,10 @@ blockquote {
     position: relative;
     min-width: 0;
     text-align: center;
-    padding: 0
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch
 }
 
 .flow-number {
@@ -1206,7 +1209,7 @@ blockquote {
 }
 
 .flow-card {
-    height: 100%;
+    height: auto;
     min-height: 205px;
     margin-top: 25px;
     padding: 25px 20px 22px;
@@ -1254,7 +1257,7 @@ blockquote {
 }
 
 .donation-flow+.contact-cta {
-    margin-top: 8px
+    margin-top: 0
 }
 
 @media(max-width:850px) {
