@@ -8,7 +8,7 @@
   <script>
     // Jika periode PSB sudah berakhir, semua akses langsung ke /psb dikembalikan ke beranda.
     (function redirectIfPsbClosed() {
-      const psbDeadline = new Date("2026-06-30T23:59:59+07:00").getTime();
+      const psbDeadline = new Date("2026-12-30T23:59:59+07:00").getTime();
       if (Date.now() >= psbDeadline) {
         window.location.replace("https://ppydalikhlas.org/");
       }
@@ -33,7 +33,7 @@
         <div class="flex justify-between items-center h-16 sm:h-20">
           <div class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-lg flex items-center justify-center mr-3 transition-colors duration-300">
-              <img src="/assets-website-utama/assets/img/icon_logo_utama.jpg" height="40" width="40"
+              <img src="../assets-website-utama/assets/img/icon_logo_utama.jpg" height="40" width="40"
                 alt="Logo Pondok Pesantren Al-Ikhlas" style="border-radius: 5%;">
             </div>
             <span id="site-title" class="text-xl sm:text-2xl font-bold text-slate-800">Penerimaan Santri Baru</span>
