@@ -105,15 +105,6 @@ body {
   background-clip: text;
 }
 
-a#download-brochure-one,
-a#download-brochure-two {
-    text-decoration: none;
-    color: #059669;
-    font-weight: bold;
-}
-
-@view-transition { navigation: auto; }
-
 /* Download brochure cards */
 .brochure-section {
   width: 100%;
@@ -171,13 +162,18 @@ a#download-brochure-two {
   font-size: 0.8rem;
   line-height: 1.5;
 }
+a.brochure-download,
+a.brochure-download:visited {
+  color: #ffffff;
+}
 a.brochure-download {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.45rem;
   flex: 0 0 auto;
-  padding: 0.65rem 0.8rem;
+  min-height: 2.75rem;
+  padding: 0.65rem 0.9rem;
   border-radius: 0.7rem;
   color: #fff;
   background: #059669;
