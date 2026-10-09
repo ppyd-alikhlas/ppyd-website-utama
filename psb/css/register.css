@@ -113,3 +113,121 @@ a#download-brochure-two {
 }
 
 @view-transition { navigation: auto; }
+
+/* Download brochure cards */
+.brochure-section {
+  width: 100%;
+}
+.brochure-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.875rem;
+}
+.brochure-card {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  min-width: 0;
+  padding: 1rem;
+  border: 1px solid #dbe7e1;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.045);
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+.brochure-card:hover {
+  border-color: #6ee7b7;
+  box-shadow: 0 10px 26px rgba(15, 118, 110, 0.1);
+  transform: translateY(-2px);
+}
+.brochure-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 2.75rem;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 0.8rem;
+  color: #047857;
+  background: #d1fae5;
+}
+.brochure-icon svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.brochure-copy {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.brochure-copy h3 {
+  margin: 0 0 0.25rem;
+  color: #0f172a;
+  font-size: 0.925rem;
+  line-height: 1.35;
+  font-weight: 700;
+}
+.brochure-copy p {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+a.brochure-download {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  flex: 0 0 auto;
+  padding: 0.65rem 0.8rem;
+  border-radius: 0.7rem;
+  color: #fff;
+  background: #059669;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 180ms ease;
+}
+a.brochure-download:hover {
+  color: #fff;
+  background: #047857;
+}
+a.brochure-download:focus-visible {
+  outline: 3px solid #6ee7b7;
+  outline-offset: 3px;
+}
+@media (min-width: 640px) {
+  .brochure-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .brochure-card {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  .brochure-copy {
+    flex-basis: calc(100% - 3.75rem);
+  }
+  a.brochure-download {
+    margin-left: 3.625rem;
+  }
+}
+@media (max-width: 380px) {
+  .brochure-card {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  .brochure-copy {
+    flex: 1 1 calc(100% - 3.75rem);
+  }
+  a.brochure-download {
+    margin-left: 3.625rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .brochure-card,
+  a.brochure-download {
+    transition: none;
+  }
+  .brochure-card:hover {
+    transform: none;
+  }
+}
