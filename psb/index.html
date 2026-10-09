@@ -15,14 +15,12 @@
     })();
   </script>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="/_sdk/element_sdk.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="./css/register.css" type="text/css" />
 
-  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
 </head>
 
 <body class="h-full">
@@ -92,25 +90,36 @@
               </button>
             </div>
 
-            <!-- Brosur PSB -->
-            <div class="flex flex-wrap gap-2 sm:gap-10 mt-10 pt-8 border-t border-slate-200">
-              <div class="text-sm text-slate-500 mb-1">Download Brosur: </div><br>
-              <div>
-                <p class="text-sm text-slate-500 mb-1">PSB PPYD Al-Ikhlas</p>
-                <a href="#" id="download-brochure-one"
-                  class="text-sm">
-                  [Download]
-                </a>
+            <!-- Download Brosur PSB -->
+            <section class="brochure-section mt-10 pt-8 border-t border-slate-200" aria-labelledby="brochure-heading">
+              <h2 id="brochure-heading" class="text-base sm:text-lg font-bold text-slate-800 mb-4">Download Brosur Pendaftaran</h2>
+              <div class="brochure-grid">
+                <article class="brochure-card">
+                  <div class="brochure-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 3.5h7l4 4V20a1 1 0 0 1-1 1H7a2 2 0 0 1-2-2V5.5a2 2 0 0 1 2-2Z" stroke-width="1.7" stroke-linejoin="round"/><path d="M14 3.5V8h4M8 13h8M8 16.5h8" stroke-width="1.7" stroke-linecap="round"/></svg>
+                  </div>
+                  <div class="brochure-copy">
+                    <h3>PSB PPYD Al-Ikhlas</h3>
+                    <p>Brosur penerimaan santri baru PPYD Al-Ikhlas.</p>
+                  </div>
+                  <a href="./assets/pdf/psb-ppyd-alikhlas.pdf" id="download-brochure-one" class="brochure-download" download="brosur-psb-ppyd-alikhlas.pdf" aria-label="Download brosur PSB PPYD Al-Ikhlas">
+                    <span>Download PDF</span><span aria-hidden="true">↓</span>
+                  </a>
+                </article>
+                <article class="brochure-card">
+                  <div class="brochure-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M7 3.5h7l4 4V20a1 1 0 0 1-1 1H7a2 2 0 0 1-2-2V5.5a2 2 0 0 1 2-2Z" stroke-width="1.7" stroke-linejoin="round"/><path d="M14 3.5V8h4M8 13h8M8 16.5h8" stroke-width="1.7" stroke-linecap="round"/></svg>
+                  </div>
+                  <div class="brochure-copy">
+                    <h3>PSB RH An-Nuha</h3>
+                    <p>Brosur pendaftaran Rumah Hafidz An-Nuha.</p>
+                  </div>
+                  <a href="./assets/pdf/psb-rh-annuha.pdf" id="download-brochure-two" class="brochure-download" download="brosur-rh-annuha.pdf" aria-label="Download brosur PSB RH An-Nuha">
+                    <span>Download PDF</span><span aria-hidden="true">↓</span>
+                  </a>
+                </article>
               </div>
-              <p class="text-sm text-slate-500 mb-1">|</p>
-              <div>
-                <p class="text-sm text-slate-500 mb-1">PSB RH An-Nuha</p>
-                <a href="#" id="download-brochure-two"
-                  class="text-sm">
-                  [Download]
-                </a>
-              </div>
-            </div>
+            </section>
 
             <!-- Stats -->
             <!-- <div class="flex flex-wrap gap-6 sm:gap-10 mt-10 pt-8 border-t border-slate-200">
