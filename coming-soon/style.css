@@ -48,15 +48,17 @@ a { color: inherit; }
 .ambient-one { width: 480px; height: 480px; top: -280px; right: -160px; }
 .ambient-two { width: 360px; height: 360px; bottom: -230px; left: -130px; }
 .content {
-  width: min(100%, 760px);
+  width: min(100%, 960px);
   text-align: center;
   animation: enter .7s ease-out both;
 }
 .brand {
-  display: inline-flex;
+  display: flex;
+  width: fit-content;
+  max-width: 100%;
   align-items: center;
   gap: 12px;
-  margin-bottom: clamp(38px, 7vh, 64px);
+  margin: 0 auto 30px;
   text-align: left;
   text-decoration: none;
 }
@@ -75,10 +77,13 @@ a { color: inherit; }
 .brand-name { display: block; font-size: .95rem; font-weight: 800; letter-spacing: -.025em; }
 .brand-caption { display: block; margin-top: 3px; color: var(--muted); font-size: .72rem; letter-spacing: .035em; }
 .eyebrow {
-  display: inline-flex;
+  display: flex;
+  width: fit-content;
+  max-width: 100%;
   align-items: center;
+  justify-content: center;
   gap: 9px;
-  margin: 0 0 22px;
+  margin: 0 auto 22px;
   padding: 9px 13px;
   color: var(--green-800);
   border: 1px solid rgba(0, 105, 55, .14);
@@ -97,10 +102,10 @@ a { color: inherit; }
   box-shadow: 0 0 0 4px rgba(22, 160, 93, .12);
 }
 h1 {
-  max-width: 700px;
+  max-width: 960px;
   margin: 0 auto;
   color: var(--green-950);
-  font-size: clamp(2.8rem, 8vw, 5.8rem);
+  font-size: clamp(2.7rem, 6.5vw, 5.25rem);
   font-weight: 800;
   line-height: .99;
   letter-spacing: -.075em;
@@ -196,7 +201,11 @@ footer a:hover { text-decoration: underline; }
 @keyframes enter { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 @media (max-width: 520px) {
   .page-shell { padding: 28px 18px 20px; }
-  .brand { margin-bottom: 42px; }
+  .brand { margin-bottom: 28px; }
+  .brand-name { font-size: .9rem; }
+  .brand-caption { font-size: .7rem; }
+  h1 { font-size: clamp(2.55rem, 10.5vw, 3.6rem); letter-spacing: -.065em; }
+  .eyebrow { letter-spacing: .07em; white-space: normal; text-align: center; }
   .brand-mark { width: 43px; height: 43px; flex-basis: 43px; border-radius: 13px; }
   .eyebrow { margin-bottom: 18px; font-size: .68rem; }
   .lead { margin-top: 18px; line-height: 1.7; }
