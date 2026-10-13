@@ -1,16 +1,51 @@
 // Page Loader
-window.addEventListener("load", function () {
-  setTimeout(function () {
-    document.getElementById("loader").classList.add("hidden");
-  }, 2000);
+document.addEventListener("DOMContentLoaded", function () {
+  const loader = document.getElementById("loader");
+  if (loader) {
+    requestAnimationFrame(() => loader.classList.add("hidden"));
+  }
 });
+
+
+// Lazy-load hero video only on desktop after the initial page is ready.
+// This prevents the 11+ MB MP4 from competing with the first render on mobile.
+(function initHeroVideo() {
+  const video = document.getElementById("hero-background-video");
+  if (!video) return;
+
+  const loadVideo = () => {
+    if (video.dataset.loaded || window.matchMedia("(max-width: 767px)").matches) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    video.src = video.dataset.src;
+    video.dataset.loaded = "true";
+    video.load();
+    video.play().catch(() => {});
+  };
+
+  if (window.matchMedia("(min-width: 768px)").matches) {
+    const start = () => setTimeout(loadVideo, 1200);
+    if ("requestIdleCallback" in window) {
+      window.requestIdleCallback(start, { timeout: 2500 });
+    } else {
+      window.addEventListener("load", start, { once: true });
+    }
+  }
+
+  window.addEventListener("resize", () => {
+    if (window.matchMedia("(min-width: 768px)").matches) loadVideo();
+  }, { passive: true });
+})();
 
 //add function for open menu layanan
 function openMenuLayanan() {
   const submenu = document.getElementById("submenu-layanan");
   if (!submenu) return;
 
-  submenu.classList.toggle("hidden");
+  const isOpen = !submenu.classList.contains("hidden");
+  submenu.classList.toggle("hidden", isOpen);
+  const trigger = document.querySelector('#menu-layanan > button');
+  if (trigger) trigger.setAttribute("aria-expanded", String(!isOpen));
 }
 
 // Tutup submenu Layanan saat menu lain atau item submenu dipilih
@@ -48,14 +83,12 @@ function scrollToSection(sectionId) {
 function toggleFAQ(button) {
   const content = button.nextElementSibling;
   const icon = button.querySelector("span");
+  if (!content) return;
 
-  if (content.classList.contains("hidden")) {
-    content.classList.remove("hidden");
-    icon.textContent = "-";
-  } else {
-    content.classList.add("hidden");
-    icon.textContent = "+";
-  }
+  const isOpen = !content.classList.contains("hidden");
+  content.classList.toggle("hidden", isOpen);
+  button.setAttribute("aria-expanded", String(!isOpen));
+  if (icon) icon.textContent = isOpen ? "+" : "-";
 }
 
 // Mobile Menu
@@ -87,6 +120,7 @@ function toggleFAQ(button) {
           <a href="#testimoni" class="mobile-menu-link block px-4 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-gray-50 hover:text-islamic-green">Testimoni</a>
           <a href="#faq" class="mobile-menu-link block px-4 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-gray-50 hover:text-islamic-green">FAQ</a>
           <a href="#usaha-produktif" class="mobile-menu-link block px-4 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-gray-50 hover:text-islamic-green">Usaha Produktif</a>
+          <a href="./donasi/" class="mobile-menu-link block px-4 py-2.5 rounded-lg text-sm text-gray-600 hover:bg-gray-50 hover:text-islamic-green">Donasi</a>
         </div>
       </div>
 
@@ -241,14 +275,33 @@ document
 
 // Countdown Timer
 function startCountdown() {
-  // Set target date to June 30, 2026
-  const targetDate = new Date("2026-06-30T23:59:59");
+  // Target pendaftaran. Ubah tanggal ini jika periode PSB berikutnya sudah ditetapkan.
+  const targetDate = new Date("2026-06-30T23:59:59+07:00");
+  const registerButton = document.getElementById("psb-register-button");
+
+  if (!registerButton) return;
+
+  function setRegistrationState(isOpen) {
+    registerButton.disabled = !isOpen;
+    registerButton.setAttribute("aria-disabled", String(!isOpen));
+
+    if (isOpen) {
+      registerButton.textContent = "Daftar Sekarang!";
+      registerButton.classList.remove("opacity-50", "cursor-not-allowed", "bg-gray-500");
+      registerButton.classList.add("bg-red-500", "hover:bg-red-600");
+    } else {
+      registerButton.textContent = "Pendaftaran Ditutup";
+      registerButton.classList.add("opacity-50", "cursor-not-allowed", "bg-gray-500");
+      registerButton.classList.remove("bg-red-500", "hover:bg-red-600");
+    }
+  }
 
   function updateCountdown() {
-    const now = new Date().getTime();
+    const now = Date.now();
     const distance = targetDate.getTime() - now;
+    const isOpen = distance > 0;
 
-    if (distance > 0) {
+    if (isOpen) {
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor(
         (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
@@ -256,347 +309,224 @@ function startCountdown() {
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      document.getElementById("days").textContent = days
-        .toString()
-        .padStart(2, "0");
-      document.getElementById("hours").textContent = hours
-        .toString()
-        .padStart(2, "0");
-      document.getElementById("minutes").textContent = minutes
-        .toString()
-        .padStart(2, "0");
-      document.getElementById("seconds").textContent = seconds
-        .toString()
-        .padStart(2, "0");
+      document.getElementById("days").textContent = days.toString().padStart(2, "0");
+      document.getElementById("hours").textContent = hours.toString().padStart(2, "0");
+      document.getElementById("minutes").textContent = minutes.toString().padStart(2, "0");
+      document.getElementById("seconds").textContent = seconds.toString().padStart(2, "0");
     } else {
-      // Countdown finished
       document.getElementById("days").textContent = "00";
       document.getElementById("hours").textContent = "00";
       document.getElementById("minutes").textContent = "00";
       document.getElementById("seconds").textContent = "00";
-
-      // Disable registration buttons and add alert
-      const registrationButtons = document.querySelectorAll("#psb button");
-      registrationButtons.forEach((button) => {
-        if (button.textContent.includes("Daftar")) {
-          button.textContent = "Pendaftaran Ditutup";
-          button.disabled = true;
-          button.classList.add("opacity-50", "cursor-not-allowed");
-          button.classList.remove("hover:bg-red-600", "hover:bg-yellow-300");
-
-          // Add click event for disabled state
-          button.addEventListener("click", function (e) {
-            e.preventDefault();
-            alert(
-              "Pendaftaran telah ditutup, silahkan menghubungi nomor admin untuk mendapatkan informasi terkait pendaftaran santri baru"
-            );
-          });
-        }
-      });
     }
+
+    // Sinkronkan tombol setiap update: aktif selama countdown masih berjalan,
+    // dan benar-benar disabled setelah waktunya habis.
+    setRegistrationState(isOpen);
   }
 
-  // Update immediately and then every second
   updateCountdown();
-  setInterval(updateCountdown, 1000);
+  window.setInterval(updateCountdown, 1000);
 }
 
-// Start countdown when page loads
-window.addEventListener("load", function () {
-  setTimeout(startCountdown, 2500); // Start after loader finishes
-});
+// Start countdown as early as possible so tombol tidak sempat aktif
+// ketika periode pendaftaran sebenarnya sudah berakhir.
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", startCountdown, { once: true });
+} else {
+  startCountdown();
+}
 
 // Testimonial Slider
 let currentSlide = 0;
-const totalSlides = 3;
 let slideInterval;
+
+function isMobileTestimonialView() {
+  return window.matchMedia("(max-width: 767px)").matches;
+}
+
+function getTotalSlides() {
+  // Desktop: 3 slide berisi masing-masing 2 card.
+  // Mobile: 6 slide, masing-masing hanya 1 card.
+  return isMobileTestimonialView() ? 6 : 3;
+}
 
 function updateSlider() {
   const slider = document.getElementById("testimonial-slider");
+  if (!slider) return;
+
+  const totalSlides = getTotalSlides();
+  if (currentSlide >= totalSlides) currentSlide = 0;
+
   const translateX = -currentSlide * 100;
   slider.style.transform = `translateX(${translateX}%)`;
 
-  // Update indicators
-  for (let i = 0; i < totalSlides; i++) {
-    const indicator = document.getElementById(`indicator-${i}`);
-    if (i === currentSlide) {
-      indicator.classList.remove("bg-gray-300");
-      indicator.classList.add("bg-islamic-green");
-    } else {
-      indicator.classList.remove("bg-islamic-green");
-      indicator.classList.add("bg-gray-300");
-    }
-  }
+  // Indikator desktop tetap 3. Pada mobile indikator menunjukkan 6 card.
+  document.querySelectorAll('[id^="indicator-"]').forEach((indicator, index) => {
+    const active = index === currentSlide;
+    indicator.classList.toggle("bg-islamic-green", active);
+    indicator.classList.toggle("bg-gray-300", !active);
+    indicator.setAttribute("aria-current", active ? "true" : "false");
+  });
 }
 
 function nextSlide() {
+  const totalSlides = getTotalSlides();
   currentSlide = (currentSlide + 1) % totalSlides;
   updateSlider();
 }
 
 function previousSlide() {
+  const totalSlides = getTotalSlides();
   currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
   updateSlider();
 }
 
 function goToSlide(slideIndex) {
-  currentSlide = slideIndex;
+  const totalSlides = getTotalSlides();
+  currentSlide = Math.min(Math.max(slideIndex, 0), totalSlides - 1);
   updateSlider();
 }
 
 function startAutoSlide() {
-  slideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+  stopAutoSlide();
+  slideInterval = setInterval(nextSlide, 5000);
 }
 
 function stopAutoSlide() {
   clearInterval(slideInterval);
 }
 
-// Start auto-slide when page loads
 window.addEventListener("load", function () {
-  setTimeout(startAutoSlide, 3000); // Start after 3 seconds
+  updateSlider();
+  setTimeout(startAutoSlide, 3000);
+});
+
+window.addEventListener("resize", function () {
+  const totalSlides = getTotalSlides();
+  if (currentSlide >= totalSlides) currentSlide = 0;
+  updateSlider();
 });
 
 // Pause auto-slide when user hovers over testimonial section
-const testimonialSection = document.querySelector("#testimonial-slider")
-  .parentElement.parentElement;
-testimonialSection.addEventListener("mouseenter", stopAutoSlide);
-testimonialSection.addEventListener("mouseleave", startAutoSlide);
-
-// Form submission
-document.querySelector("form").addEventListener("submit", function (e) {
-  e.preventDefault();
-  alert(
-    "Terima kasih! Pesan Anda telah dikirim. Kami akan segera menghubungi Anda."
-  );
-  this.reset();
-});
+const testimonialSlider = document.getElementById("testimonial-slider");
+const testimonialSection = testimonialSlider?.parentElement?.parentElement;
+if (testimonialSection) {
+  testimonialSection.addEventListener("mouseenter", stopAutoSlide);
+  testimonialSection.addEventListener("mouseleave", startAutoSlide);
+}
 
 // Button interactions
 document.querySelectorAll("button").forEach((button) => {
-  if (!button.onclick && button.textContent.includes("Daftar")) {
-    button.addEventListener("click", function () {
-      // alert(
-      //   "Halaman pendaftaran akan segera tersedia. Silakan hubungi kami melalui kontak yang tersedia."
-      // );
-       window.location.href = "https://ppydalikhlas.org/psb";
-      // window.location.href = "/assets-website-utama/pages/PSB/index.html";
-    });
-  }
-
-  // if (button.textContent.includes("Download")) {
-  //   button.addEventListener("click", function () {
-  //     alert("Brosur akan segera diunduh. Fitur ini dalam tahap pengembangan.");
-  //   });
-  // }
+  // Tombol PSB ditangani langsung oleh countdown/onclick pada elemen PSB.
+  // Tidak ada redirect generik berdasarkan teks agar tombol yang sudah disabled
+  // tetap benar-benar tidak dapat diklik.
 });
 
+// Load the latest four articles with one request, only when the article section is near the viewport.
+(function initArticles() {
+  const section = document.getElementById("artikel");
+  if (!section) return;
 
-// get data from restapi "api/wordpress"
-// artikel 1
-fetch("https://ppydalikhlas.org/suara-alikhlas/wp-json/wp/v2/posts?_embed") // Tambahkan _embed agar media bisa diambil langsung
-  .then((response) => response.json())
-  .then((data) => {
-    const article = data[0];
-    const title = article.title.rendered;
-    const categoryNames = article._embedded['wp:term'][0].map(term => term.name);
-    const excerpt = article.excerpt.rendered;
-    const link = article.link;
-    //get resource_url
-    const featuredMedia = article._embedded['wp:featuredmedia'][0];
-    const resourceUrl = featuredMedia ? featuredMedia.source_url : '';
+  let loaded = false;
 
-    const date = article.date;
-    const articleDate = new Date(date);
-    const now = new Date();
-    const timeDiff = now - articleDate;
-    const daysDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+  function loadArticles() {
+    if (loaded) return;
+    loaded = true;
 
-    // Set the article content
-    document.getElementById("article-title").innerText = title;
+    fetch("https://ppydalikhlas.org/suara-alikhlas/wp-json/wp/v2/posts?per_page=4&_embed")
+      .then((response) => {
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        return response.json();
+      })
+      .then((posts) => {
+        posts.slice(0, 4).forEach((article, index) => {
+          const suffix = index === 0 ? "" : String(index);
+          const titleElement = document.getElementById(`article-title${suffix}`);
+          const categoryElement = document.getElementById(`article-categories${suffix}`);
+          const excerptElement = document.getElementById(`article-excerpt${suffix}`);
+          const linkElement = document.getElementById(`article-link${suffix}`);
+          const dateElement = document.getElementById(`article-date${suffix}`);
+          const createDateElement = document.getElementById(`date-create${suffix}`);
+          const imageElement = document.getElementById(`article-thumbnail${suffix}`);
 
-    //get category name
-    // document.getElementById("article-categories1").innerText = categories[0] === 2 ? "Artikel" : "Berita";
+          if (!titleElement || !linkElement) return;
 
-    document.getElementById("article-categories").innerText = categoryNames.join(", ");
+          const title = article.title?.rendered || "Artikel Al-Ikhlas";
+          const link = article.link || "#";
+          const excerpt = article.excerpt?.rendered || "";
 
-    const excerptText = excerpt.replace(/<\/?[^>]+(>|$)/g, "");
-    document.getElementById("article-excerpt").innerText = excerptText;
+          // WordPress dapat mengirim entity HTML seperti &hellip;.
+          // Decode entity terlebih dahulu agar yang tampil menjadi karakter normal (…),
+          // bukan teks mentah "&hellip;".
+          const decodeHtmlEntities = (value) => {
+            const textarea = document.createElement("textarea");
+            textarea.innerHTML = value;
+            return textarea.value;
+          };
+          const terms = article._embedded?.["wp:term"]?.[0] || [];
+          const featuredMedia = article._embedded?.["wp:featuredmedia"]?.[0];
+          const resourceUrl = featuredMedia?.source_url || "";
 
-    document.getElementById("article-link").setAttribute("href", link);
-    document.getElementById("article-title").setAttribute("href", link);
-    document.getElementById("article-date").innerText =
-      daysDiff === 0 ? "Hari ini" : `${daysDiff} hari yang lalu`;
+          const articleDate = new Date(article.date);
+          const now = new Date();
+          const daysDiff = Math.max(
+            0,
+            Math.floor((now - articleDate) / (1000 * 60 * 60 * 24))
+          );
 
-    const formattedDate = articleDate.toLocaleDateString("id-ID", {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
-    });
-    document.getElementById("date-create").innerText = formattedDate;
+          const cleanTitle = decodeHtmlEntities(title);
+          titleElement.textContent = cleanTitle;
+          titleElement.href = link;
+          linkElement.href = link;
 
-    // Menampilkan gambar thumbnail from resource_url
-    const imageElement = document.getElementById("article-thumbnail");
-    imageElement.src = resourceUrl;
-    imageElement.alt = title;
+          if (categoryElement) {
+            categoryElement.textContent = terms
+              .map((term) => decodeHtmlEntities(term.name))
+              .join(", ");
+          }
 
-  })
-  .catch((error) => {
-    console.error('Error fetching the post data:', error);
-  });
+          if (excerptElement) {
+            const cleanExcerpt = excerpt
+              .replace(/<\/?[^>]+(>|$)/g, "")
+              .replace(/\s+/g, " ")
+              .trim();
+            excerptElement.textContent = decodeHtmlEntities(cleanExcerpt);
+          }
 
+          if (dateElement) {
+            dateElement.textContent = daysDiff === 0 ? "Hari ini" : `${daysDiff} hari yang lalu`;
+          }
 
-// artikel 2
-fetch("https://ppydalikhlas.org/suara-alikhlas/wp-json/wp/v2/posts?_embed") // Tambahkan _embed agar media bisa diambil langsung
-  .then((response) => response.json())
-  .then((data) => {
-    const article = data[1];
-    const title = article.title.rendered;
-    // const categories = article.categories;
-    const categoryNames = article._embedded['wp:term'][0].map(term => term.name);
-    const excerpt = article.excerpt.rendered;
-    const link = article.link;
-    //get resource_url
-    const featuredMedia = article._embedded['wp:featuredmedia'][0];
-    const resourceUrl = featuredMedia ? featuredMedia.source_url : '';
+          if (createDateElement) {
+            createDateElement.textContent = articleDate.toLocaleDateString("id-ID", {
+              day: "2-digit",
+              month: "2-digit",
+              year: "numeric",
+            });
+          }
 
-    const date = article.date;
-    const articleDate = new Date(date);
-    const now = new Date();
-    const timeDiff = now - articleDate;
-    const daysDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+          if (imageElement && resourceUrl) {
+            imageElement.src = resourceUrl;
+            imageElement.alt = cleanTitle;
+          }
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching article data:", error);
+      });
+  }
 
-    // Set the article content
-    document.getElementById("article-title1").innerText = title;
-    
-    // document.getElementById("article-categories1").innerText = categories[0] === 2 ? "Artikel" : "Berita";
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver((entries, obs) => {
+      if (entries.some((entry) => entry.isIntersecting)) {
+        loadArticles();
+        obs.disconnect();
+      }
+    }, { rootMargin: "400px 0px" });
 
-    document.getElementById("article-categories1").innerText = categoryNames.join(", ");
-
-    const excerptText = excerpt.replace(/<\/?[^>]+(>|$)/g, "");
-    document.getElementById("article-excerpt1").innerText = excerptText;
-
-    document.getElementById("article-link1").setAttribute("href", link);
-    document.getElementById("article-title1").setAttribute("href", link);
-    document.getElementById("article-date1").innerText =
-      daysDiff === 0 ? "Hari ini" : `${daysDiff} hari yang lalu`;
-
-    const formattedDate = articleDate.toLocaleDateString("id-ID", {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
-    });
-    document.getElementById("date-create1").innerText = formattedDate;
-
-    // Menampilkan gambar thumbnail from resource_url
-    const imageElement = document.getElementById("article-thumbnail1");
-    imageElement.src = resourceUrl;
-    imageElement.alt = title;
-
-  })
-  .catch((error) => {
-    console.error('Error fetching the post data:', error);
-  });
-
-
-// artikel 3
-fetch("https://ppydalikhlas.org/suara-alikhlas/wp-json/wp/v2/posts?_embed") // Tambahkan _embed agar media bisa diambil langsung
-  .then((response) => response.json())
-  .then((data) => {
-    const article = data[2];
-    const title = article.title.rendered;
-    // const categories = article.categories;
-    const categoryNames = article._embedded['wp:term'][0].map(term => term.name);
-    const excerpt = article.excerpt.rendered;
-    const link = article.link;
-    //get resource_url
-    const featuredMedia = article._embedded['wp:featuredmedia'][0];
-    const resourceUrl = featuredMedia ? featuredMedia.source_url : '';
-
-    const date = article.date;
-    const articleDate = new Date(date);
-    const now = new Date();
-    const timeDiff = now - articleDate;
-    const daysDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-
-    // Set the article content
-    document.getElementById("article-title2").innerText = title;
-    // document.getElementById("article-categories2").innerText = categories[0] === 2 ? "Artikel" : "Berita";
-
-    document.getElementById("article-categories2").innerText = categoryNames.join(", ");
-
-    const excerptText = excerpt.replace(/<\/?[^>]+(>|$)/g, "");
-    document.getElementById("article-excerpt2").innerText = excerptText;
-
-    document.getElementById("article-link2").setAttribute("href", link);
-    document.getElementById("article-title2").setAttribute("href", link);
-    document.getElementById("article-date2").innerText =
-      daysDiff === 0 ? "Hari ini" : `${daysDiff} hari yang lalu`;
-
-    const formattedDate = articleDate.toLocaleDateString("id-ID", {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
-    });
-    document.getElementById("date-create2").innerText = formattedDate;
-
-    // Menampilkan gambar thumbnail from resource_url
-    const imageElement = document.getElementById("article-thumbnail2");
-    imageElement.src = resourceUrl;
-    imageElement.alt = title;
-
-  })
-  .catch((error) => {
-    console.error('Error fetching the post data:', error);
-  });
-
-// artikel 4
-fetch("https://ppydalikhlas.org/suara-alikhlas/wp-json/wp/v2/posts?_embed") // Tambahkan _embed agar media bisa diambil langsung
-  .then((response) => response.json())
-  .then((data) => {
-    const article = data[3];
-    const title = article.title.rendered;
-    // const categories = article.categories;
-    const categoryNames = article._embedded['wp:term'][0].map(term => term.name);
-    const excerpt = article.excerpt.rendered;
-    const link = article.link;
-    //get resource_url
-    const featuredMedia = article._embedded['wp:featuredmedia'][0];
-    const resourceUrl = featuredMedia ? featuredMedia.source_url : '';
-
-    const date = article.date;
-    const articleDate = new Date(date);
-    const now = new Date();
-    const timeDiff = now - articleDate;
-    const daysDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-
-    // Set the article content
-    document.getElementById("article-title3").innerText = title;
-    // document.getElementById("article-categories3").innerText = categories[0] === 2 ? "Artikel" : "Berita";
-
-    document.getElementById("article-categories3").innerText = categoryNames.join(", ");
-
-    const excerptText = excerpt.replace(/<\/?[^>]+(>|$)/g, "");
-    document.getElementById("article-excerpt3").innerText = excerptText;
-
-    document.getElementById("article-link3").setAttribute("href", link);
-    document.getElementById("article-title3").setAttribute("href", link);
-    document.getElementById("article-date3").innerText =
-      daysDiff === 0 ? "Hari ini" : `${daysDiff} hari yang lalu`;
-
-    const formattedDate = articleDate.toLocaleDateString("id-ID", {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
-    });
-    document.getElementById("date-create3").innerText = formattedDate;
-
-    // Menampilkan gambar thumbnail from resource_url
-    const imageElement = document.getElementById("article-thumbnail3");
-    imageElement.src = resourceUrl;
-    imageElement.alt = title;
-
-  })
-  .catch((error) => {
-    console.error('Error fetching the post data:', error);
-  });
+    observer.observe(section);
+  } else {
+    loadArticles();
+  }
+})();

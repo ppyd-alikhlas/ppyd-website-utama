@@ -9,6 +9,8 @@
         content="Pondok Pesantren Yatim Dhuafa Al-Ikhlas - Mencetak Generasi Qurani, Berilmu, Beramal, dan Berakhlak Islami.">
     <meta name="keywords" content="Pondok Pesantren, Yatim Dhuafa, Al-Ikhlas, Pendidikan, Islam">
     <meta name="author" content="Pondok Pesantren Yatim Dhuafa Al-Ikhlas">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link rel="apple-touch-icon" sizes="180x180"
         href="./assets-website-utama/assets/img/favicon_io/apple-touch-icon.png">
@@ -73,7 +75,7 @@
                         class="text-gray-700 hover:text-islamic-green px-4 py-2 rounded-lg hover:bg-gray-50 font-medium transition-all duration-200">Program
                         Pendidikan</a>
                     <div id="menu-layanan" class="relative">
-                        <button
+                        <button type="button" aria-haspopup="true" aria-expanded="false" aria-controls="submenu-layanan"
                             class="text-gray-700 hover:text-islamic-green px-4 py-2 rounded-lg hover:bg-gray-50 font-medium transition-all duration-200"
                             onclick="openMenuLayanan()">
                             Layanan
@@ -86,6 +88,7 @@
                             <a href="#faq" class="block px-4 py-2 text-gray-700 hover:bg-gray-50">FAQ</a>
                             <a href="#usaha-produktif" class="block px-4 py-2 text-gray-700 hover:bg-gray-50">Usaha
                                 Produktif</a>
+                            <a href="./donasi/" class="block px-4 py-2 text-gray-700 hover:bg-gray-50">Donasi</a>
                         </div>
                     </div>
                     <a href="#kontak"
@@ -97,7 +100,7 @@
 
                 <!-- Mobile Menu Button - Modern -->
                 <div class="md:hidden">
-                    <button id="mobile-menu-btn"
+                    <button id="mobile-menu-btn" type="button" aria-label="Buka menu navigasi" aria-expanded="false"
                         class="text-gray-700 hover:text-islamic-green p-2 rounded-lg hover:bg-gray-50 transition-all duration-200">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -112,12 +115,13 @@
     <!-- Hero Section with Video Background -->
     <section id="hero" class="hero-video h-screen relative">
         <!-- Video Background -->
-        <video autoplay muted loop class="absolute inset-0 w-full h-full object-cover">
-            <source src="./assets-website-utama/assets/video/hero-background.mp4" type="video/mp4">
-            <!-- <source src="https://videos.pexels.com/video-files/2818546/2818546-uhd_2560_1440_24fps.mp4" type="video/mp4"> -->
-            <!-- Fallback for browsers that don't support video -->
-            <div class="absolute inset-0 bg-gradient-to-br from-green-800 via-green-600 to-green-400"></div>
-        </video>
+        <!-- Video hero dimuat secara lazy hanya di desktop setelah halaman siap.
+             Mobile menggunakan background gradient agar tidak mengunduh video 11+ MB. -->
+        <div class="absolute inset-0 bg-gradient-to-br from-green-800 via-green-600 to-green-400" aria-hidden="true"></div>
+        <video id="hero-background-video"
+            muted loop playsinline preload="none" aria-hidden="true"
+            class="absolute inset-0 w-full h-full object-cover"
+            data-src="./assets-website-utama/assets/video/hero-background.mp4"></video>
 
         <!-- Overlay -->
         <div class="absolute inset-0 bg-gradient-to-r from-islamic-green/80 to-light-green/80 hero-overlay"></div>
@@ -174,14 +178,14 @@
                 </div>
 
                 <!-- Cards - Clean & Modern -->
-                <div class="grid md:grid-cols-3 gap-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8 items-stretch">
                     <!-- Visi Card -->
                     <div
-                        class="group bg-gray-50 border border-gray-100 p-8 rounded-xl hover:border-islamic-green/20 hover:shadow-xl transition-all duration-300">
+                        class="group flex h-full flex-col bg-gray-50 border border-gray-100 p-6 sm:p-8 rounded-2xl hover:border-islamic-green/20 hover:shadow-xl transition-all duration-300">
                         <div class="mb-6">
                             <div
                                 class="w-16 h-16 bg-islamic-green rounded-full flex items-center justify-center group-hover:bg-light-green transition-colors duration-300">
-                                <img src="./assets-website-utama/assets/img/visi-icon.png" class="h-12 w-12"
+                                <img loading="lazy" decoding="async" src="./assets-website-utama/assets/img/visi-icon.png" class="h-12 w-12"
                                     alt="visi icon">
                             </div>
                         </div>
@@ -197,7 +201,7 @@
                         <div class="mb-6">
                             <div
                                 class="w-16 h-16 bg-islamic-green rounded-full flex items-center justify-center group-hover:bg-light-green transition-colors duration-300">
-                                <img src="./assets-website-utama/assets/img/misi-icon.png" class="h-12 w-12"
+                                <img loading="lazy" decoding="async" src="./assets-website-utama/assets/img/misi-icon.png" class="h-12 w-12"
                                     alt="misi icon">
                             </div>
                         </div>
@@ -208,7 +212,7 @@
                                 pola pendidikan pesantren dan sekolah, sehingga menjadi anak-anak yang sholeh dan
                                 berwawasan ilmu yang shohih.</li>
                             <li>Membekali anak-anak yatim dan dhuafa dengan akhlak dan keterampilan, agar fapat menjadi
-                                pribadi mandiri dan bermanfaat bagi islam.</li>
+                                pribadi mandiri dan bermanfaat bagi Islam.</li>
                             <li>Menghimpun dan menyalurkan dana ummat berupa zakat, infaq, sedekah, hibah, dan wakaf
                                 untuk kemaslahatan anak-anak yatim dan dhuafa.</li>
                         </ul>
@@ -221,7 +225,7 @@
                         <div class="mb-6">
                             <div
                                 class="w-16 h-16 bg-islamic-green rounded-full flex items-center justify-center group-hover:bg-light-green transition-colors duration-300">
-                                <img src="./assets-website-utama/assets/img/tujuan-icon.png" class="h-12 w-12"
+                                <img loading="lazy" decoding="async" src="./assets-website-utama/assets/img/tujuan-icon.png" class="h-12 w-12"
                                     alt="tujuan icon">
                             </div>
                         </div>
@@ -237,9 +241,9 @@
 
                 <!-- Stats Section - Minimalist -->
                 <div class="mt-16 pt-12 border-t border-gray-200">
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-5 sm:gap-8">
                         <div class="text-center">
-                            <div class="text-4xl font-bold text-islamic-green mb-2">300+</div>
+                            <div class="text-3xl sm:text-4xl font-bold text-islamic-green mb-2">300+</div>
                             <div class="text-gray-600">Santri Aktif</div>
                         </div>
                         <div class="text-center">
@@ -274,7 +278,7 @@
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
                 <div class="text-center">
                     <div class="w-20 h-20 bg-islamic-yellow rounded-full flex items-center justify-center mx-auto mb-4">
-                        <img src="./assets-website-utama/assets/img/education-islamic.png" class="h-14 w-14"
+                        <img loading="lazy" decoding="async" src="./assets-website-utama/assets/img/education-islamic.png" class="h-14 w-14"
                             alt="Pendidikan Islami">
                     </div>
                     <h3 class="text-xl font-semibold mb-3">Pendidikan Islami</h3>
@@ -283,7 +287,7 @@
 
                 <div class="text-center">
                     <div class="w-20 h-20 bg-islamic-yellow rounded-full flex items-center justify-center mx-auto mb-4">
-                        <img src="./assets-website-utama/assets/img/teacher-education.png" class="h-14 w-14"
+                        <img loading="lazy" decoding="async" src="./assets-website-utama/assets/img/teacher-education.png" class="h-14 w-14"
                             alt="guru/asatidz">
                     </div>
                     <h3 class="text-xl font-semibold mb-3">Ustadz Berpengalaman</h3>
@@ -292,7 +296,7 @@
 
                 <div class="text-center">
                     <div class="w-20 h-20 bg-islamic-yellow rounded-full flex items-center justify-center mx-auto mb-4">
-                        <img src="./assets-website-utama/assets/img/fasilitas-education.png" class="h-14 w-14"
+                        <img loading="lazy" decoding="async" src="./assets-website-utama/assets/img/fasilitas-education.png" class="h-14 w-14"
                             alt="fasilitas pesantren">
                     </div>
                     <h3 class="text-xl font-semibold mb-3">Fasilitas Memadai</h3>
@@ -302,7 +306,7 @@
 
                 <div class="text-center">
                     <div class="w-20 h-20 bg-islamic-yellow rounded-full flex items-center justify-center mx-auto mb-4">
-                        <img src="./assets-website-utama/assets/img/beasiswa-education.png" class="h-14 w-14"
+                        <img loading="lazy" decoding="async" src="./assets-website-utama/assets/img/beasiswa-education.png" class="h-14 w-14"
                             alt="beasiswa santri">
                     </div>
                     <h3 class="text-xl font-semibold mb-3">Beasiswa Penuh</h3>
@@ -324,41 +328,41 @@
                     </p>
                 </div>
 
-                <div class="grid md:grid-cols-3 gap-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8 items-stretch">
                     <!-- TK/PAUD -->
-                    <div class="bg-gray-50 p-8 rounded-2xl shadow-lg text-center hover:shadow-xl transition-shadow">
+                    <div class="flex h-full flex-col bg-gray-50 p-6 sm:p-8 rounded-2xl shadow-lg text-center hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                         <div
                             class="w-20 h-20 bg-islamic-green rounded-full flex items-center justify-center mx-auto mb-6">
-                            <img src="./assets-website-utama/assets/img/icon-education.png" class="h-14 w-14"
+                            <img loading="lazy" decoding="async" src="./assets-website-utama/assets/img/icon-education.png" class="h-14 w-14"
                                 alt="Icon Education PP. Yatim Dhuafa Al-Ikhlas">
                         </div>
                         <h3 class="text-2xl font-semibold text-islamic-green mb-4">TK/PAUD</h3>
                         <div class="text-light-green font-semibold mb-4">Usia 3-6 Tahun</div>
-                        <ul class="text-gray-600 text-sm space-y-2 text-left">
+                        <ul class="flex-1 text-gray-600 text-sm space-y-3 text-left leading-relaxed">
                             <li>• Pengenalan huruf hijaiyah</li>
                             <li>• Hafalan surat-surat & hadits pendek</li>
                             <li>• Pembelajaran bermain sambil belajar</li>
                             <li>• Pembentukan akhlak dasar</li>
                             <li>• Kegiatan motorik dan kreativitas</li>
                         </ul>
-                        <div class="mt-6">
+                        <div class="mt-6 pt-2">
                             <button
-                                class="bg-islamic-green text-white px-6 py-2 rounded-lg font-semibold hover:bg-light-green transition-colors">
+                                class="inline-flex min-h-11 items-center justify-center bg-islamic-green text-white px-6 py-2 rounded-lg font-semibold hover:bg-light-green transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-islamic-green">
                                 Info Lengkap
                             </button>
                         </div>
                     </div>
 
                     <!-- SD/MI -->
-                    <div class="bg-gray-50 p-8 rounded-2xl shadow-lg text-center hover:shadow-xl transition-shadow">
+                    <div class="flex h-full flex-col bg-gray-50 p-6 sm:p-8 rounded-2xl shadow-lg text-center hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                         <div
                             class="w-20 h-20 bg-islamic-green rounded-full flex items-center justify-center mx-auto mb-6">
-                            <img src="./assets-website-utama/assets/img/icon-education.png" class="h-14 w-14"
+                            <img loading="lazy" decoding="async" src="./assets-website-utama/assets/img/icon-education.png" class="h-14 w-14"
                                 alt="Icon Education PP. Yatim Dhuafa Al-Ikhlas">
                         </div>
                         <h3 class="text-2xl font-semibold text-islamic-green mb-4">SD/MI</h3>
                         <div class="text-light-green font-semibold mb-4">Kelas 1-6</div>
-                        <ul class="text-gray-600 text-sm space-y-2 text-left">
+                        <ul class="flex-1 text-gray-600 text-sm space-y-3 text-left leading-relaxed">
                             <li>• Kurikulum nasional + pesantren</li>
                             <li>• Pembelajaran Al-Qur'an & Hadits</li>
                             <li>• Bahasa Arab & Inggris</li>
@@ -367,22 +371,22 @@
                         </ul>
                         <div class="mt-6">
                             <button
-                                class="bg-islamic-green text-white px-6 py-2 rounded-lg font-semibold hover:bg-light-green transition-colors">
+                                class="inline-flex min-h-11 items-center justify-center bg-islamic-green text-white px-6 py-2 rounded-lg font-semibold hover:bg-light-green transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-islamic-green">
                                 Info Lengkap
                             </button>
                         </div>
                     </div>
 
                     <!-- Tahfidz Raudhatul Huffadz -->
-                    <div class="bg-gray-50 p-8 rounded-2xl shadow-lg text-center hover:shadow-xl transition-shadow">
+                    <div class="flex h-full flex-col bg-gray-50 p-6 sm:p-8 rounded-2xl shadow-lg text-center hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                         <div
                             class="w-20 h-20 bg-islamic-green rounded-full flex items-center justify-center mx-auto mb-6">
-                            <img src="./assets-website-utama/assets/img/icon-education.png" class="h-14 w-14"
+                            <img loading="lazy" decoding="async" src="./assets-website-utama/assets/img/icon-education.png" class="h-14 w-14"
                                 alt="Icon Education PP. Yatim Dhuafa Al-Ikhlas">
                         </div>
                         <h3 class="text-2xl font-semibold text-islamic-green mb-4">Raudhatul Huffadz <br> An-Nuha</h3>
                         <div class="text-light-green font-semibold mb-4">Program Khusus Tahfidz & Baca Kitab</div>
-                        <ul class="text-gray-600 text-sm space-y-2 text-left">
+                        <ul class="flex-1 text-gray-600 text-sm space-y-3 text-left leading-relaxed">
                             <li>• Target hafalan 30 Juz Al-Qur'an</li>
                             <li>• Metode tahfidz terpadu</li>
                             <li>• Tahsin & Tajwid intensif</li>
@@ -391,7 +395,7 @@
                         </ul>
                         <div class="mt-6">
                             <button
-                                class="bg-islamic-green text-white px-6 py-2 rounded-lg font-semibold hover:bg-light-green transition-colors">
+                                class="inline-flex min-h-11 items-center justify-center bg-islamic-green text-white px-6 py-2 rounded-lg font-semibold hover:bg-light-green transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-islamic-green">
                                 Info Lengkap
                             </button>
                         </div>
@@ -405,11 +409,11 @@
                         <div class="w-16 h-1 bg-islamic-yellow mx-auto"></div>
                     </div>
 
-                    <div class="grid md:grid-cols-3 gap-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8 items-stretch">
                         <div class="text-center">
                             <div
                                 class="w-16 h-16 bg-islamic-yellow rounded-full flex items-center justify-center mx-auto mb-4">
-                                <img src="./assets-website-utama/assets/img/tahfidz-icon.png" alt="Tahfidz Al-Qur'an"
+                                <img loading="lazy" decoding="async" src="./assets-website-utama/assets/img/tahfidz-icon.png" alt="Tahfidz Al-Qur'an"
                                     class="w-10 h-10">
                             </div>
                             <h4 class="text-lg font-semibold text-white mb-2">Tahfidz 30 Juz</h4>
@@ -420,7 +424,7 @@
                         <div class="text-center">
                             <div
                                 class="w-16 h-16 bg-islamic-yellow rounded-full flex items-center justify-center mx-auto mb-4">
-                                <img src="./assets-website-utama/assets/img/language-icon.png"
+                                <img loading="lazy" decoding="async" src="./assets-website-utama/assets/img/language-icon.png"
                                     alt="Bahasa Internasional" class="w-10 h-10">
                             </div>
                             <h4 class="text-lg font-semibold text-white mb-2">Bahasa Internasional</h4>
@@ -431,7 +435,7 @@
                         <div class="text-center">
                             <div
                                 class="w-16 h-16 bg-islamic-yellow rounded-full flex items-center justify-center mx-auto mb-4">
-                                <img src="./assets-website-utama/assets/img/teknologi-icon.png"
+                                <img loading="lazy" decoding="async" src="./assets-website-utama/assets/img/teknologi-icon.png"
                                     alt="Teknologi Pendidikan" class="w-10 h-10">
                             </div>
                             <h4 class="text-lg font-semibold text-white mb-2">Teknologi Pendidikan</h4>
@@ -468,7 +472,7 @@
                     class="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1">
                     <div class="flex">
                         <div class="relative w-40 h-60 overflow-hidden flex-shrink-0">
-                            <img id="article-thumbnail"
+                            <img loading="lazy" decoding="async" id="article-thumbnail"
                                 src="./assets-website-utama/assets/img/PPYD Al Ikhlas Malang_Suara Al Ikhlas_Cover Artikel.png"
                                 alt="Thumbnail"
                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
@@ -518,7 +522,7 @@
                     class="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1">
                     <div class="flex">
                         <div class="relative w-40 h-60 overflow-hidden flex-shrink-0">
-                            <img id="article-thumbnail1"
+                            <img loading="lazy" decoding="async" id="article-thumbnail1"
                                 src="./assets-website-utama/assets/img/PPYD Al Ikhlas Malang_Suara Al Ikhlas_Cover Artikel.png"
                                 alt="Thumbnail"
                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
@@ -568,7 +572,7 @@
                     class="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1">
                     <div class="flex">
                         <div class="relative w-40 h-60 overflow-hidden flex-shrink-0">
-                            <img id="article-thumbnail2"
+                            <img loading="lazy" decoding="async" id="article-thumbnail2"
                                 src="./assets-website-utama/assets/img/PPYD Al Ikhlas Malang_Suara Al Ikhlas_Cover Artikel.png"
                                 alt="Thumbnail"
                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
@@ -618,7 +622,7 @@
                     class="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1">
                     <div class="flex">
                         <div class="relative w-40 h-60 overflow-hidden flex-shrink-0">
-                            <img id="article-thumbnail3"
+                            <img loading="lazy" decoding="async" id="article-thumbnail3"
                                 src="./assets-website-utama/assets/img/PPYD Al Ikhlas Malang_Suara Al Ikhlas_Cover Artikel.png"
                                 alt="Thumbnail"
                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
@@ -722,86 +726,30 @@
                         </div>
 
                         <!-- Countdown Display -->
-                        <div class="grid grid-cols-4 gap-4 mb-8">
-                            <div class="text-center bg-white/10 backdrop-blur-sm rounded-lg p-4">
-                                <div id="days" class="text-3xl font-bold text-islamic-yellow">00</div>
-                                <div class="text-sm text-white/80">Hari</div>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-8">
+                            <div class="text-center bg-white/10 backdrop-blur-sm rounded-lg p-3 sm:p-4">
+                                <div id="days" class="text-2xl sm:text-3xl font-bold text-islamic-yellow">00</div>
+                                <div class="text-xs sm:text-sm text-white/80 mt-1">Hari</div>
                             </div>
-                            <div class="text-center bg-white/10 backdrop-blur-sm rounded-lg p-4">
-                                <div id="hours" class="text-3xl font-bold text-islamic-yellow">00</div>
-                                <div class="text-sm text-white/80">Jam</div>
+                            <div class="text-center bg-white/10 backdrop-blur-sm rounded-lg p-3 sm:p-4">
+                                <div id="hours" class="text-2xl sm:text-3xl font-bold text-islamic-yellow">00</div>
+                                <div class="text-xs sm:text-sm text-white/80 mt-1">Jam</div>
                             </div>
-                            <div class="text-center bg-white/10 backdrop-blur-sm rounded-lg p-4">
-                                <div id="minutes" class="text-3xl font-bold text-islamic-yellow">00</div>
-                                <div class="text-sm text-white/80">Menit</div>
+                            <div class="text-center bg-white/10 backdrop-blur-sm rounded-lg p-3 sm:p-4">
+                                <div id="minutes" class="text-2xl sm:text-3xl font-bold text-islamic-yellow">00</div>
+                                <div class="text-xs sm:text-sm text-white/80 mt-1">Menit</div>
                             </div>
-                            <div class="text-center bg-white/10 backdrop-blur-sm rounded-lg p-4">
-                                <div id="seconds" class="text-3xl font-bold text-islamic-yellow">00</div>
-                                <div class="text-sm text-white/80">Detik</div>
+                            <div class="text-center bg-white/10 backdrop-blur-sm rounded-lg p-3 sm:p-4">
+                                <div id="seconds" class="text-2xl sm:text-3xl font-bold text-islamic-yellow">00</div>
+                                <div class="text-xs sm:text-sm text-white/80 mt-1">Detik</div>
                             </div>
                         </div>
 
-                        <button
-                            class="w-full bg-red-500 text-white font-bold py-3 rounded-lg hover:bg-red-600 transition-colors text-lg"
-                            href="https://ppydalikhlas.org/psb">
+                        <button type="button" id="psb-register-button" onclick="window.location.href='https://ppydalikhlas.org/psb'"
+                            class="w-full bg-red-500 text-white font-bold py-3 rounded-lg hover:bg-red-600 transition-colors text-lg text-center inline-block">
                             Daftar Sekarang!
                         </button>
                     </div>
-                </div>
-
-                <!-- Timeline -->
-                <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 mb-8">
-                    <h3 class="text-xl font-bold text-white text-center mb-6">Timeline Pendaftaran</h3>
-                    <div class="grid md:grid-cols-4 gap-4">
-                        <div class="text-center">
-                            <div
-                                class="w-10 h-10 bg-islamic-yellow rounded-full flex items-center justify-center mx-auto mb-2">
-                                <span class="text-islamic-green font-bold text-sm">1</span>
-                            </div>
-                            <h4 class="text-white font-medium text-sm mb-1">Pendaftaran</h4>
-                            <p class="text-white/60 text-xs"> Bulan Juli - Juni</p>
-                        </div>
-                        <div class="text-center">
-                            <div
-                                class="w-10 h-10 bg-islamic-yellow rounded-full flex items-center justify-center mx-auto mb-2">
-                                <span class="text-islamic-green font-bold text-sm">2</span>
-                            </div>
-                            <h4 class="text-white font-medium text-sm mb-1">Seleksi</h4>
-                            <p class="text-white/60 text-xs">Bulan Juni</p>
-                        </div>
-                        <div class="text-center">
-                            <div
-                                class="w-10 h-10 bg-islamic-yellow rounded-full flex items-center justify-center mx-auto mb-2">
-                                <span class="text-islamic-green font-bold text-sm">3</span>
-                            </div>
-                            <h4 class="text-white font-medium text-sm mb-1">Pengumuman</h4>
-                            <p class="text-white/60 text-xs">Bulan Juni</p>
-                        </div>
-                        <div class="text-center">
-                            <div
-                                class="w-10 h-10 bg-islamic-yellow rounded-full flex items-center justify-center mx-auto mb-2">
-                                <span class="text-islamic-green font-bold text-sm">4</span>
-                            </div>
-                            <h4 class="text-white font-medium text-sm mb-1">Masuk Pesantren</h4>
-                            <p class="text-white/60 text-xs">Bulan Juli</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Call to Action -->
-                <div class="text-center">
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
-                        <button
-                            class="px-8 py-3 border border-white/30 text-white font-semibold rounded-lg hover:bg-white/10 transition-colors">
-                            Download Brosur
-                        </button>
-                    </div>
-
-                    <!-- <div class="flex items-center justify-center space-x-6 text-white/60 text-sm">
-                        <span>✓ Pendaftaran Gratis</span>
-                        <span>✓ Konsultasi Gratis</span>
-                        <span>✓ Beasiswa Tersedia</span>
-                    </div> -->
                 </div>
             </div>
         </div>
@@ -991,14 +939,14 @@
                     </div>
 
                     <!-- Navigation Arrows -->
-                    <button onclick="previousSlide()"
-                        class="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 z-10">
+                    <button aria-label="Testimoni sebelumnya" onclick="previousSlide()"
+                        class="hidden md:flex absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full shadow-lg items-center justify-center transition-all duration-300 hover:scale-110 z-10">
                         <svg class="w-5 h-5 text-islamic-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                         </svg>
                     </button>
-                    <button onclick="nextSlide()"
-                        class="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 z-10">
+                    <button aria-label="Testimoni berikutnya" onclick="nextSlide()"
+                        class="hidden md:flex absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full shadow-lg items-center justify-center transition-all duration-300 hover:scale-110 z-10">
                         <svg class="w-5 h-5 text-islamic-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                         </svg>
@@ -1006,12 +954,18 @@
 
                     <!-- Slide Indicators -->
                     <div class="flex justify-center mt-6 space-x-3">
-                        <button id="indicator-0" onclick="goToSlide(0)"
+                        <button id="indicator-0" aria-label="Tampilkan testimoni 1" onclick="goToSlide(0)"
                             class="w-3 h-3 rounded-full bg-islamic-green transition-all duration-300"></button>
-                        <button id="indicator-1" onclick="goToSlide(1)"
+                        <button id="indicator-1" aria-label="Tampilkan testimoni 2" onclick="goToSlide(1)"
                             class="w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-400 transition-all duration-300"></button>
-                        <button id="indicator-2" onclick="goToSlide(2)"
+                        <button id="indicator-2" aria-label="Tampilkan testimoni 3" onclick="goToSlide(2)"
                             class="w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-400 transition-all duration-300"></button>
+                        <button id="indicator-3" aria-label="Tampilkan testimoni 4" onclick="goToSlide(3)"
+                            class="w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-400 transition-all duration-300 md:hidden"></button>
+                        <button id="indicator-4" aria-label="Tampilkan testimoni 5" onclick="goToSlide(4)"
+                            class="w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-400 transition-all duration-300 md:hidden"></button>
+                        <button id="indicator-5" aria-label="Tampilkan testimoni 6" onclick="goToSlide(5)"
+                            class="w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-400 transition-all duration-300 md:hidden"></button>
                     </div>
                 </div>
             </div>
@@ -1028,14 +982,14 @@
 
             <div class="max-w-4xl mx-auto space-y-4">
                 <div class="bg-gray-50 rounded-lg">
-                    <button class="w-full text-left p-6 focus:outline-none" onclick="toggleFAQ(this)">
+                    <button id="faq-button-1" type="button" aria-expanded="false" aria-controls="faq-content-1" class="w-full text-left p-6 focus:outline-none focus-visible:ring-2 focus-visible:ring-islamic-green focus-visible:ring-offset-2" onclick="toggleFAQ(this)">
                         <div class="flex justify-between items-center">
                             <h3 class="text-lg font-semibold text-islamic-green">Berapa biaya pendidikan di Al-Ikhlas?
                             </h3>
                             <span class="text-islamic-green text-xl">+</span>
                         </div>
                     </button>
-                    <div class="hidden px-6 pb-6">
+                    <div id="faq-content-1" class="hidden px-6 pb-6">
                         <p class="text-gray-600">Biaya pendidikan disesuaikan dengan jenjang pendidikan. Kami juga
                             menyediakan
                             program beasiswa untuk anak yatim dan keluarga kurang mampu.</p>
@@ -1043,27 +997,27 @@
                 </div>
 
                 <div class="bg-gray-50 rounded-lg">
-                    <button class="w-full text-left p-6 focus:outline-none" onclick="toggleFAQ(this)">
+                    <button id="faq-button-2" type="button" aria-expanded="false" aria-controls="faq-content-2" class="w-full text-left p-6 focus:outline-none focus-visible:ring-2 focus-visible:ring-islamic-green focus-visible:ring-offset-2" onclick="toggleFAQ(this)">
                         <div class="flex justify-between items-center">
                             <h3 class="text-lg font-semibold text-islamic-green">Apa saja fasilitas yang tersedia?</h3>
                             <span class="text-islamic-green text-xl">+</span>
                         </div>
                     </button>
-                    <div class="hidden px-6 pb-6">
+                    <div id="faq-content-2" class="hidden px-6 pb-6">
                         <p class="text-gray-600">Fasilitas meliputi asrama, masjid, perpustakaan, lab komputer, lapangan
                             olahraga, dan klinik kesehatan.</p>
                     </div>
                 </div>
 
                 <div class="bg-gray-50 rounded-lg">
-                    <button class="w-full text-left p-6 focus:outline-none" onclick="toggleFAQ(this)">
+                    <button id="faq-button-3" type="button" aria-expanded="false" aria-controls="faq-content-3" class="w-full text-left p-6 focus:outline-none focus-visible:ring-2 focus-visible:ring-islamic-green focus-visible:ring-offset-2" onclick="toggleFAQ(this)">
                         <div class="flex justify-between items-center">
                             <h3 class="text-lg font-semibold text-islamic-green">Bagaimana sistem pembelajaran di
                                 Al-Ikhlas?</h3>
                             <span class="text-islamic-green text-xl">+</span>
                         </div>
                     </button>
-                    <div class="hidden px-6 pb-6">
+                    <div id="faq-content-3" class="hidden px-6 pb-6">
                         <!-- <p class="text-gray-600">Kami menerapkan sistem pembelajaran terpadu yang menggabungkan
                             kurikulum pesantren tradisional dengan kurikulum nasional.</p> -->
                         <ul class="list-disc list-inside">
@@ -1092,14 +1046,14 @@
                 </div>
 
                 <div class="bg-gray-50 rounded-lg">
-                    <button class="w-full text-left p-6 focus:outline-none" onclick="toggleFAQ(this)">
+                    <button id="faq-button-4" type="button" aria-expanded="false" aria-controls="faq-content-4" class="w-full text-left p-6 focus:outline-none focus-visible:ring-2 focus-visible:ring-islamic-green focus-visible:ring-offset-2" onclick="toggleFAQ(this)">
                         <div class="flex justify-between items-center">
                             <h3 class="text-lg font-semibold text-islamic-green">Kapan waktu pendaftaran santri baru?
                             </h3>
                             <span class="text-islamic-green text-xl">+</span>
                         </div>
                     </button>
-                    <div class="hidden px-6 pb-6">
+                    <div id="faq-content-4" class="hidden px-6 pb-6">
                         <p class="text-gray-600">Pendaftaran santri baru dibuka setiap bulan Januari hingga Juni untuk
                             tahun ajaran baru yang dimulai bulan Juli.</p>
                     </div>
@@ -1122,7 +1076,7 @@
                     <div class="space-y-4">
                         <div class="flex items-center">
                             <div class="w-12 h-12 bg-islamic-yellow rounded-full flex items-center justify-center mr-4">
-                                <img src="./assets-website-utama/assets/img/location-icon.png" height="40" width="40"
+                                <img loading="lazy" decoding="async" src="./assets-website-utama/assets/img/location-icon.png" height="40" width="40"
                                     alt="location icon">
                             </div>
                             <div>
@@ -1134,7 +1088,7 @@
 
                         <div class="flex items-center">
                             <div class="w-12 h-12 bg-islamic-yellow rounded-full flex items-center justify-center mr-4">
-                                <img src="./assets-website-utama/assets/img/phone-icon.png" height="40" width="40"
+                                <img loading="lazy" decoding="async" src="./assets-website-utama/assets/img/phone-icon.png" height="40" width="40"
                                     alt="phone icon">
                             </div>
                             <div>
@@ -1146,7 +1100,7 @@
 
                         <div class="flex items-center">
                             <div class="w-12 h-12 bg-islamic-yellow rounded-full flex items-center justify-center mr-4">
-                                <img src="./assets-website-utama/assets/img/mail-icon.png" height="40" width="40"
+                                <img loading="lazy" decoding="async" src="./assets-website-utama/assets/img/mail-icon.png" height="40" width="40"
                                     alt="mail icon">
                             </div>
                             <div>
@@ -1157,7 +1111,7 @@
 
                         <div class="flex items-center">
                             <div class="w-12 h-12 bg-islamic-yellow rounded-full flex items-center justify-center mr-4">
-                                <img src="./assets-website-utama/assets/img/clock-icon.png" height="40" width="40"
+                                <img loading="lazy" decoding="async" src="./assets-website-utama/assets/img/clock-icon.png" height="40" width="40"
                                     alt="clock icon">
                             </div>
                             <div>
@@ -1172,18 +1126,22 @@
                     <h3 class="text-2xl font-semibold mb-6">Kirim Pesan</h3>
                     <form id="contact-form" class="space-y-4">
                         <div>
+                            <label for="nama" class="sr-only">Nama Lengkap</label>
                             <input type="text" id="nama" placeholder="Nama Lengkap"
                                 class="w-full p-4 rounded-lg text-islamic-green" required>
                         </div>
                         <div>
+                            <label for="email" class="sr-only">Email</label>
                             <input type="email" id="email" placeholder="Email"
                                 class="w-full p-4 rounded-lg text-islamic-green" required>
                         </div>
                         <div>
+                            <label for="telepon" class="sr-only">Nomor Telepon</label>
                             <input type="tel" id="telepon" placeholder="Nomor Telepon"
                                 class="w-full p-4 rounded-lg text-islamic-green" required>
                         </div>
                         <div>
+                            <label for="pesan" class="sr-only">Pesan Anda</label>
                             <textarea id="pesan" placeholder="Pesan Anda" rows="4"
                                 class="w-full p-4 rounded-lg text-islamic-green" required></textarea>
                         </div>
@@ -1220,7 +1178,7 @@
                         <div class="flex items-start space-x-4">
                             <div
                                 class="w-12 h-12 rounded-lg flex items-center justify-center group-hover:scale-110 transition-all duration-300">
-                                <img src="./assets-website-utama/assets/img/logo-koperasi.jpg"
+                                <img loading="lazy" decoding="async" src="./assets-website-utama/assets/img/logo-koperasi.jpg"
                                     alt="Koperasi Produsen Peduli Ummat Al-Ikhlas">
                             </div>
                             <div class="flex-1">
@@ -1242,7 +1200,7 @@
                         <div class="flex items-start space-x-4">
                             <div
                                 class="w-12 h-12 rounded-lg flex items-center justify-center group-hover:scale-110 transition-all duration-300">
-                                <img src="./assets-website-utama/assets/img/logo-bolobolu.jpg" alt="Bolo Bolu Malang">
+                                <img loading="lazy" decoding="async" src="./assets-website-utama/assets/img/logo-bolobolu.jpg" alt="Bolo Bolu Malang">
                             </div>
                             <div class="flex-1">
                                 <h3
@@ -1264,7 +1222,7 @@
                         <div class="flex items-start space-x-4">
                             <div
                                 class="w-12 h-12 rounded-lg flex items-center justify-center group-hover:scale-110 transition-all duration-300">
-                                <img src="./assets-website-utama/assets/img/logo-ikhlas-water.jpg" alt="Ikhlas Water">
+                                <img loading="lazy" decoding="async" src="./assets-website-utama/assets/img/logo-ikhlas-water.jpg" alt="Ikhlas Water">
                             </div>
                             <div class="flex-1">
                                 <h3
@@ -1305,17 +1263,57 @@
             </div>
         </div>
     </section>
+
+    <!-- Donasi Section -->
+    <section id="donasi" class="py-20 bg-islamic-green text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid lg:grid-cols-[1.4fr_.6fr] gap-10 items-center">
+                    <div>
+                        <span class="inline-flex items-center px-3 py-1 rounded-full bg-white/10 text-islamic-yellow text-sm font-semibold mb-5">
+                            Dukung Kebaikan Bersama
+                        </span>
+                        <h2 class="text-4xl md:text-5xl font-bold leading-tight mb-5">
+                            Bersama kita hadirkan masa depan yang lebih baik bagi santri.
+                        </h2>
+                        <p class="text-white/85 text-lg leading-relaxed max-w-2xl">
+                            Setiap donasi membantu mendukung pendidikan, pembinaan, kebutuhan harian, dan pengembangan
+                            kemandirian santri yatim dan dhuafa di PP. Yatim Dhuafa Al-Ikhlas Malang.
+                        </p>
+                    </div>
+                    <div class="relative isolate overflow-hidden bg-white/10 border border-white/20 rounded-3xl p-6 sm:p-7 shadow-xl shadow-black/10 backdrop-blur-md">
+                        <div class="absolute -right-8 -top-8 h-28 w-28 rounded-full bg-islamic-yellow/10 blur-2xl" aria-hidden="true"></div>
+                        <div class="relative">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="text-islamic-yellow font-bold text-sm sm:text-base uppercase tracking-wider">Salurkan Donasi</div>
+                            </div>
+                            <p class="text-white/90 text-base sm:text-lg leading-relaxed mb-6">
+                                Pilih program yang ingin Anda dukung dan lanjutkan melalui halaman donasi kami.
+                            </p>
+                            <a href="./donasi/"
+                                class="group inline-flex min-h-13 items-center justify-center gap-2 w-full bg-islamic-yellow text-islamic-green px-6 py-4 rounded-xl font-bold text-base sm:text-lg shadow-md shadow-black/10 transition-all duration-200 hover:bg-dark-yellow hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-islamic-green">
+                                <span>Donasi Sekarang</span>
+                                <span aria-hidden="true" class="inline-block transition-transform duration-200 group-hover:translate-x-1">→</span>
+                            </a>
+                            <p class="mt-3 text-center text-xs text-white/70">Setiap kebaikan berarti bagi masa depan santri.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <!-- Footer -->
     <footer class="bg-slate-900 text-white py-12">
         <div class="container mx-auto px-4">
             <div class="max-w-6xl mx-auto">
                 <!-- Main Footer Content -->
-                <div class="grid md:grid-cols-12 gap-8 mb-8">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-6 mb-8">
                     <!-- Brand Section -->
-                    <div class="md:col-span-5">
+                    <div class="sm:col-span-2 lg:col-span-4 min-w-0">
                         <div class="flex items-center mb-4">
                             <div class="w-10 h-10 bg-islamic-green rounded-lg flex items-center justify-center mr-3">
-                                <img src="./assets-website-utama/assets/img/icon_logo_utama.jpg" height="40" width="40"
+                                <img loading="lazy" decoding="async" src="./assets-website-utama/assets/img/icon_logo_utama.jpg" height="40" width="40"
                                     alt="Logo Pondok Pesantren Al-Ikhlas" style="border-radius: 5%;">
                             </div>
                             <div>
@@ -1328,7 +1326,7 @@
                         </p>
                         <!-- Social Media -->
                         <div class="flex space-x-3">
-                            <a href="https://web.facebook.com/ponpesalikhlas.yatimdhuafa/"
+                            <a aria-label="Facebook Pondok Pesantren Al-Ikhlas" href="https://web.facebook.com/ponpesalikhlas.yatimdhuafa/"
                                 class="w-9 h-9 bg-gray-800 hover:bg-islamic-green rounded-lg flex items-center justify-center transition-colors duration-300 group">
                                 <svg xmlns="http://www.w3.org/2000/svg"
                                     class="w-4 h-4 text-gray-400 group-hover:text-white" fill="currentColor"
@@ -1338,7 +1336,7 @@
                                     </path>
                                 </svg>
                             </a>
-                            <a href="https://www.instagram.com/yatim.dhuafa.al_ikhlas/"
+                            <a aria-label="Instagram Pondok Pesantren Al-Ikhlas" href="https://www.instagram.com/yatim.dhuafa.al_ikhlas/"
                                 class="w-9 h-9 bg-gray-800 hover:bg-islamic-green rounded-lg flex items-center justify-center transition-colors duration-300 group">
                                 <svg xmlns="http://www.w3.org/2000/svg"
                                     class="w-4 h-4 text-gray-400 group-hover:text-white" fill="currentColor"
@@ -1348,7 +1346,7 @@
                                     </path>
                                 </svg>
                             </a>
-                            <a href="https://www.youtube.com/@pondokpesantrenyatimdhuafa"
+                            <a aria-label="YouTube Pondok Pesantren Al-Ikhlas" href="https://www.youtube.com/@pondokpesantrenyatimdhuafa"
                                 class="w-9 h-9 bg-gray-800 hover:bg-islamic-green rounded-lg flex items-center justify-center transition-colors duration-300 group">
                                 <svg xmlns="http://www.w3.org/2000/svg"
                                     class="w-4 h-4 text-gray-400 group-hover:text-white" fill="currentColor"
@@ -1358,7 +1356,7 @@
                                     </path>
                                 </svg>
                             </a>
-                            <a href="https://www.tiktok.com/@ppyd.alikhlas"
+                            <a aria-label="TikTok Pondok Pesantren Al-Ikhlas" href="https://www.tiktok.com/@ppyd.alikhlas"
                                 class="w-9 h-9 bg-gray-800 hover:bg-islamic-green rounded-lg flex items-center justify-center transition-colors duration-300 group">
                                 <svg xmlns="http://www.w3.org/2000/svg"
                                     class="w-4 h-4 text-gray-400 group-hover:text-white" fill="currentColor"
@@ -1372,7 +1370,7 @@
                     </div>
 
                     <!-- Quick Links -->
-                    <div class="md:col-span-2">
+                    <div class="min-w-0 lg:col-span-2">
                         <h3 class="text-white font-semibold text-sm mb-4 uppercase tracking-wider">Menu</h3>
                         <ul class="space-y-3">
                             <li><a href="#tentang"
@@ -1401,7 +1399,7 @@
                     </div>
 
                     <!-- Contact Info -->
-                    <div class="md:col-span-3">
+                    <div class="min-w-0 lg:col-span-4">
                         <h3 class="text-white font-semibold text-sm mb-4 uppercase tracking-wider">Kontak</h3>
                         <div class="space-y-3">
                             <div class="flex items-start">
@@ -1411,29 +1409,28 @@
                                         d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
                                         clip-rule="evenodd" />
                                 </svg>
-                                <div class="text-gray-400 text-sm">
-                                    <div>Dsn. Biru RT.03/RW.01 </div>
-                                    <div>Ds. Gunungrejo Kec. Singosari</div>
-                                    <div>Kab. Malang, Jawa Timur</div>
-                                </div>
+                                <a href="https://www.google.com/maps/search/?api=1&query=PPYD+AL+IKHLAS+PUTRA" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white text-sm leading-relaxed break-words transition-colors" aria-label="Lihat lokasi Pondok Pesantren Al-Ikhlas di Google Maps">
+                                    <span class="block">Dsn. Biru RT.03/RW.01</span>
+                                    <span class="block">Ds. Gunungrejo, Kec. Singosari</span>
+                                    <span class="block">Kab. Malang, Jawa Timur</span>
+                                    <span class="inline-block mt-1 text-islamic-green font-medium">Lihat lokasi di peta ↗</span>
+                                </a>
                             </div>
-                            <div class="flex items-center">
-                                <svg class="w-4 h-4 text-islamic-green mr-3" fill="currentColor" viewBox="0 0 20 20">
-                                    <path
-                                        d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                            <div class="flex items-start gap-3 min-w-0">
+                                <svg class="w-4 h-4 text-islamic-green mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                                    <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                                 </svg>
-                                <!-- <span class="text-gray-400 text-sm">+62 813 3535 3533</span> -->
-                                <div class="text-gray-400 text-sm">
-                                    <div>(0341) 454 124</div>
-                                    <div>+62 813 3535 3533</div>
+                                <div class="text-gray-300 text-sm space-y-1 min-w-0 break-words">
+                                    <a href="tel:+62341454124" class="block hover:text-white transition-colors">(0341) 454 124</a>
+                                    <a href="https://wa.me/6281335353533" target="_blank" rel="noopener noreferrer" class="block hover:text-white transition-colors">WhatsApp: +62 813 3535 3533</a>
                                 </div>
                             </div>
-                            <div class="flex items-center">
-                                <svg class="w-4 h-4 text-islamic-green mr-3" fill="currentColor" viewBox="0 0 20 20">
+                            <div class="flex items-start gap-3 min-w-0">
+                                <svg class="w-4 h-4 text-islamic-green mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                                     <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
                                     <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
                                 </svg>
-                                <span class="text-gray-400 text-sm">ppyd.alikhlassingosari@gmail.com</span>
+                                <a href="mailto:ppyd.alikhlassingosari@gmail.com" class="text-gray-300 hover:text-white text-sm break-all transition-colors">ppyd.alikhlassingosari@gmail.com</a>
                             </div>
                         </div>
                     </div>
@@ -1447,12 +1444,15 @@
                             <!-- <span class="text-islamic-green font-semibold">Designed by 🩷 Muhammad Ridho Ramadhan</span> -->
                         </div>
                         <div class="flex space-x-6">
-                            <a href="#"
-                                class="text-gray-400 hover:text-white text-sm transition-colors duration-300">Privacy
-                                Policy</a>
-                            <a href="#"
-                                class="text-gray-400 hover:text-white text-sm transition-colors duration-300">Terms of
-                                Service</a>
+                            <a href="./psb"
+                                class="text-gray-400 hover:text-white text-sm transition-colors duration-300">
+                                PSB</a>
+                            <a href="./suara-al-ikhlas"
+                                class="text-gray-400 hover:text-white text-sm transition-colors duration-300">
+                                Suara Al-Ikhlas</a>
+                            <a href="./donasi"
+                                class="text-gray-400 hover:text-white text-sm transition-colors duration-300">
+                                Donasi</a>
                         </div>
                     </div>
                 </div>

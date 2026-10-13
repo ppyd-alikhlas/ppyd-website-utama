@@ -181,3 +181,53 @@ body {
     height: 14rem;
   }
 }
+
+
+/* Accessibility and motion preferences */
+:focus-visible {
+  outline: 3px solid #f8f203;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+
+/* =========================================================
+   Testimoni - satu card per slide pada layar mobile
+   ========================================================= */
+@media (max-width: 767px) {
+  #testimonial-slider > .w-full {
+    display: contents;
+  }
+
+  #testimonial-slider > .w-full > div {
+    display: contents;
+  }
+
+  #testimonial-slider > .w-full > div > .grid {
+    display: contents;
+  }
+
+  #testimonial-slider > .w-full > div > .grid > div {
+    width: 100%;
+    flex: 0 0 100%;
+    min-width: 100%;
+    box-sizing: border-box;
+  }
+
+  #testimonial-slider {
+    will-change: transform;
+  }
+}
