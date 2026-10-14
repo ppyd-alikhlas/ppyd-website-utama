@@ -24,7 +24,7 @@
       })[char]);
       const plainText = (value) => {
         const doc = new DOMParser().parseFromString(value || '', 'text/html');
-        return (doc.body.textContent || '').replace(/\\s+/g, ' ').trim();
+        return (doc.body.textContent || '').replace(/\s+/g, ' ').trim();
       };
       const formatDate = (value) => {
         try {
