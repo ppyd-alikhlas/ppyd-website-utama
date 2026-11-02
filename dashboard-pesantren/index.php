@@ -40,18 +40,9 @@ $statusSosialData = [
 // ==========================================
 // 2. KONEKSI & PENGAMBILAN DATA REAL-TIME DARI DB
 // ==========================================
-$host     = "localhost";
-$database = "siata_sistem4";
-$username = "root"; 
-$password = "";
-
+// Koneksi database dipusatkan di file konfigurasi terpisah.
 try {
-    // Koneksi PDO dengan timeout cepat 3 detik
-    $db = new PDO("mysql:host=$host;dbname=$database;charset=utf8", $username, $password, [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        PDO::ATTR_TIMEOUT => 3 
-    ]);
+    $db = require __DIR__ . '/config/database.php';
 
     // A. Mengambil total santri aktif (status_pelajar = '1' & sesuai tingkat pendidikan)
     $querySantri = $db->query("SELECT COUNT(*) as total FROM data_pelajar WHERE status_pelajar = '1' AND tingkat_pendidikan IN ('TK', 'SD', 'SMP', 'SMA', 'NON AKD', 'PT')");
