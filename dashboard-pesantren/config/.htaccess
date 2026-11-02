@@ -1,0 +1,8 @@
+# Blokir akses HTTP langsung ke file konfigurasi.
+Require all denied
+
+# Kompatibilitas Apache 2.2
+<IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+</IfModule>
