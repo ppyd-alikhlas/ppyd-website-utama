@@ -166,7 +166,9 @@ try {
         $c_pengabdian = isset($pengabdianPerCabang[$cId]) ? $pengabdianPerCabang[$cId] : 0;
         $c_non_mukim = isset($nonMukimPerCabang[$cId]) ? $nonMukimPerCabang[$cId] : 0;
         
-        $c_total_semua = $c_ustadz + $c_berasrama + $c_anak_pengurus + $c_non_mukim + $c_pengabdian;
+        // TOTAL merupakan penjumlahan kolom yang tampil pada tabel: ASATIDZAH,
+        // SANTRI BERASRAMA, ANAK PENGURUS, dan NON MUKIM.
+        $c_total_semua = $c_ustadz + $c_berasrama + $c_anak_pengurus + $c_non_mukim;
 
         $tempCabang[] = [
             'id' => $cId,
