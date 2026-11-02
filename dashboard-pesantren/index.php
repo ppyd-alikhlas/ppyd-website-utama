@@ -58,32 +58,24 @@ try {
         $totalAlumni = (int)$resAlumni['total'];
     }
 
-    // C. Mengambil data ustadz / guru dari tabel terpisah (jika ada)
-    $ustadzPerCabang = [
-        1 => 33,    //PPYD PUTRA
-        2 => 13,    //PPYD PUTRI
-        6 => 1,     //BAITI JANNATI
-        3 => 8,     //RH AN-NUHA PUTRA
-        4 => 3,     //RH AN-NUHA PUTRI 1
-        5 => 5      //RH AN-NUHA PUTRI 2
-    ];
+    // C. Mengambil jumlah ustadz/pengajar aktif dari tabel data_karyawan.
+    // status_pengajar = '1' menandai karyawan sebagai pengajar.
+    // hapus = 0 mengecualikan data yang sudah dihapus.
+    $ustadzPerCabang = [];
 
-    try {
-        $checkTable = $db->query("SELECT 1 FROM data_guru LIMIT 1");
-        if ($checkTable !== false) {
-            $queryUstadz = $db->query("SELECT cabang_id, COUNT(*) AS total_ustadz FROM data_guru GROUP BY cabang_id");
-            foreach ($queryUstadz->fetchAll() as $row) {
-                $ustadzPerCabang[(int)$row['cabang_id']] = (int)$row['total_ustadz'];
-            }
-        }
-    } catch (PDOException $e) {
-        // Jika tabel khusus guru tidak ada, tetap gunakan dummy atau data_pelajar is_guru
-        try {
-            $queryUstadzAlt = $db->query("SELECT cabang_id, COUNT(*) AS total_ustadz FROM data_pelajar WHERE is_guru = 1 GROUP BY cabang_id");
-            foreach ($queryUstadzAlt->fetchAll() as $row) {
-                $ustadzPerCabang[(int)$row['cabang_id']] = (int)$row['total_ustadz'];
-            }
-        } catch (PDOException $e2) {}
+    $queryUstadz = $db->query("
+        SELECT
+            cabang_id,
+            COUNT(*) AS total_ustadz
+        FROM data_karyawan
+        WHERE status_pengajar = '1'
+            AND hapus = 0
+            AND cabang_id IS NOT NULL
+        GROUP BY cabang_id
+    ");
+
+    foreach ($queryUstadz->fetchAll() as $row) {
+        $ustadzPerCabang[(int)$row['cabang_id']] = (int)$row['total_ustadz'];
     }
 
     // D. Pengambilan data Santri Berasrama, Anak Pengurus, dan Pengabdian sesuai instruksi query
