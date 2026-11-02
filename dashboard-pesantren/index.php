@@ -42,8 +42,8 @@ $statusSosialData = [
 // ==========================================
 $host     = "localhost";
 $database = "siata_sistem4";
-$username = "admin_db"; 
-$password = "Password!@#";
+$username = "root"; 
+$password = "";
 
 try {
     // Koneksi PDO dengan timeout cepat 3 detik
