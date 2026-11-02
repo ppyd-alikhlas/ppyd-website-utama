@@ -181,8 +181,9 @@ try {
     }
     $cabangData = $tempCabang;
 
-    // Hitung total ustadz secara dinamis
-    $totalUstadz = array_sum(array_column($cabangData, 'ustadz'));
+    // Jumlah ASATIDZAH / PENGURUS berdasarkan seluruh data karyawan aktif.
+    $queryTotalKaryawan = $db->query("SELECT COUNT(*) AS total FROM data_karyawan WHERE hapus = 0");
+    $totalUstadz = (int) $queryTotalKaryawan->fetchColumn();
 
     // E. Mengambil data tingkat pendidikan dinamis
     $queryPendidikan = $db->query("
@@ -244,7 +245,7 @@ try {
 
 } catch (PDOException $e) {
     // Fallback otomatis jika database mati tanpa merusak tampilan TV
-    $totalUstadz = array_sum(array_column($cabangData, 'ustadz'));
+    $totalUstadz = 0;
 }
 
 // ==========================================
@@ -507,7 +508,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'get_data') {
                     </svg>
                 </div>
                 <div class="mt-2 flex items-baseline justify-between">
-                    <div class="text-3xl sm:text-4xl font-black tracking-tight text-slate-900 lg:text-5xl" x-text="formatNumber(totalUstadz + totals.pengabdian)">70</div>
+                    <div class="text-3xl sm:text-4xl font-black tracking-tight text-slate-900 lg:text-5xl" x-text="formatNumber(totalUstadz)">0</div>
                     <span class="text-[11px] bg-indigo-50 text-indigo-600 px-2.5 py-0.5 rounded-full font-bold border border-indigo-100 lg:text-xs">Ustadz & Ustadzah</span>
                 </div>
             </div>
@@ -547,7 +548,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'get_data') {
                                     <th class="py-3 px-4 text-center lg:py-4 xl:py-5">SANTRI BERASRAMA</th>
                                     <th class="py-3 px-4 text-center lg:py-4 xl:py-5">ANAK PENGURUS</th>
                                     <th class="py-3 px-4 text-center lg:py-4 xl:py-5">NON MUKIM</th>
-                                    <th class="py-3 px-4 text-center rounded-r-lg lg:py-4 xl:py-5">NON AKD</th>
+                                    
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-slate-100">
@@ -559,7 +560,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'get_data') {
                                         <td class="py-3.5 px-4 text-center font-black text-slate-900 text-xs sm:text-sm lg:text-2xl xl:text-3xl lg:py-5 xl:py-6" x-text="formatNumber(item.berasrama)"></td>
                                         <td class="py-3.5 px-4 text-center font-black text-slate-900 text-xs sm:text-sm lg:text-2xl xl:text-3xl lg:py-5 xl:py-6" x-text="formatNumber(item.anak_pengurus)"></td>
                                         <td class="py-3.5 px-4 text-center font-black text-slate-900 text-xs sm:text-sm lg:text-2xl xl:text-3xl lg:py-5 xl:py-6" x-text="formatNumber(item.non_mukim)"></td>
-                                        <td class="py-3.5 px-4 text-center font-black text-slate-900 text-xs sm:text-sm lg:text-2xl xl:text-3xl lg:py-5 xl:py-6" x-text="formatNumber(item.pengabdian)"></td>
+                                        
                                     </tr>
                                 </template>
                             </tbody>
