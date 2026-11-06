@@ -1,0 +1,4 @@
+RewriteEngine on
+
+# Mengalihkan dashboard-pesantren ke coming-soon:
+# Redirect 302 /dashboard-pesantren /coming-soon
